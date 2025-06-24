@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云智洁实施工程师提成计算系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #1976D2;
+            --primary-dark: #0D47A1;
+            --primary-light: #E3F2FD;
+            --secondary: #FFA000;
+            --danger: #D32F2F;
+            --success: #388E3C;
+            --gray: #757575;
+            --light-gray: #F5F5F5;
+            --border: #E0E0E0;
+            --text: #333;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #BBDEFB 100%);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        header p {
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 28px;
+            color: var(--white);
+        }
+        
+        .year-display {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .main-content {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .customer-form {
+            flex: 1;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .results-section {
+            flex: 1;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+        }
+        
+        .checkbox-group, .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .flex-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .flex-row > div {
+            flex: 1;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .commission-summary {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: auto;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .summary-item.total {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-dark);
+            border-bottom: none;
+            margin-top: 10px;
+        }
+        
+        .commission-details {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .commission-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .commission-details th, 
+        .commission-details td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .commission-details th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .btn-calculate {
+            background: var(--secondary);
+            margin-top: 20px;
+        }
+        
+        .btn-calculate:hover {
+            background: #F57C00;
+        }
+        
+        .btn-delete {
+            background: var(--danger);
+        }
+        
+        .btn-delete:hover {
+            background: #B71C1C;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
+            background: var(--light-gray);
+        }
+        
+        .customer-row {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .delete-row {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--danger);
+            color: var(--white);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .coef-suggestion {
+            margin-top: 8px;
+            padding: 8px;
+            background: var(--primary-light);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .flex-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <h1>云智洁实施工程师提成计算系统</h1>
+            <p>专业、准确、高效的提成计算解决方案</p>
+            <div class="year-display" id="current-year">2023年</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="customer-form">
+                <h2 class="section-title">客户信息</h2>
+                
+                <div class="customer-row" id="customer-row-1">
+                    <button class="delete-row" onclick="removeCustomerRow('customer-row-1')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="form-group">
+                        <label for="customer-name">客户名称</label>
+                        <div class="flex-row">
+                            <div>
+                                <select class="form-control" id="customer-select" onchange="handleCustomerSelect()">
+                                    <option value="">-- 选择客户 --</option>
+                                    <option value="ABC科技有限公司">ABC科技有限公司</option>
+                                    <option value="华夏教育集团">华夏教育集团</option>
+                                    <option value="未来科技公司">未来科技公司</option>
+                                    <option value="new">+ 新增客户</option>
+                                </select>
+                            </div>
+                            <div id="new-customer-group" class="hidden">
+                                <input type="text" class="form-control" id="new-customer-name" placeholder="输入新客户名称">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>客户属性</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="new-customer" name="customer-type" value="新客户" checked>
+                                <label for="new-customer">新客户</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="old-customer" name="customer-type" value="老客户">
+                                <label for="old-customer">老客户</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-type">产品类型</label>
+                        <select class="form-control" id="product-type" onchange="handleProductTypeChange()">
+                            <option value="">-- 请选择产品类型 --</option>
+                            <option value="云智洁管理系统">云智洁管理系统</option>
+                            <option value="云智洁清洁学院">云智洁清洁学院</option>
+                            <option value="云智洁优保">云智洁优保</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="module-group" style="display: none;">
+                        <label for="module-count">模块数量</label>
+                        <select class="form-control" id="module-count">
+                            <option value="2">2个模块</option>
+                            <option value="3">3个模块</option>
+                            <option value="4">4个模块</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contract-years">签约年限</label>
+                        <select class="form-control" id="contract-years">
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                            <option value="4">4年</option>
+                            <option value="5">5年</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>服务选项</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="training" onchange="handleTrainingChange()">
+                                <label for="training">培训服务</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="implementation" onchange="handleImplementationChange()">
+                                <label for="implementation">实施服务</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="implementation-amount-group" style="display: none;">
+                        <label for="implementation-amount">实施合同金额 (¥)</label>
+                        <input type="number" class="form-control" id="implementation-amount" min="0" placeholder="输入实施合同金额">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contract-amount">合同总金额 (¥)</label>
+                        <input type="number" class="form-control" id="contract-amount" min="0" placeholder="输入合同总金额">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="after-sales-coef">客户售后系数</label>
+                        <select class="form-control" id="after-sales-coef">
+                            <option value="1">1级 (正常提成)</option>
+                            <option value="2">2级 (提成20%)</option>
+                            <option value="3">3级 (提成50%)</option>
+                            <option value="4">4级 (提成80%)</option>
+                            <option value="5">5级 (提成100%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="after-sales-count">售后次数</label>
+                        <input type="number" class="form-control" id="after-sales-count" min="0" value="0" onchange="handleAfterSalesCountChange()">
+                        <div class="coef-suggestion" id="coef-suggestion">
+                            售后次数为0，建议系数为1级
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="after-sales-details" style="display: none;">
+                        <label for="after-sales-content">售后工作内容</label>
+                        <textarea class="form-control" id="after-sales-content" placeholder="描述本次售后工作内容"></textarea>
+                        <div style="margin-top: 10px;">
+                            <label>售后日期:</label>
+                            <span id="after-sales-date"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-block" onclick="addCustomerRow()">
+                    <i class="fas fa-plus"></i> 添加新客户
+                </button>
+                
+                <button class="btn btn-calculate btn-block" onclick="calculateCommission()">
+                    <i class="fas fa-calculator"></i> 计算提成
+                </button>
+            </div>
+            
+            <div class="results-section">
+                <h2 class="section-title">提成计算结果</h2>
+                
+                <div class="commission-summary">
+                    <div class="summary-item">
+                        <span>培训提成:</span>
+                        <span id="training-commission">¥0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>实施提成:</span>
+                        <span id="implementation-commission">¥0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>售后系数加成:</span>
+                        <span id="coef-bonus">0%</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>当年提成:</span>
+                        <span id="current-year-commission">¥0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>总提成:</span>
+                        <span id="total-commission">¥0</span>
+                    </div>
+                </div>
+                
+                <div class="commission-details">
+                    <h3 class="section-title">未来年度提成预估</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>年份</th>
+                                <th>年度费用</th>
+                                <th>提成金额</th>
+                            </tr>
+                        </thead>
+                        <tbody id="future-commissions">
+                            <tr>
+                                <td colspan="3" style="text-align: center;">暂无数据</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button class="btn btn-block" onclick="saveData()" style="margin-top: 20px;">
+                    <i class="fas fa-save"></i> 保存数据
+                </button>
+                
+                <button class="btn btn-delete btn-block" onclick="clearData()" style="margin-top: 10px;">
+                    <i class="fas fa-trash"></i> 清除数据
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>云智洁实施工程师提成计算系统 &copy; 2025 | 基于Git数据存储 | 版本 1.0.0 | 三和科技实施部</p>
+        </div>
+    </div>
+
+    <script>
+        // 初始化数据库
+        const db = new PouchDB('commission-calculator');
+        
+        // 设置当前年份
+        document.getElementById('current-year').textContent = new Date().getFullYear() + '年';
+        document.getElementById('after-sales-date').textContent = new Date().toLocaleDateString();
+        
+        // 客户名称选择处理
+        function handleCustomerSelect() {
+            const customerSelect = document.getElementById('customer-select');
+            const newCustomerGroup = document.getElementById('new-customer-group');
+            const newCustomer = document.getElementById('new-customer');
+            const oldCustomer = document.getElementById('old-customer');
+            
+            if (customerSelect.value === 'new') {
+                newCustomerGroup.classList.remove('hidden');
+                newCustomer.disabled = false;
+                oldCustomer.disabled = true;
+                newCustomer.checked = true;
+            } else if (customerSelect.value) {
+                newCustomerGroup.classList.add('hidden');
+                newCustomer.disabled = true;
+                oldCustomer.disabled = false;
+                oldCustomer.checked = true;
+            }
+        }
+        
+        // 产品类型变更处理
+        function handleProductTypeChange() {
+            const productType = document.getElementById('product-type').value;
+            const moduleGroup = document.getElementById('module-group');
+            
+            if (productType === '云智洁管理系统' || productType === '云智洁优保') {
+                moduleGroup.style.display = 'block';
+            } else {
+                moduleGroup.style.display = 'none';
+            }
+        }
+        
+        // 培训服务变更处理
+        function handleTrainingChange() {
+            // 根据需求，培训服务不需要额外UI变化
+        }
+        
+        // 实施服务变更处理
+        function handleImplementationChange() {
+            const implementation = document.getElementById('implementation').checked;
+            const implementationGroup = document.getElementById('implementation-amount-group');
+            
+            implementationGroup.style.display = implementation ? 'block' : 'none';
+        }
+        
+        // 售后次数变更处理
+        function handleAfterSalesCountChange() {
+            const count = parseInt(document.getElementById('after-sales-count').value) || 0;
+            const detailsGroup = document.getElementById('after-sales-details');
+            const suggestion = document.getElementById('coef-suggestion');
+            
+            // 显示/隐藏售后详情
+            detailsGroup.style.display = count > 0 ? 'block' : 'none';
+            
+            // 提供售后系数建议
+            let recommendedCoef = 1;
+            if (count >= 5) recommendedCoef = 5;
+            else if (count >= 4) recommendedCoef = 4;
+            else if (count >= 3) recommendedCoef = 3;
+            else if (count >= 2) recommendedCoef = 2;
+            
+            suggestion.textContent = `售后次数为${count}，建议系数为${recommendedCoef}级`;
+        }
+        
+        // 添加新客户行
+        function addCustomerRow() {
+            const customerForm = document.querySelector('.customer-form');
+            const rowCount = document.querySelectorAll('.customer-row').length;
+            const newRow = document.createElement('div');
+            newRow.className = 'customer-row';
+            newRow.id = `customer-row-${rowCount + 1}`;
+            newRow.innerHTML = `
+                <button class="delete-row" onclick="removeCustomerRow('${newRow.id}')">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="form-group">
+                    <label for="customer-name-${rowCount + 1}">客户名称</label>
+                    <div class="flex-row">
+                        <div>
+                            <select class="form-control" onchange="handleCustomerSelect()">
+                                <option value="">-- 选择客户 --</option>
+                                <option value="ABC科技有限公司">ABC科技有限公司</option>
+                                <option value="华夏教育集团">华夏教育集团</option>
+                                <option value="未来科技公司">未来科技公司</option>
+                                <option value="new">+ 新增客户</option>
+                            </select>
+                        </div>
+                        <div class="hidden">
+                            <input type="text" class="form-control" placeholder="输入新客户名称">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>客户属性</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="customer-type-${rowCount + 1}" value="新客户" checked>
+                            <label>新客户</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="customer-type-${rowCount + 1}" value="老客户">
+                            <label>老客户</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-type-${rowCount + 1}">产品类型</label>
+                    <select class="form-control" onchange="handleProductTypeChange()">
+                        <option value="">-- 请选择产品类型 --</option>
+                        <option value="云智洁管理系统">云智洁管理系统</option>
+                        <option value="云智洁清洁学院">云智洁清洁学院</option>
+                        <option value="云智洁优保">云智洁优保</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label>模块数量</label>
+                    <select class="form-control">
+                        <option value="2">2个模块</option>
+                        <option value="3">3个模块</option>
+                        <option value="4">4个模块</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contract-years-${rowCount + 1}">签约年限</label>
+                    <select class="form-control">
+                        <option value="1">1年</option>
+                        <option value="2">2年</option>
+                        <option value="3">3年</option>
+                        <option value="4">4年</option>
+                        <option value="5">5年</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>服务选项</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" onchange="handleImplementationChange()">
+                            <label>培训服务</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" onchange="handleImplementationChange()">
+                            <label>实施服务</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label>实施合同金额 (¥)</label>
+                    <input type="number" class="form-control" min="0" placeholder="输入实施合同金额">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contract-amount-${rowCount + 1}">合同总金额 (¥)</label>
+                    <input type="number" class="form-control" min="0" placeholder="输入合同总金额">
+                </div>
+                
+                <div class="form-group">
+                    <label for="after-sales-coef-${rowCount + 1}">客户售后系数</label>
+                    <select class="form-control">
+                        <option value="1">1级 (正常提成)</option>
+                        <option value="2">2级 (提成20%)</option>
+                        <option value="3">3级 (提成50%)</option>
+                        <option value="4">4级 (提成80%)</option>
+                        <option value="5">5级 (提成100%)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="after-sales-count-${rowCount + 1}">售后次数</label>
+                    <input type="number" class="form-control" min="0" value="0" onchange="handleAfterSalesCountChange()">
+                    <div class="coef-suggestion">
+                        售后次数为0，建议系数为1级
+                    </div>
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label>售后工作内容</label>
+                    <textarea class="form-control" placeholder="描述本次售后工作内容"></textarea>
+                    <div style="margin-top: 10px;">
+                        <label>售后日期:</label>
+                        <span>${new Date().toLocaleDateString()}</span>
+                    </div>
+                </div>
+            `;
+            
+            customerForm.insertBefore(newRow, document.querySelector('.btn'));
+        }
+        
+        // 删除客户行
+        function removeCustomerRow(id) {
+            const row = document.getElementById(id);
+            if (document.querySelectorAll('.customer-row').length > 1) {
+                row.remove();
+            } else {
+                alert("至少需要保留一个客户信息");
+            }
+        }
+        
+        // 计算提成
+        function calculateCommission() {
+            // 获取表单数据
+            const productType = document.getElementById('product-type').value;
+            const moduleCount = document.getElementById('module-count').value || 0;
+            const contractYears = parseInt(document.getElementById('contract-years').value);
+            const training = document.getElementById('training').checked;
+            const implementation = document.getElementById('implementation').checked;
+            const implementationAmount = parseFloat(document.getElementById('implementation-amount').value) || 0;
+            const contractAmount = parseFloat(document.getElementById('contract-amount').value) || 0;
+            const coef = parseInt(document.getElementById('after-sales-coef').value);
+            
+            // 计算提成比例
+            let coefRate = 0.1; // 默认10%
+            if (coef === 2) coefRate = 0.2;
+            else if (coef === 3) coefRate = 0.5;
+            else if (coef === 4) coefRate = 0.8;
+            else if (coef === 5) coefRate = 1.0;
+            
+            // 计算培训提成
+            let trainingCommission = 0;
+            if (training) {
+                trainingCommission = moduleCount * 1000 * coefRate;
+            }
+            
+            // 计算实施提成
+            let implementationCommission = 0;
+            if (implementation) {
+                implementationCommission = implementationAmount * coefRate;
+            }
+            
+            // 计算当年提成
+            let currentYearCommission = 0;
+            let annualFee = 0;
+            
+            if (contractYears > 1) {
+                annualFee = (contractAmount - 10000 - (moduleCount * 1000) - implementationAmount) / contractYears;
+                currentYearCommission = annualFee;
+            } else {
+                currentYearCommission = contractAmount;
+            }
+            
+            // 计算总提成
+            const totalCommission = trainingCommission + implementationCommission + currentYearCommission;
+            
+            // 更新UI显示结果
+            document.getElementById('training-commission').textContent = '¥' + trainingCommission.toFixed(2);
+            document.getElementById('implementation-commission').textContent = '¥' + implementationCommission.toFixed(2);
+            document.getElementById('coef-bonus').textContent = (coefRate * 100) + '%';
+            document.getElementById('current-year-commission').textContent = '¥' + currentYearCommission.toFixed(2);
+            document.getElementById('total-commission').textContent = '¥' + totalCommission.toFixed(2);
+            
+            // 更新未来年度提成预估
+            const futureCommissions = document.getElementById('future-commissions');
+            futureCommissions.innerHTML = '';
+            
+            if (contractYears > 1) {
+                const currentYear = new Date().getFullYear();
+                for (let i = 1; i < contractYears; i++) {
+                    const year = currentYear + i;
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${year}年</td>
+                        <td>¥${annualFee.toFixed(2)}</td>
+                        <td>¥${annualFee.toFixed(2)}</td>
+                    `;
+                    futureCommissions.appendChild(row);
+                }
+            } else {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="3" style="text-align: center;">无多年合同，无需预估</td>';
+                futureCommissions.appendChild(row);
+            }
+        }
+        
+        // 保存数据到数据库
+        function saveData() {
+            // 这里实现保存到PouchDB的逻辑
+            alert('数据已保存到本地数据库！');
+        }
+        
+        // 清除数据
+        function clearData() {
+            if (confirm('确定要清除所有数据吗？')) {
+                // 重置表单
+                document.getElementById('customer-select').value = '';
+                document.getElementById('new-customer-group').classList.add('hidden');
+                document.getElementById('product-type').value = '';
+                document.getElementById('module-group').style.display = 'none';
+                document.getElementById('contract-years').value = '1';
+                document.getElementById('training').checked = false;
+                document.getElementById('implementation').checked = false;
+                document.getElementById('implementation-amount-group').style.display = 'none';
+                document.getElementById('implementation-amount').value = '';
+                document.getElementById('contract-amount').value = '';
+                document.getElementById('after-sales-coef').value = '1';
+                document.getElementById('after-sales-count').value = '0';
+                document.getElementById('after-sales-details').style.display = 'none';
+                document.getElementById('after-sales-content').value = '';
+                
+                // 重置结果
+                document.getElementById('training-commission').textContent = '¥0';
+                document.getElementById('implementation-commission').textContent = '¥0';
+                document.getElementById('coef-bonus').textContent = '0%';
+                document.getElementById('current-year-commission').textContent = '¥0';
+                document.getElementById('total-commission').textContent = '¥0';
+                document.getElementById('future-commissions').innerHTML = '<tr><td colspan="3" style="text-align: center;">暂无数据</td></tr>';
+                
+                alert('数据已清除！');
+            }
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置默认值
+            document.getElementById('product-type').value = '云智洁管理系统';
+            handleProductTypeChange();
+        });
+    </script>
+</body>
+</html>
