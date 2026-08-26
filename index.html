@@ -71,7 +71,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .login-right{width:500px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px;position:relative;z-index:2}
 .login-card{width:100%;max-width:420px;position:relative;height:520px}
 .card-flip{position:relative;width:100%;height:100%}
-.card-face{position:absolute;inset:0;background:#fff;border-radius:16px;padding:36px 36px 28px;box-shadow:0 16px 48px rgba(0,0,0,.2);display:flex;flex-direction:column;transition:opacity .35s ease}
+.card-face{position:absolute;inset:0;background:#fff;border-radius:16px;padding:28px 32px 24px;box-shadow:0 16px 48px rgba(0,0,0,.2);display:flex;flex-direction:column;transition:opacity .35s ease}
 .card-front{opacity:1;z-index:2}
 .card-back{opacity:0;z-index:1;pointer-events:none}
 .card-flip.flipped .card-front{opacity:0;z-index:1;pointer-events:none}
@@ -98,17 +98,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   background:linear-gradient(135deg,#e4e4e4 0%,#d4d4d4 100%);
   clip-path:polygon(0 0,100% 100%,0 100%)}
 
-.login-title{font-size:22px;font-weight:700;margin-bottom:6px}
-.login-sub{font-size:13px;color:#86909c;margin-bottom:32px}
+.login-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.login-sub{font-size:13px;color:#86909c;margin-bottom:20px}
 
-.field{margin-bottom:22px}
-.field-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.field{margin-bottom:16px}
+.field-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
 .field label{font-size:13px;color:#4e5969;font-weight:500}
+.field-error{color:#f53f3f;font-size:12px;margin-left:auto;display:none}
+.field-error.show{display:inline;animation:shake .4s ease}
 .switch-link{font-size:12px;color:#165dff;cursor:pointer;display:flex;align-items:center;gap:4px}
 .switch-link:hover{text-decoration:underline}
-.field input{width:100%;height:46px;padding:0 14px;border:1px solid #e5e6eb;border-radius:10px;
-  font-size:15px;outline:none;transition:.2s;background:#fafbfc}
+.field input{width:100%;height:42px;padding:0 14px;border:1px solid #e5e6eb;border-radius:10px;
+  font-size:14px;outline:none;transition:.2s;background:#fafbfc}
 .field input:focus{border-color:#165dff;background:#fff;box-shadow:0 0 0 3px rgba(22,93,255,.1)}
+.input-error{border-color:#f53f3f !important;background:#fff5f5 !important;animation:shake .4s ease}
 .code-row{display:flex;gap:10px}
 .code-row input{flex:1}
 .btn-code{height:46px;padding:0 18px;border:1px solid #165dff;background:#fff;color:#165dff;
@@ -125,7 +128,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .scan-back{margin-top:28px;font-size:13px;color:#86909c;cursor:pointer;display:flex;align-items:center;gap:4px}
 .scan-back:hover{color:#165dff}
 
-.login-options{display:flex;align-items:center;justify-content:space-between;margin:24px 0 20px;font-size:13px}
+.login-options{display:flex;align-items:center;justify-content:space-between;margin:16px 0 14px;font-size:13px}
 .checkbox-wrap{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none;color:#4e5969}
 .checkbox-wrap input{display:none}
 .checkbox-box{width:16px;height:16px;border-radius:4px;border:1.5px solid #c9cdd4;display:flex;
@@ -135,10 +138,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .checkbox-wrap input:checked~.checkbox-box::after{opacity:1}
 .forgot-link{color:#165dff;cursor:pointer}
 .forgot-link:hover{text-decoration:underline}
-.btn-login{width:100%;height:48px;background:#165dff;color:#fff;border:none;border-radius:10px;
+.btn-login{width:100%;height:44px;background:#165dff;color:#fff;border:none;border-radius:10px;
   font-size:15px;font-weight:600;cursor:pointer;transition:.2s;letter-spacing:3px}
 .btn-login:hover{background:#4080ff}
-.agreement{margin-top:20px;display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#86909c;line-height:1.7}
+.agreement{margin-top:14px;display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#86909c;line-height:1.7}
 .agreement-link{color:#165dff;cursor:pointer}
 .agreement-link:hover{text-decoration:underline}
 .agreement-error{color:#f53f3f;font-size:12px;margin-top:10px;display:none}
@@ -473,30 +476,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <div class="card-flip" id="cardFlip">
         <!-- 正面：账号登录 -->
         <div class="card-face card-front">
-          <div class="card-corner" onclick="flipCard(true)" title="扫码登录">
-            <div class="corner-qr">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color=165dff&bgcolor=ffffff" alt="">
-            </div>
-            <div class="corner-fold"></div>
-          </div>
           <div class="login-title">欢迎登录</div>
           <div class="login-sub">统一身份认证平台</div>
-          <div id="loginSms">
+          <div id="loginPassword">
             <div class="field">
-              <div class="field-label-row"><label>手机号</label><a class="switch-link" onclick="switchLoginMode('password')">🔒 使用密码登录</a></div>
-              <input type="text" id="smsPhone" placeholder="请输入手机号" autocomplete="off">
+              <div class="field-label-row"><label>账套号</label><span class="field-error" id="tenantIdError">请输入账套号</span></div>
+              <input type="text" id="tenantId" placeholder="请输入账套号" autocomplete="off">
             </div>
             <div class="field">
-              <label>验证码</label>
-              <div class="code-row"><input type="text" id="smsCode" placeholder="请输入验证码" autocomplete="off"><button class="btn-code" id="btnGetCode" onclick="getSmsCode()">获取验证码</button></div>
-            </div>
-          </div>
-          <div id="loginPassword" style="display:none">
-            <div class="field">
-              <div class="field-label-row"><label>用户名</label><a class="switch-link" onclick="switchLoginMode('sms')">📱 使用验证码登录</a></div>
+              <div class="field-label-row"><label>用户名</label><span class="field-error" id="pwdUserError">请输入用户名</span></div>
               <input type="text" id="pwdUser" placeholder="请输入用户名" autocomplete="off">
             </div>
-            <div class="field"><label>密码</label><input type="password" id="pwdPass" placeholder="请输入密码" autocomplete="off"></div>
+            <div class="field">
+              <div class="field-label-row"><label>密码</label><span class="field-error" id="pwdPassError">请输入密码</span></div>
+              <input type="password" id="pwdPass" placeholder="请输入密码" autocomplete="off">
+            </div>
           </div>
           <div class="login-options">
             <label class="checkbox-wrap"><input type="checkbox" id="autoLogin"><span class="checkbox-box"></span><span>7天内自动登录</span></label>
@@ -508,14 +502,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
             <span>我已阅读并同意 <a class="agreement-link" onclick="openTerms()">《用户协议与隐私政策》</a></span>
           </div>
           <div class="agreement-error" id="agreeError">⚠ 请先阅读并同意用户协议</div>
-        </div>
-        <!-- 背面：扫码登录 -->
-        <div class="card-face card-back">
-          <div class="scan-login">
-            <div class="scan-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com/login" alt="扫码登录"></div>
-            <div class="scan-tip">请使用 <b>云智洁APP</b><br>扫描二维码登录</div>
-            <a class="scan-back" onclick="flipCard(false)">← 返回账号登录</a>
-          </div>
         </div>
       </div>
     </div>
@@ -602,11 +588,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 <div class="app" id="productPage">
   <div class="nav">
     <div class="nav-brand">云智洁</div>
-    <div class="nav-links" id="navLinks">
-      <a class="nav-link active" onclick="switchPage('all')">全部产品</a>
-      <a class="nav-link" onclick="switchPage('one')">单产品测试</a>
-      <a class="nav-link" onclick="switchPage('two')">双产品测试</a>
-    </div>
     <div class="nav-right">
       <div class="nav-user" onclick="toggleUserDropdown(event)"><div class="nav-avatar">A</div><span>admin</span></div>
       <div class="user-dropdown" id="userDropdown">
@@ -618,7 +599,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
     </div>
   </div>
   <div class="container">
-    <div class="page-head"><div><h1>选择产品</h1><p>请选择您要进入的产品系统，点击卡片直接跳转</p></div><div class="page-badge all" id="pageBadge">全部已开通</div></div>
+    <div class="page-head"><div><h1>选择产品</h1><p>请选择您要进入的产品系统，点击卡片直接跳转</p></div></div>
     <div class="grid" id="productGrid"></div>
     <div class="dynamic-section">
       <div class="dynamic-card">
@@ -658,21 +639,16 @@ var SALES=[
 function getCurrentSales(){return SALES[new Date().getMonth()%3];}
 function getSalesMonthName(){var m=new Date().getMonth();var names=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];return names[m];}
 
-var pageMode='all';
-var purchasedMap={all:['cims','school','baoxian','umanage','visualize'],one:['school'],two:['cims','school']};
+var purchasedList=['cims','school','baoxian','umanage','visualize'];
 
-function getActualPurchased(){var list=purchasedMap[pageMode]||[];var actual=new Set(list);PRODUCTS.forEach(function(p){if(actual.has(p.key)&&p.bind){p.bind.forEach(function(b){actual.add(b);});}});return actual;}
+function getActualPurchased(){var actual=new Set(purchasedList);PRODUCTS.forEach(function(p){if(actual.has(p.key)&&p.bind){p.bind.forEach(function(b){actual.add(b);});}});return actual;}
 function getSortedProducts(){var actual=getActualPurchased();var bought=PRODUCTS.filter(function(p){return !p.alwaysLast&&actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var unbought=PRODUCTS.filter(function(p){return !p.alwaysLast&&!actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var last=PRODUCTS.filter(function(p){return p.alwaysLast;});return bought.concat(unbought).concat(last);}
 
-function switchPage(mode){pageMode=mode;document.querySelectorAll('.nav-link').forEach(function(l,i){l.classList.toggle('active',(mode==='all'&&i===0)||(mode==='one'&&i===1)||(mode==='two'&&i===2));});var badge=document.getElementById('pageBadge');if(mode==='all'){badge.className='page-badge all';badge.textContent='全部已开通';}else if(mode==='one'){badge.className='page-badge one';badge.textContent='单产品测试';}else{badge.className='page-badge two';badge.textContent='双产品测试';}renderProducts();}
-
-/* 登录翻页 */
-function flipCard(toScan){document.getElementById('cardFlip').classList.toggle('flipped',toScan);}
-var loginMode='sms';
-function switchLoginMode(mode){loginMode=mode;document.getElementById('loginSms').style.display=mode==='sms'?'block':'none';document.getElementById('loginPassword').style.display=mode==='password'?'block':'none';}
-var codeTimer=null;
-function getSmsCode(){var phone=document.getElementById('smsPhone').value.trim();if(!phone){alert('请输入手机号');return;}var btn=document.getElementById('btnGetCode');var count=60;btn.disabled=true;btn.textContent=count+'s后重发';codeTimer=setInterval(function(){count--;btn.textContent=count+'s后重发';if(count<=0){clearInterval(codeTimer);btn.disabled=false;btn.textContent='获取验证码';}},1000);}
-function doLogin(){var err=document.getElementById('agreeError');if(!document.getElementById('agreeTerms').checked){err.classList.add('show');return;}err.classList.remove('show');if(loginMode==='scan'||document.getElementById('cardFlip').classList.contains('flipped')){enterProductPage();return;}var user,pass;if(loginMode==='sms'){user=document.getElementById('smsPhone').value.trim();pass=document.getElementById('smsCode').value.trim();}else{user=document.getElementById('pwdUser').value.trim();pass=document.getElementById('pwdPass').value.trim();}if(user==='admin'&&pass==='123'){if(document.getElementById('autoLogin').checked){localStorage.setItem('yzj_auto',JSON.stringify({u:user,e:Date.now()+7*86400000}));}enterProductPage();}else{alert('用户名或密码错误（测试账号：admin / 123）');}}
+/* 登录 */
+function doLogin(){var err=document.getElementById('agreeError');if(!document.getElementById('agreeTerms').checked){err.classList.add('show');return;}err.classList.remove('show');var tenant=document.getElementById('tenantId').value.trim();var user=document.getElementById('pwdUser').value.trim();var pass=document.getElementById('pwdPass').value.trim();var hasError=false;if(!tenant){shakeField('tenantId','tenantIdError');hasError=true;}else{clearFieldError('tenantId','tenantIdError');}if(!user){shakeField('pwdUser','pwdUserError');hasError=true;}else{clearFieldError('pwdUser','pwdUserError');}if(!pass){shakeField('pwdPass','pwdPassError');hasError=true;}else{clearFieldError('pwdPass','pwdPassError');}if(hasError)return;if(tenant==='1001'&&user==='admin'&&pass==='123'){if(document.getElementById('autoLogin').checked){localStorage.setItem('yzj_auto',JSON.stringify({u:user,e:Date.now()+7*86400000}));}enterProductPage();}else{alert('账套号、用户名或密码错误（测试账号：账套号1001 / 用户名admin / 密码123）');}}
+function shakeField(inputId,errorId){var input=document.getElementById(inputId);var err=document.getElementById(errorId);input.classList.remove('input-error');err.classList.remove('show');void input.offsetWidth;input.classList.add('input-error');err.classList.add('show');}
+function clearFieldError(inputId,errorId){document.getElementById(inputId).classList.remove('input-error');document.getElementById(errorId).classList.remove('show');}
+['tenantId','pwdUser','pwdPass'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){clearFieldError(id,id+'Error');});}});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('loginPage').style.display!=='none')doLogin();});
 document.getElementById('agreeTerms').addEventListener('change',function(){if(this.checked)document.getElementById('agreeError').classList.remove('show');});
 function enterProductPage(){document.getElementById('loginPage').style.display='none';document.getElementById('productPage').style.display='block';renderProducts();renderNews();renderVideo();if(newsTimer)clearInterval(newsTimer);if(videoTimer)clearInterval(videoTimer);newsTimer=setInterval(newsNext,4500);videoTimer=setInterval(videoNext,5500);}
@@ -687,7 +663,7 @@ function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)
 function goVideo(i){videoIdx=i;renderVideo();}
 function videoNext(){videoIdx=(videoIdx+1)%videoData.length;renderVideo();}
 function videoPrev(){videoIdx=(videoIdx-1+videoData.length)%videoData.length;renderVideo();}
-function doLogout(){localStorage.removeItem('yzj_auto');document.getElementById('productPage').style.display='none';document.getElementById('loginPage').style.display='flex';flipCard(false);switchLoginMode('sms');}
+function doLogout(){localStorage.removeItem('yzj_auto');document.getElementById('productPage').style.display='none';document.getElementById('loginPage').style.display='flex';}
 function goProduct(url){if(url)window.open(url,'_blank');}
 
 /* 协议 */
@@ -697,8 +673,8 @@ document.getElementById('termsModal').addEventListener('click',function(e){if(e.
 
 /* 设置 */
 var switchConfig={cims_school:false,cims_baoxian:false,school_baoxian:false,umanage_enabled:true,visualize_enabled:true};
-function openSetting(){var actual=getActualPurchased();var hasCims=actual.has('cims');var hasSchool=actual.has('school');var hasBaoxian=actual.has('baoxian');var list=document.getElementById('switchList');list.innerHTML='';var html='';var pairs=[];var allThree=hasCims&&hasSchool&&hasBaoxian;if(hasCims&&hasSchool)pairs.push({key:'cims_school',title:'管理系统 ↔ 清洁学院',desc:'共享人员档案、考勤数据',disabled:false});if(hasCims&&hasBaoxian){var dis1=allThree;if(dis1)switchConfig.cims_baoxian=true;pairs.push({key:'cims_baoxian',title:'管理系统 ↔ 优保',desc:dis1?'已强制开启（系统与优保默认互联）':'共享设备台账、项目数据',disabled:dis1});}if(hasSchool&&hasBaoxian){var dis2=allThree;if(dis2)switchConfig.school_baoxian=false;pairs.push({key:'school_baoxian',title:'清洁学院 ↔ 优保',desc:dis2?'已强制关闭（系统与优保互联时不重复互联）':'共享培训记录与维保人员',disabled:dis2});}html+='<div style="font-size:12px;color:#86909c;padding:4px 0 10px;font-weight:600">数据互联配置</div>';if(pairs.length>0){pairs.forEach(function(p){var on=switchConfig[p.key];var disCls=p.disabled?' disabled':'';var clickAttr=p.disabled?'':'onclick="toggleSwitch(this,\''+p.key+'\')"';html+='<div class="switch-item'+disCls+'"><div class="switch-info"><div class="si-title">'+p.title+'</div><div class="si-desc">'+p.desc+'</div></div><div class="switch-toggle '+(on?'on':'')+disCls+'" '+clickAttr+'></div></div>';});}else{html+='<div style="padding:14px;background:#f7f8fa;border-radius:10px;font-size:12px;color:#c9cdd4;text-align:center;margin-bottom:4px">暂无可配置的互联产品</div>';}html+='<div style="font-size:12px;color:#86909c;padding:16px 0 10px;font-weight:600">产品启用</div>';if(hasCims){var enablePairs=[{key:'umanage_enabled',title:'开启优管',desc:'开启后可在产品页点击进入优管系统'},{key:'visualize_enabled',title:'开启驾驶舱',desc:'开启后可在产品页点击进入驾驶舱'}];enablePairs.forEach(function(p){var on=switchConfig[p.key];html+='<div class="switch-item"><div class="switch-info"><div class="si-title">'+p.title+'</div><div class="si-desc">'+p.desc+'</div></div><div class="switch-toggle '+(on?'on':'')+'" onclick="toggleSwitch(this,\''+p.key+'\')"></div></div>';});}else{html+='<div class="switch-item disabled"><div class="switch-info"><div class="si-title">开启优管</div><div class="si-desc">需先开通云智洁管理系统</div></div><div class="switch-toggle disabled"></div></div>';html+='<div class="switch-item disabled"><div class="switch-info"><div class="si-title">开启驾驶舱</div><div class="si-desc">需先开通云智洁管理系统</div></div><div class="switch-toggle disabled"></div></div>';}list.innerHTML=html;document.getElementById('settingModal').classList.add('show');}
-function toggleSwitch(el,key){el.classList.toggle('on');switchConfig[key]=el.classList.contains('on');el.previousElementSibling.querySelector('.si-desc').textContent=el.classList.contains('on')?(key.indexOf('_enabled')>0?'已开启，可在产品页访问':'已开启数据共享'):(key.indexOf('_enabled')>0?'未开启，产品页不可点击':'未开启数据共享');}
+function openSetting(){var actual=getActualPurchased();var hasCims=actual.has('cims');var hasSchool=actual.has('school');var hasBaoxian=actual.has('baoxian');var list=document.getElementById('switchList');list.innerHTML='';var html='';var pairs=[];var allThree=hasCims&&hasSchool&&hasBaoxian;if(hasCims&&hasSchool)pairs.push({key:'cims_school',title:'管理系统 ↔ 清洁学院',desc:'共享人员档案、考勤数据',disabled:false});if(hasCims&&hasBaoxian){var dis1=switchConfig.cims_baoxian;pairs.push({key:'cims_baoxian',title:'管理系统 ↔ 优保',desc:dis1?'已开启数据共享（开启后不可关闭）':'共享设备台账、项目数据',disabled:dis1});}if(hasSchool&&hasBaoxian){var dis2=allThree;if(dis2)switchConfig.school_baoxian=false;pairs.push({key:'school_baoxian',title:'清洁学院 ↔ 优保',desc:dis2?'已强制关闭（系统与优保互联时不重复互联）':'共享培训记录与维保人员',disabled:dis2});}html+='<div style="font-size:12px;color:#86909c;padding:4px 0 10px;font-weight:600">数据互联配置</div>';if(pairs.length>0){pairs.forEach(function(p){var on=switchConfig[p.key];var disCls=p.disabled?' disabled':'';var clickAttr=p.disabled?'':'onclick="toggleSwitch(this,\''+p.key+'\')"';html+='<div class="switch-item'+disCls+'"><div class="switch-info"><div class="si-title">'+p.title+'</div><div class="si-desc">'+p.desc+'</div></div><div class="switch-toggle '+(on?'on':'')+disCls+'" '+clickAttr+'></div></div>';});}else{html+='<div style="padding:14px;background:#f7f8fa;border-radius:10px;font-size:12px;color:#c9cdd4;text-align:center;margin-bottom:4px">暂无可配置的互联产品</div>';}html+='<div style="font-size:12px;color:#86909c;padding:16px 0 10px;font-weight:600">产品启用</div>';if(hasCims){var enablePairs=[{key:'umanage_enabled',title:'开启优管',desc:'开启后可在产品页点击进入优管系统'},{key:'visualize_enabled',title:'开启驾驶舱',desc:'开启后可在产品页点击进入驾驶舱'}];enablePairs.forEach(function(p){var on=switchConfig[p.key];html+='<div class="switch-item"><div class="switch-info"><div class="si-title">'+p.title+'</div><div class="si-desc">'+p.desc+'</div></div><div class="switch-toggle '+(on?'on':'')+'" onclick="toggleSwitch(this,\''+p.key+'\')"></div></div>';});}else{html+='<div class="switch-item disabled"><div class="switch-info"><div class="si-title">开启优管</div><div class="si-desc">需先开通云智洁管理系统</div></div><div class="switch-toggle disabled"></div></div>';html+='<div class="switch-item disabled"><div class="switch-info"><div class="si-title">开启驾驶舱</div><div class="si-desc">需先开通云智洁管理系统</div></div><div class="switch-toggle disabled"></div></div>';}list.innerHTML=html;document.getElementById('settingModal').classList.add('show');}
+function toggleSwitch(el,key){el.classList.toggle('on');switchConfig[key]=el.classList.contains('on');if(key==='cims_baoxian'&&switchConfig[key]){el.classList.add('disabled');el.removeAttribute('onclick');el.previousElementSibling.querySelector('.si-desc').textContent='已开启数据共享（开启后不可关闭）';return;}el.previousElementSibling.querySelector('.si-desc').textContent=el.classList.contains('on')?(key.indexOf('_enabled')>0?'已开启，可在产品页访问':'已开启数据共享'):(key.indexOf('_enabled')>0?'未开启，产品页不可点击':'未开启数据共享');}
 function closeSetting(){document.getElementById('settingModal').classList.remove('show');}
 function saveSetting(){closeSetting();alert('设置已保存');}
 document.getElementById('settingModal').addEventListener('click',function(e){if(e.target===this)closeSetting();});
