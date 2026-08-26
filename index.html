@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>云智洁 · 统一登录</title>
+<title>云智洁统一登录认证平台</title>
+<link rel="icon" type="image/png" href="https://aka.doubaocdn.com/s/hSUVdeHgzR">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1d2129;background:#f5f6f8;-webkit-font-smoothing:antialiased}
@@ -17,8 +18,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   position:relative;z-index:2;display:inline-block;width:fit-content;
   box-shadow:0 4px 20px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.6)}
 .brand-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.brand-title{font-size:58px;font-weight:800;color:#fff;letter-spacing:8px;line-height:1.2;text-shadow:0 4px 24px rgba(0,0,0,.3)}
-.brand-subtitle{font-size:20px;color:rgba(255,255,255,.75);margin-top:20px;letter-spacing:3px;line-height:1.6}
+.brand-title{font-size:64px;font-weight:800;color:#fff;letter-spacing:8px;line-height:1.2;text-shadow:0 4px 24px rgba(0,0,0,.3)}
+.brand-subtitle{font-size:24px;color:rgba(255,255,255,.75);margin-top:20px;letter-spacing:3px;line-height:1.6}
 .brand-divider{width:64px;height:3px;background:linear-gradient(90deg,#4080ff,#0fc6c2);border-radius:2px;margin-top:28px}
 .brand-stats{display:flex;gap:48px;margin-top:40px;position:relative;z-index:2}
 .brand-stat .bs-num{font-size:34px;font-weight:800;color:#fff;line-height:1.2}
@@ -237,7 +238,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .nav-avatar{width:32px;height:32px;border-radius:50%;background:#165dff;color:#fff;display:flex;
   align-items:center;justify-content:center;font-size:13px;font-weight:600}
 .btn-logout{padding:6px 16px;border:1px solid #e5e6eb;background:#fff;border-radius:8px;font-size:13px;
-  color:#4e5969;cursor:pointer;transition:.2s}
+  color:#4e5969;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.btn-logout svg{flex-shrink:0}
 .btn-logout:hover{border-color:#f53f3f;color:#f53f3f}
 
 .user-dropdown{position:absolute;top:48px;right:60px;background:#fff;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);
@@ -247,8 +249,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .ud-item{padding:10px 14px;border-radius:6px;font-size:13px;color:#4e5969;cursor:pointer;transition:.2s}
 .ud-item:hover{background:#f2f6ff;color:#165dff}
 
-.container{max-width:1280px;margin:0 auto;padding:32px}
-.page-head{margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.container{max-width:1280px;margin:0 auto;padding:20px 32px}
+.page-head{margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .page-head h1{font-size:22px;font-weight:600;margin-bottom:6px}
 .page-head p{font-size:13px;color:#86909c}
 .page-title-area{flex-shrink:0}
@@ -257,24 +259,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .page-badge.one{background:#fff7e8;color:#ff7d00}
 .page-badge.two{background:#f2f6ff;color:#165dff}
 
-.grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:18px;grid-auto-flow:dense}
+.grid{display:grid;grid-template-columns:1fr 1fr 0.8fr;grid-auto-rows:280px;gap:14px;grid-auto-flow:dense}
 .card.tall{grid-row:span 2}
 .grid-dynamic{display:flex;flex-direction:column;overflow:hidden;padding:0 !important;cursor:default !important}
 .grid-dynamic:hover{transform:none !important;box-shadow:0 4px 16px rgba(0,0,0,.08) !important}
-.gd-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #f0f1f3;flex-shrink:0}
-.gd-title{font-size:14px;font-weight:600}
+.gd-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #f0f1f3;flex-shrink:0}
+.gd-logo{width:40px;height:40px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.gd-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.gd-title-wrap{flex:1;min-width:0}
+.gd-title{font-size:15px;font-weight:700;line-height:1.3;display:inline-block;padding:4px 12px;border-radius:10px}
+.gd-follow{position:relative;display:flex;align-items:center;gap:4px;font-size:12px;color:#86909c;cursor:pointer;padding:4px 12px;border:1px solid #e5e6eb;border-radius:14px;transition:.2s;flex-shrink:0}
+.gd-follow:hover{color:#165dff;border-color:#165dff}
+.follow-icon{font-size:14px;font-weight:700;line-height:1}
+.follow-qrcode{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:12px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;visibility:hidden;transition:.25s ease;z-index:100;width:150px;text-align:center;border:1px solid #f0f1f3}
+.gd-follow:hover .follow-qrcode{opacity:1;visibility:visible;top:calc(100% + 8px)}
+.follow-qrcode img{width:100%;height:auto;border-radius:8px;display:block}
+.follow-qrcode p{font-size:11px;color:#4e5969;margin-top:8px;line-height:1.4}
+.follow-qrcode::before{content:'';position:absolute;top:-6px;right:24px;width:12px;height:12px;background:#fff;border-left:1px solid #f0f1f3;border-top:1px solid #f0f1f3;transform:rotate(45deg)}
 .gd-nav{display:flex;gap:6px}
 .gd-nav span{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#f5f6f8;cursor:pointer;font-size:14px;color:#86909c;transition:.2s;user-select:none}
 .gd-nav span:hover{background:#e8eaed;color:#1d2129}
-.gd-body{flex:1;overflow:hidden;padding:12px;display:flex;flex-direction:column}
-.broadcast-bar{display:flex;align-items:center;background:#fff;border-radius:10px;padding:0 16px;height:44px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden;border:1px solid #f0f1f3;flex:1;max-width:720px;min-width:0}
+.gd-body{flex:1;overflow:hidden;padding:10px;display:flex;flex-direction:column;position:relative}
+.side-nav{position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.06);cursor:pointer;font-size:16px;color:#86909c;transition:.2s;z-index:5;user-select:none}
+.side-nav:hover{background:rgba(0,0,0,.12);color:#1d2129}
+.side-prev{left:2px}
+.side-next{right:2px}
+.carousel-content{flex:1;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;position:relative;padding-bottom:28px}
+.broadcast-bar{display:flex;align-items:center;background:#fff;border-radius:10px;padding:0 16px;height:44px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden;border:1px solid #f0f1f3;flex:1;min-width:0}
 .bc-label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#165dff;padding-right:14px;border-right:1px solid #f0f1f3;flex-shrink:0}
-.bc-icon{font-size:15px}
+.bc-icon{font-size:15px;line-height:1;display:inline-flex;align-items:center}
 .bc-viewport{flex:1;overflow:hidden;margin-left:14px;position:relative}
 .bc-track{display:inline-flex;align-items:center;gap:48px;white-space:nowrap;animation:broadcastScroll 35s linear infinite}
 .bc-track:hover{animation-play-state:paused}
 .bc-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#4e5969;cursor:pointer;transition:.2s}
 .bc-item:hover{color:#165dff}
+.bc-time{font-size:11px;color:#c9cdd4;margin-left:6px;flex-shrink:0}
 .bc-item .bc-dot{width:5px;height:5px;border-radius:50%;background:#165dff;flex-shrink:0}
 .bc-item .bc-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:#e8f3ff;color:#165dff;font-weight:500;flex-shrink:0}
 @keyframes broadcastScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -291,10 +310,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .jc-btn.jc-cancel:hover{background:#e8eaed}
 .jc-btn.jc-ok{background:#165dff;color:#fff}
 .jc-btn.jc-ok:hover{background:#0e4bdb}
-.toast-tip{position:fixed;top:30px;left:50%;transform:translateX(-50%) translateY(-20px);background:#1d2129;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;z-index:10000;opacity:0;transition:.3s ease;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.2);white-space:nowrap}
-.toast-tip.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.card{width:calc(33.333% - 12px);background:#fff;border-radius:14px;padding:24px;cursor:pointer;
-  transition:box-shadow .25s ease,transform .25s ease;border:1px solid #f0f1f3;display:flex;flex-direction:column}
+.toast-tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#1d2129;color:#fff;padding:16px 32px;border-radius:12px;font-size:15px;z-index:10000;opacity:0;transition:.3s ease;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3);white-space:nowrap;font-weight:500}
+.toast-tip.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.card{background:#fff;border-radius:14px;padding:18px;cursor:pointer;
+  transition:box-shadow .25s ease,transform .25s ease;border:1px solid #f0f1f3;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
 .card.locked{cursor:default}
 .card.locked:hover{transform:none;box-shadow:none}
@@ -305,7 +324,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .disabled-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#165dff;font-weight:600;cursor:pointer;margin-top:10px;width:fit-content}
 .disabled-link:hover{text-decoration:underline}
 
-.card-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.card-body{flex:1;display:flex;flex-direction:column;min-height:0}
+.card-body > *:not(:last-child){margin-bottom:12px}
+.card-body > *:last-child{margin-top:0;margin-bottom:0}
 .card-logo{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .card-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .card-title-wrap{flex:1;min-width:0}
@@ -317,39 +339,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .card-go.contact{color:#f5319d;border-color:#ffd6e8;background:#fff5fa}
 .card.locked .card-go.contact:hover{background:#f5319d!important;color:#fff!important;border-color:#f5319d!important}
 
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px}
-.info-row .ir-label{color:#86909c}
-.info-row .ir-value{color:#1d2129;font-weight:500}
-.card-divider{height:1px;background:#f5f6f8;margin:12px 0}
-.version-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:16px;
-  font-size:12px;font-weight:600;margin-bottom:14px;width:fit-content}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px}
+.ir-label{color:#86909c}
+.ir-value{color:#1d2129;font-weight:500}
+.card-divider{height:1px;background:#f5f6f8;margin:8px 0}
+.cims-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;font-size:12px}
+.cims-time{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:1;padding:5px 0}
+.version-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:13px;font-size:11px;font-weight:600}
+.cims-time .ir-label{color:#86909c}
+.cims-time .ir-value{color:#1d2129;font-weight:500}
 .version-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.dual-stat{display:flex;gap:10px;margin-bottom:12px}
-.dual-stat .ds-box{flex:1;background:#f7f8fa;border-radius:10px;padding:10px 12px;text-align:center}
-.dual-stat .ds-num{font-size:18px;font-weight:700;line-height:1.2}
-.dual-stat .ds-lbl{font-size:11px;color:#86909c;margin-top:3px}
-.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
-.mini-stat{border-radius:10px;padding:10px 6px;text-align:center;color:#fff}
-.mini-stat .ms-num{font-size:18px;font-weight:700;line-height:1.2}
-.mini-stat .ms-lbl{font-size:10px;margin-top:3px;opacity:.9}
-.baoxian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.bx-item{background:#f7f8fa;border-radius:8px;padding:10px 6px;text-align:center}
-.bx-item .bx-num{font-size:16px;font-weight:700;line-height:1.2}
-.bx-item .bx-lbl{font-size:10px;color:#86909c;margin-top:3px}
+.dual-stat{display:flex;gap:8px;margin-bottom:10px}
+.dual-stat .ds-box{flex:1;background:#f7f8fa;border-radius:8px;padding:8px 10px;text-align:center;height:64px;display:flex;flex-direction:column;justify-content:center}
+.dual-stat .ds-num{font-size:16px;font-weight:700;line-height:1.2}
+.dual-stat .ds-lbl{font-size:10px;color:#86909c;margin-top:2px}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
+.mini-stat{border-radius:10px;padding:8px 6px;text-align:center;color:#fff}
+.mini-stat .ms-num{font-size:16px;font-weight:700;line-height:1.2}
+.mini-stat .ms-lbl{font-size:10px;margin-top:2px;opacity:.9}
+.baoxian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.bx-item{background:#f7f8fa;border-radius:8px;padding:8px 6px;text-align:center}
+.bx-item .bx-num{font-size:15px;font-weight:700;line-height:1.2}
+.bx-item .bx-lbl{font-size:10px;color:#86909c;margin-top:2px}
 
-.chart-pie-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.chart-pie{width:84px;height:84px;flex-shrink:0;position:relative}
-.chart-pie canvas{width:84px;height:84px}
+.chart-pie-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.chart-pie{width:64px;height:64px;flex-shrink:0;position:relative}
+.chart-pie canvas{width:64px;height:64px}
 .chart-pie-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.chart-pie-center .pct{font-size:16px;font-weight:700}
-.chart-pie-center .plbl{font-size:9px;color:#86909c}
+.chart-pie-center .pct{font-size:14px;font-weight:700}
+.chart-pie-center .plbl{font-size:8px;color:#86909c}
 .chart-legend{flex:1;min-width:0}
-.chart-legend .lg-row{display:flex;align-items:center;gap:6px;font-size:11px;color:#4e5969;padding:3px 0}
-.chart-legend .lg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.chart-line{width:100%;height:70px;min-width:0}
-.chart-line canvas{width:100%!important;height:70px!important;display:block}
-.chart-title{font-size:12px;color:#4e5969;margin-bottom:8px;font-weight:500}
+.chart-legend .lg-row{display:flex;align-items:center;gap:5px;font-size:10px;color:#4e5969;padding:2px 0}
+.chart-legend .lg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.chart-line{width:100%;height:50px;min-width:0}
+.chart-line canvas{width:100%!important;height:50px!important;display:block}
+.chart-title{font-size:11px;color:#4e5969;margin-bottom:6px;font-weight:500}
 
 .carousel{position:relative;flex:1;min-height:200px;border-radius:12px;overflow:hidden;margin-top:auto;min-width:0}
 .carousel-slide{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity .6s ease}
@@ -376,11 +401,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   font-size:9px;color:#fff;flex-shrink:0}
 
 /* 优效卡片 */
-.youxiao-intro{font-size:12px;color:#4e5969;line-height:1.9;margin-top:auto}
+.youxiao-intro{font-size:12px;color:#4e5969;line-height:1.7;margin-bottom:10px}
 .youxiao-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#f5319d;font-weight:600;
-  cursor:pointer;margin-top:12px;width:fit-content}
+  cursor:pointer;margin-top:0;margin-bottom:12px;width:fit-content}
 .youxiao-link:hover{text-decoration:underline}
-.youxiao-features{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.youxiao-features{display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .youxiao-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:#4e5969}
 .youxiao-feat .fi{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-size:10px;color:#fff;flex-shrink:0;background:linear-gradient(135deg,#f5319d,#f76ab5)}
@@ -392,21 +417,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .dc-nav span{width:26px;height:26px;border-radius:7px;background:#f7f8fa;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:#86909c;transition:.2s;line-height:1}
 .dc-nav span:hover{background:#165dff;color:#fff}
 .dc-body{padding:16px 18px;min-height:150px;position:relative}
-.news-item{display:none}
-.news-item.active{display:block;animation:slideUp .4s ease}
-.news-date{font-size:11px;color:#86909c;margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.news-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none;padding-bottom:0}
+.news-item.active{opacity:1;pointer-events:auto}
+.news-date{font-size:11px;color:#86909c;margin-bottom:6px;display:flex;align-items:center;gap:5px}
 .news-date::before{content:'';width:4px;height:4px;border-radius:50%;background:#165dff}
 .news-title{font-size:14px;font-weight:600;color:#1d2129;margin-bottom:8px;line-height:1.5}
-.news-desc{font-size:12px;color:#4e5969;line-height:1.9}
-.news-dots{display:flex;gap:5px;margin-top:14px}
+.news-desc{font-size:12px;color:#4e5969;line-height:1.8;flex:1;overflow:hidden}
+.news-dots{display:flex;gap:5px;justify-content:center;padding:6px 0 0;position:absolute;bottom:0;left:0;right:0;z-index:2;height:28px;align-items:center}
 .news-dots span{width:6px;height:6px;border-radius:50%;background:#e5e6eb;cursor:pointer;transition:.2s}
 .news-dots span.on{background:#165dff;width:16px;border-radius:3px}
-.video-item{display:none}
-.video-item.active{display:block;animation:slideUp .4s ease}
-.video-thumb{width:100%;height:200px;border-radius:10px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.video-thumb::after{content:'▶';position:absolute;font-size:22px;color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3)}
-.video-title{font-size:13px;font-weight:600;color:#1d2129;margin-bottom:5px;line-height:1.4}
-.video-meta{font-size:11px;color:#86909c}
+.video-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none}
+.video-item.active{opacity:1;pointer-events:auto}
+.video-thumb-wrap{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:10px;margin-bottom:10px;width:100%}
+.video-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.3);opacity:0.5;z-index:0}
+.video-thumb{position:relative;z-index:1;height:100%;max-height:100%;aspect-ratio:9/16;width:auto;max-width:100%;margin:0 auto;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.video-thumb::after{content:'▶';position:absolute;font-size:22px;color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
+.video-meta-wm{position:absolute;bottom:0;left:0;right:0;height:26px;line-height:26px;background:rgba(0,0,0,.1);color:#fff;font-size:10px;text-align:center;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px}
+.video-title{font-size:13px;font-weight:600;color:#1d2129;margin-top:auto;margin-bottom:auto;line-height:1.4;text-align:center;flex-shrink:0;padding:0 8px}
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* 关于产品弹窗 */
@@ -440,11 +467,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .sales-rotate{margin-top:18px;font-size:11px;color:#86909c;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1}
 .sales-rotate .dot{width:5px;height:5px;border-radius:50%;background:#165dff;animation:pulse 2s infinite}
 
-.signin-num{font-size:36px;font-weight:700;line-height:1}
-.signin-lbl{font-size:12px;color:#86909c;margin-top:6px}
-.signin-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;margin-top:8px;
-  padding:3px 10px;border-radius:10px}
+.signin-num{font-size:28px;font-weight:700;line-height:1}
+.signin-row{display:flex;align-items:center;gap:10px}
+.signin-lbl{font-size:12px;color:#86909c}
+.signin-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;line-height:1}
 
+@media(max-width:1400px){
+  .container{padding:14px 24px}
+  .grid{gap:12px}
+  .card{padding:16px}
+  .login-left{padding:44px 40px 44px 140px}
+  .login-right{padding:40px 60px}
+  .brand-title{font-size:52px}
+  .brand-subtitle{font-size:20px}
+}
+@media(max-width:1200px){
+  .container{padding:12px 20px}
+  .grid{gap:10px}
+  .card{padding:14px}
+  .gd-head{padding:12px 14px}
+  .gd-logo{width:36px;height:36px}
+  .gd-title{font-size:14px;padding:3px 10px}
+  .login-left{padding:40px 30px 40px 80px}
+  .login-right{width:500px;padding:30px 40px}
+  .login-card{height:440px}
+  .brand-title{font-size:44px;letter-spacing:6px}
+  .brand-subtitle{font-size:18px;margin-top:16px}
+}
+@media(max-width:1100px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .card.tall{grid-row:span 1}
+  .grid-dynamic{grid-column:span 1}
+  .video-thumb{max-width:140px}
+}
 @media(max-width:900px){
   .login-wrap{flex-direction:column}
   .login-left{padding:30px;min-height:160px}
@@ -454,14 +509,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   .brand-stat .bs-num{font-size:24px}
   .login-right{width:100%;padding:20px}
   .login-card{height:auto;min-height:480px}
-}
-@media(max-width:1100px){.card{width:calc(50% - 9px)}}
-@media(max-width:700px){
-  .card{width:100%}
-  .nav{padding:0 16px}
+  .grid{grid-auto-rows:minmax(240px,auto)}
   .nav-links{display:none}
-  .container{padding:20px 16px 40px}
+}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .nav{padding:0 16px}
+  .nav-user span{display:none}
+  .btn-logout span{display:none}
+  .btn-logout{padding:6px 10px}
+  .container{padding:12px}
   .about-features{grid-template-columns:1fr}
+  .broadcast-bar{height:auto;min-height:40px;padding:8px 12px}
+  .bc-label{padding-right:10px}
+  .video-thumb{max-width:120px}
 }
 </style>
 </head>
@@ -664,7 +725,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   </div>
   <div class="container">
     <div class="page-head">
-      <div class="page-title-area"><h1>选择产品</h1><p>请选择您要进入的产品系统，点击卡片直接跳转</p></div>
       <div class="broadcast-bar">
         <div class="bc-label"><span class="bc-icon">📢</span>行业动态</div>
         <div class="bc-viewport"><div class="bc-track" id="broadcastTrack"></div></div>
@@ -676,6 +736,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
 <script>
 var LOGOS={cims:'https://aka.doubaocdn.com/s/BZVj23Cfxt',school:'https://aka.doubaocdn.com/s/7hHrmoxDcb',baoxian:'https://aka.doubaocdn.com/s/zymV6tZzbl',umanage:'https://aka.doubaocdn.com/s/fVpnKtneC9',visualize:'https://aka.doubaocdn.com/s/2r9LuLhxiA',youxiao:'https://aka.doubaocdn.com/s/tinzqQCfUU'};
+(function(){var bg=document.querySelector('.bg-icons');var wrap=document.querySelector('.login-wrap');if(bg&&wrap&&bg.parentElement!==wrap){wrap.insertBefore(bg,wrap.firstChild);}})();
 
 var PRODUCTS=[
   {key:'cims',name:'云智洁管理系统',weight:1,bind:['umanage','visualize'],color:'#165dff',url:'http://cims.v3.yun-clean.com',logo:LOGOS.cims,intro:'云智洁管理系统是面向清洁服务企业的核心运营管理平台，涵盖项目运营、人员管理、品质管控、考勤排班等全流程数字化管理。',features:['项目全生命周期管理','人员档案与考勤排班','品质巡检与问题追踪','数据报表与经营分析']},
@@ -710,22 +771,25 @@ document.getElementById('agreeTerms').addEventListener('change',function(){if(th
 function enterProductPage(){document.getElementById('loginPage').style.display='none';document.getElementById('productPage').style.display='block';renderProducts();renderBroadcast();if(newsTimer)clearInterval(newsTimer);if(videoTimer)clearInterval(videoTimer);newsTimer=setInterval(newsNext,4500);videoTimer=setInterval(videoNext,5500);}
 var newsData=[{date:'2026-08-20',title:'云智洁携手多家物业企业开启智慧清洁新篇章',desc:'云智洁管理系统在全国多个项目落地，通过AI技术实现清洁任务智能派发与品质管控，大幅提升运营效率与服务质量。'},{date:'2026-08-15',title:'云智洁优保系统升级：设备维保全流程数字化',desc:'新版优保系统支持设备台账、维保工单、保单管理与理赔服务一站式处理，已服务超过500个项目，设备故障率下降35%。'},{date:'2026-08-10',title:'云智洁清洁学院在线培训人数突破10万',desc:'清洁学院提供清洁行业专业课程、在线考试与技能认证，累计培训学员超过10万人次，覆盖全国300余家清洁企业。'},{date:'2026-08-05',title:'云智洁驾驶舱数据大屏助力企业经营决策',desc:'驾驶舱整合各系统数据，提供可视化大屏、经营分析与预警监控，帮助管理者实时掌握运营状况，数据决策效率提升60%。'}];
 var videoData=[{title:'云智洁管理系统操作演示',meta:'2.3万次播放 · 2026-08-18',color:'#165dff'},{title:'清洁机器人现场作业实拍',meta:'1.8万次播放 · 2026-08-12',color:'#00b42a'},{title:'优保设备维保流程详解',meta:'1.2万次播放 · 2026-08-08',color:'#ff7d00'},{title:'智慧清洁项目案例分享',meta:'3.1万次播放 · 2026-08-02',color:'#722ed1'}];
-var broadcastData=[{tag:'政策',text:'2026中国物业服务百强企业研究报告发布，行业集中度持续提升',url:'https://www.yun-clean.com/news/1'},{tag:'趋势',text:'保洁行业数字化转型加速，AI智能调度与物联网设备成为项目标配',url:'https://www.yun-clean.com/news/2'},{tag:'云智洁',text:'云智洁管理系统助力全国超500家物业企业实现降本增效30%以上',url:'https://www.yun-clean.com/news/3'},{tag:'法规',text:'新版物业管理条例解读：业主权益保障再升级，公共收益全面透明化',url:'https://www.yun-clean.com/news/4'},{tag:'会议',text:'2026中国清洁服务标准化建设推进会在京召开，行业标准体系日趋完善',url:'https://www.yun-clean.com/news/5'},{tag:'资本',text:'智慧物业赛道迎来政策红利期，头部企业加速并购整合扩大市场份额',url:'https://www.yun-clean.com/news/6'},{tag:'技术',text:'清洁机器人与人工协同作业新模式落地，单位面积作业效率提升40%',url:'https://www.yun-clean.com/news/7'},{tag:'行业',text:'中物协发布《2026清洁服务质量白皮书》，全国服务标准迎来全面升级',url:'https://www.yun-clean.com/news/8'}];
+var broadcastData=[{tag:'政策',text:'2026中国物业服务百强企业研究报告发布，行业集中度持续提升',url:'https://www.yun-clean.com/news/1',time:Date.now()-12*60000},{tag:'趋势',text:'保洁行业数字化转型加速，AI智能调度与物联网设备成为项目标配',url:'https://www.yun-clean.com/news/2',time:Date.now()-35*60000},{tag:'云智洁',text:'云智洁管理系统助力全国超500家物业企业实现降本增效30%以上',url:'https://www.yun-clean.com/news/3',time:Date.now()-80*60000},{tag:'法规',text:'新版物业管理条例解读：业主权益保障再升级，公共收益全面透明化',url:'https://www.yun-clean.com/news/4',time:Date.now()-135*60000},{tag:'会议',text:'2026中国清洁服务标准化建设推进会在京召开，行业标准体系日趋完善',url:'https://www.yun-clean.com/news/5',time:Date.now()-180*60000},{tag:'资本',text:'智慧物业赛道迎来政策红利期，头部企业加速并购整合扩大市场份额',url:'https://www.yun-clean.com/news/6',time:Date.now()-300*60000},{tag:'技术',text:'清洁机器人与人工协同作业新模式落地，单位面积作业效率提升40%',url:'https://www.yun-clean.com/news/7',time:Date.now()-480*60000},{tag:'行业',text:'中物协发布《2026清洁服务质量白皮书》，全国服务标准迎来全面升级',url:'https://www.yun-clean.com/news/8',time:Date.now()-1440*60000}];
+function formatRelativeTime(publishTime){var diff=Date.now()-publishTime;var minutes=Math.ceil(diff/60000);if(minutes<60)return minutes+'分钟前';var hours=Math.floor(minutes/60);if(hours<24)return hours+'小时前';var days=Math.floor(hours/24);return days+'天前';}
 var newsIdx=0,videoIdx=0,newsTimer=null,videoTimer=null;
 function renderNews(){var box=document.getElementById('newsCarousel');if(!box)return;var html='';newsData.forEach(function(n,i){html+='<div class="news-item'+(i===newsIdx?' active':'')+'"><div class="news-date">'+n.date+'</div><div class="news-title">'+n.title+'</div><div class="news-desc">'+n.desc+'</div></div>';});html+='<div class="news-dots">'+newsData.map(function(_,i){return '<span class="'+(i===newsIdx?'on':'')+'" onclick="goNews('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
-function goNews(i){newsIdx=i;renderNews();}
-function newsNext(){newsIdx=(newsIdx+1)%newsData.length;renderNews();}
-function newsPrev(){newsIdx=(newsIdx-1+newsData.length)%newsData.length;renderNews();}
-function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)return;var html='';videoData.forEach(function(v,i){html+='<div class="video-item'+(i===videoIdx?' active':'')+'"><div class="video-thumb" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"></div><div class="video-title">'+v.title+'</div><div class="video-meta">'+v.meta+'</div></div>';});html+='<div class="news-dots">'+videoData.map(function(_,i){return '<span class="'+(i===videoIdx?'on':'')+'" onclick="goVideo('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
-function goVideo(i){videoIdx=i;renderVideo();}
-function renderBroadcast(){var track=document.getElementById('broadcastTrack');if(!track)return;var html='';broadcastData.forEach(function(b){html+='<span class="bc-item" onclick="showJumpConfirm(\''+b.url+'\')"><span class="bc-dot"></span><span class="bc-tag">'+b.tag+'</span>'+b.text+'</span>';});track.innerHTML=html+html;}
+function updateNewsCarousel(){var items=document.querySelectorAll('#newsCarousel .news-item');var dots=document.querySelectorAll('#newsCarousel .news-dots span');items.forEach(function(el,i){el.classList.toggle('active',i===newsIdx);});dots.forEach(function(el,i){el.classList.toggle('on',i===newsIdx);});}
+function goNews(i){newsIdx=i;updateNewsCarousel();}
+function newsNext(){newsIdx=(newsIdx+1)%newsData.length;updateNewsCarousel();}
+function newsPrev(){newsIdx=(newsIdx-1+newsData.length)%newsData.length;updateNewsCarousel();}
+function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)return;var html='';videoData.forEach(function(v,i){html+='<div class="video-item'+(i===videoIdx?' active':'')+'"><div class="video-thumb-wrap"><div class="video-thumb-bg" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"></div><div class="video-thumb" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"><div class="video-meta-wm">'+v.meta+'</div></div></div><div class="video-title">'+v.title+'</div></div>';});html+='<div class="news-dots">'+videoData.map(function(_,i){return '<span class="'+(i===videoIdx?'on':'')+'" onclick="goVideo('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
+function updateVideoCarousel(){var items=document.querySelectorAll('#videoCarousel .video-item');var dots=document.querySelectorAll('#videoCarousel .news-dots span');items.forEach(function(el,i){el.classList.toggle('active',i===videoIdx);});dots.forEach(function(el,i){el.classList.toggle('on',i===videoIdx);});}
+function goVideo(i){videoIdx=i;updateVideoCarousel();}
+function renderBroadcast(){var track=document.getElementById('broadcastTrack');if(!track)return;var html='';broadcastData.forEach(function(b){html+='<span class="bc-item" onclick="showJumpConfirm(\''+b.url+'\')"><span class="bc-dot"></span><span class="bc-tag">'+b.tag+'</span>'+b.text+'<span class="bc-time">'+formatRelativeTime(b.time)+'</span></span>';});track.innerHTML=html+html;}
 var pendingJumpUrl='';
 function showJumpConfirm(url){pendingJumpUrl=url;document.getElementById('jumpConfirmDesc').textContent='您即将离开云智洁平台，访问外部链接：'+url+'\n是否确认继续？';document.getElementById('jumpConfirmModal').classList.add('show');}
 function confirmJump(){document.getElementById('jumpConfirmModal').classList.remove('show');var url=pendingJumpUrl;if(!url)return;var newWin=window.open(url,'_blank');if(!newWin||typeof newWin==='undefined'){window.open(url,'_blank','width=960,height=720,resizable=yes,scrollbars=yes,status=yes');}pendingJumpUrl='';}
-function cancelJump(){document.getElementById('jumpConfirmModal').classList.remove('show');showToast('未授权，跳转失败');pendingJumpUrl='';}
+function cancelJump(){document.getElementById('jumpConfirmModal').classList.remove('show');showToast('用户未授权，跳转失败');pendingJumpUrl='';}
 function showToast(msg){var toast=document.getElementById('toastTip');toast.textContent=msg;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},3000);}
-function videoNext(){videoIdx=(videoIdx+1)%videoData.length;renderVideo();}
-function videoPrev(){videoIdx=(videoIdx-1+videoData.length)%videoData.length;renderVideo();}
+function videoNext(){videoIdx=(videoIdx+1)%videoData.length;updateVideoCarousel();}
+function videoPrev(){videoIdx=(videoIdx-1+videoData.length)%videoData.length;updateVideoCarousel();}
 function doLogout(){localStorage.removeItem('yzj_auto');document.getElementById('productPage').style.display='none';document.getElementById('loginPage').style.display='flex';}
 function goProduct(url){if(url)window.open(url,'_blank');}
 
@@ -782,7 +846,7 @@ function closeAbout(){document.getElementById('aboutModal').classList.remove('sh
 document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target===this)closeAbout();});
 
 /* 渲染产品 */
-function renderProducts(){var sorted=getSortedProducts();var actual=getActualPurchased();var html='';var idx=0;sorted.forEach(function(p){if(idx===2){html+='<div class="card tall grid-dynamic grid-video"><div class="gd-head"><span class="gd-title" style="color:#7c3aed">🎬 云智洁视频号</span><div class="gd-nav"><span onclick="videoPrev()">‹</span><span onclick="videoNext()">›</span></div></div><div class="gd-body" id="videoCarousel"></div></div>';}var isOpen=actual.has(p.key)||p.alwaysLast;var isEnabled=true;if(p.key==='umanage')isEnabled=switchConfig.umanage_enabled;if(p.key==='visualize')isEnabled=switchConfig.visualize_enabled;var tallCls='';if(syncingProducts[p.key]){html+='<div class="card syncing'+tallCls+'">'+cardHead(p)+syncContent()+'</div>';idx++;return;}if(isOpen&&isEnabled){html+='<div class="card'+tallCls+'" onclick="'+(p.alwaysLast?'openAbout(\''+p.key+'\')':"goProduct('"+p.url+"')")+'">'+cardHead(p)+cardContent(p.key)+'</div>';}else if(isOpen&&!isEnabled){html+='<div class="card disabled'+tallCls+'">'+cardHeadDisabled(p)+disabledContent(p)+'</div>';}else{html+='<div class="card locked'+tallCls+'">'+cardHeadLocked(p)+lockedContent(p)+'</div>';}idx++;});html+='<div class="card grid-dynamic grid-news"><div class="gd-head"><span class="gd-title" style="color:#1a7f37">📰 云智洁公众号</span><div class="gd-nav"><span onclick="newsPrev()">‹</span><span onclick="newsNext()">›</span></div></div><div class="gd-body" id="newsCarousel"></div></div>';document.getElementById('productGrid').innerHTML=html;if(document.getElementById('pieCanvas'))drawPie();if(document.getElementById('lineCanvas'))drawLine();if(document.getElementById('carousel'))initCarousel();renderNews();renderVideo();}
+function renderProducts(){var sorted=getSortedProducts();var actual=getActualPurchased();var html='';var idx=0;sorted.forEach(function(p){if(idx===2){html+='<div class="card tall grid-dynamic grid-video"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="云智洁视频号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#7c3aed;border-color:#7c3aed33;background:#7c3aed0a">云智洁视频号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="视频号二维码"><p>扫码关注云智洁视频号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="videoPrev()">‹</span><div id="videoCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="videoNext()">›</span></div></div>';}var isOpen=actual.has(p.key)||p.alwaysLast;var isEnabled=true;if(p.key==='umanage')isEnabled=switchConfig.umanage_enabled;if(p.key==='visualize')isEnabled=switchConfig.visualize_enabled;var tallCls='';if(syncingProducts[p.key]){html+='<div class="card syncing'+tallCls+'">'+cardHead(p)+'<div class="card-body">'+syncContent()+'</div></div>';idx++;return;}if(isOpen&&isEnabled){html+='<div class="card'+tallCls+'" onclick="'+(p.alwaysLast?'openAbout(\''+p.key+'\')':"goProduct('"+p.url+"')")+'">'+cardHead(p)+'<div class="card-body">'+cardContent(p.key)+'</div></div>';}else if(isOpen&&!isEnabled){html+='<div class="card disabled'+tallCls+'">'+cardHeadDisabled(p)+'<div class="card-body">'+disabledContent(p)+'</div></div>';}else{html+='<div class="card locked'+tallCls+'">'+cardHeadLocked(p)+'<div class="card-body">'+lockedContent(p)+'</div></div>';}idx++;});html+='<div class="card grid-dynamic grid-news"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="云智洁公众号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#1a7f37;border-color:#1a7f3733;background:#1a7f370a">云智洁公众号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="公众号二维码"><p>扫码关注云智洁公众号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="newsPrev()">‹</span><div id="newsCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="newsNext()">›</span></div></div>';document.getElementById('productGrid').innerHTML=html;if(document.getElementById('pieCanvas'))drawPie();if(document.getElementById('lineCanvas'))drawLine();if(document.getElementById('carousel'))initCarousel();renderNews();renderVideo();}
 function syncContent(){return '<div class="sync-loading"><div class="sync-spinner"></div><div class="sync-text">数据正在同步中</div></div>';}
 function cardHeadDisabled(p){return '<div class="card-head" style="--accent:'+p.color+'"><div class="card-logo" style="opacity:.6"><img src="'+p.logo+'" alt="'+p.name+'"></div><div class="card-title-wrap"><div class="card-title" style="color:#86909c;border-color:#e5e6eb;background:#f7f8fa">'+p.name+'</div></div><div class="card-go" style="color:#c9cdd4;border-color:#f0f1f3;cursor:not-allowed">未启用</div></div>';}
 function disabledContent(p){return '<div class="disabled-badge">⚠ 未启用</div><div class="disabled-tip">该产品已授权但尚未在系统设置中开启，请前往「设置」启用后使用。</div><a class="disabled-link" onclick="openSetting()">⚙ 前往设置开启 →</a>';}
@@ -791,9 +855,9 @@ function cardHeadLocked(p){return '<div class="card-head" style="--accent:'+p.co
 function lockedContent(p){return '<div class="locked-badge">🔒 未开通</div><div class="locked-intro">'+p.intro+'</div><a class="locked-link" style="color:'+p.color+'" onclick="openAbout(\''+p.key+'\')">了解'+p.name.replace('云智洁','')+' →</a><div class="card-divider"></div><div class="locked-features">'+p.features.slice(0,3).map(function(f){return '<div class="locked-feat"><span class="fi" style="background:'+p.color+'">✓</span>'+f+'</div>';}).join('')+'</div>';}
 
 function cardContent(key){
-  if(key==='cims')return '<div class="version-badge" style="background:#e8f0ff;color:#165dff"><span class="dot"></span>授权版本：专业版</div><div class="info-row"><span class="ir-label">服务时间</span><span class="ir-value">2025-01-01 ~ 2026-12-31</span></div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#165dff">50</div><div class="ds-lbl">授权员工数</div></div><div class="ds-box"><div class="ds-num" style="color:#165dff">12</div><div class="ds-lbl">授权用户数</div></div></div><div class="mini-stats"><div class="mini-stat" style="background:linear-gradient(135deg,#165dff,#4080ff)"><div class="ms-num">1,286</div><div class="ms-lbl">当前在职</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#00b42a,#23c343)"><div class="ms-num">1,241</div><div class="ms-lbl">今日出勤</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#ff7d00,#ff9a2e)"><div class="ms-num">45</div><div class="ms-lbl">公休人数</div></div></div>';
-  if(key==='school')return '<div class="info-row"><span class="ir-label">服务时间</span><span class="ir-value">2025-03-01 ~ 2026-02-28</span></div><div class="card-divider"></div><div class="signin-num" style="color:#00b42a;font-size:30px">186</div><div class="signin-lbl">今日签到人数</div><div class="signin-trend" style="background:#e8ffea;color:#00b42a;margin-bottom:14px">↑ 较昨日 +12</div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#00b42a">200</div><div class="ds-lbl">授权人数</div></div><div class="ds-box"><div class="ds-num" style="color:#00b42a">48</div><div class="ds-lbl">在学课程</div></div></div>';
-  if(key==='baoxian')return '<div class="info-row"><span class="ir-label">保单时间</span><span class="ir-value">2025-06-01 ~ 2026-05-31</span></div><div class="card-divider"></div><div class="baoxian-grid"><div class="bx-item"><div class="bx-num" style="color:#ff7d00">328</div><div class="bx-lbl">在保人数</div></div><div class="bx-item"><div class="bx-num" style="color:#00b42a">+15</div><div class="bx-lbl">今日新增</div></div><div class="bx-item"><div class="bx-num" style="color:#f53f3f">3</div><div class="bx-lbl">今日退保</div></div><div class="bx-item"><div class="bx-num" style="color:#165dff">8</div><div class="bx-lbl">今日保安</div></div><div class="bx-item"><div class="bx-num" style="color:#ff7d00">5</div><div class="bx-lbl">今日理赔</div></div><div class="bx-item"><div class="bx-num" style="color:#86909c">1,206</div><div class="bx-lbl">已完结保单</div></div></div>';
+  if(key==='cims')return '<div class="cims-top"><div class="version-badge" style="background:#e8f0ff;color:#165dff"><span class="dot"></span>授权版本：专业版</div><div class="cims-time"><span class="ir-label">服务时间</span><span class="ir-value">2025-01-01 ~ 2026-12-31</span></div></div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#165dff">50</div><div class="ds-lbl">授权员工数</div></div><div class="ds-box"><div class="ds-num" style="color:#165dff">12</div><div class="ds-lbl">授权用户数</div></div></div><div class="mini-stats"><div class="mini-stat" style="background:linear-gradient(135deg,#165dff,#4080ff)"><div class="ms-num">1,286</div><div class="ms-lbl">当前在职</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#00b42a,#23c343)"><div class="ms-num">1,241</div><div class="ms-lbl">今日出勤</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#ff7d00,#ff9a2e)"><div class="ms-num">45</div><div class="ms-lbl">公休人数</div></div></div>';
+  if(key==='school')return '<div class="cims-top"><span class="ir-label">服务时间</span><span class="ir-value">2025-03-01 ~ 2026-02-28</span></div><div class="signin-row"><div class="signin-num" style="color:#ff7d00">186</div><div class="signin-trend" style="background:#fff5eb;color:#ff7d00">↑ 较昨日 +12</div></div><div class="signin-lbl">今日签到人数</div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#ff7d00">200</div><div class="ds-lbl">授权人数</div></div><div class="ds-box"><div class="ds-num" style="color:#ff7d00">48</div><div class="ds-lbl">在学课程</div></div></div>';
+  if(key==='baoxian')return '<div class="info-row"><span class="ir-label">保单时间</span><span class="ir-value">2025-06-01 ~ 2026-05-31</span></div><div class="card-divider"></div><div class="baoxian-grid"><div class="bx-item"><div class="bx-num" style="color:#ff7d00">328</div><div class="bx-lbl">在保人数</div></div><div class="bx-item"><div class="bx-num" style="color:#00b42a">+15</div><div class="bx-lbl">今日新增</div></div><div class="bx-item"><div class="bx-num" style="color:#f53f3f">3</div><div class="bx-lbl">今日退保</div></div><div class="bx-item"><div class="bx-num" style="color:#165dff">8</div><div class="bx-lbl">今日报案</div></div><div class="bx-item"><div class="bx-num" style="color:#ff7d00">5</div><div class="bx-lbl">理赔中</div></div><div class="bx-item"><div class="bx-num" style="color:#86909c">1,206</div><div class="bx-lbl">已完结保单</div></div></div>';
   if(key==='umanage')return '<div class="chart-title">今日品质巡视/巡检完成率</div><div class="chart-pie-wrap"><div class="chart-pie"><canvas id="pieCanvas" width="168" height="168"></canvas><div class="chart-pie-center"><div class="pct" style="color:#722ed1">87%</div><div class="plbl">完成率</div></div></div><div class="chart-legend"><div class="lg-row"><span class="lg-dot" style="background:#722ed1"></span>已完成 132 项</div><div class="lg-row"><span class="lg-dot" style="background:#e5e6eb"></span>未完成 20 项</div><div class="lg-row" style="margin-top:4px;color:#86909c">共 152 项任务</div></div></div><div class="card-divider"></div><div class="chart-title">近7日任务完成率趋势</div><div class="chart-line"><canvas id="lineCanvas"></canvas></div>';
   if(key==='visualize')return '<div class="carousel" id="carousel"><div class="carousel-dots" id="carouselDots"></div></div>';
   if(key==='youxiao')return '<div class="youxiao-intro">'+PRODUCTS.find(function(x){return x.key==='youxiao';}).intro+'</div><a class="youxiao-link" onclick="event.stopPropagation();openAbout(\'youxiao\')">了解优效 →</a><div class="card-divider"></div><div class="youxiao-features"><div class="youxiao-feat"><span class="fi">✓</span>专业清洁方案设计</div><div class="youxiao-feat"><span class="fi">✓</span>数据驱动服务优化</div><div class="youxiao-feat"><span class="fi">✓</span>客户满意度提升</div></div>';
@@ -801,8 +865,8 @@ function cardContent(key){
 }
 
 /* 图表 */
-function drawPie(){var cv=document.getElementById('pieCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;cv.width=84*dpr;cv.height=84*dpr;cv.style.width='84px';cv.style.height='84px';ctx.scale(dpr,dpr);ctx.beginPath();ctx.arc(42,42,34,0,Math.PI*2);ctx.fillStyle='#f0f1f3';ctx.fill();ctx.beginPath();ctx.moveTo(42,42);ctx.arc(42,42,34,-Math.PI/2,-Math.PI/2+Math.PI*2*.87);ctx.closePath();ctx.fillStyle='#722ed1';ctx.fill();ctx.beginPath();ctx.arc(42,42,24,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();}
-function drawLine(){var cv=document.getElementById('lineCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;var w=cv.parentElement.clientWidth,h=70;cv.width=w*dpr;cv.height=h*dpr;ctx.scale(dpr,dpr);var data=[78,82,75,88,91,85,87],labels=['一','二','三','四','五','六','日'];var padL=6,padR=6,padT=12,padB=16,cw=w-padL-padR,ch=h-padT-padB;ctx.strokeStyle='#f5f6f8';ctx.lineWidth=1;for(var i=0;i<=2;i++){var y=padT+ch*i/2;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(w-padR,y);ctx.stroke();}ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.lineTo(padL+cw,padT+ch);ctx.lineTo(padL,padT+ch);ctx.closePath();var g=ctx.createLinearGradient(0,padT,0,padT+ch);g.addColorStop(0,'rgba(114,46,209,.15)');g.addColorStop(1,'rgba(114,46,209,0)');ctx.fillStyle=g;ctx.fill();ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();});ctx.fillStyle='#86909c';ctx.font='10px sans-serif';ctx.textAlign='center';labels.forEach(function(l,i){ctx.fillText(l,padL+cw*i/(data.length-1),h-3);});}
+function drawPie(){var cv=document.getElementById('pieCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;cv.width=64*dpr;cv.height=64*dpr;cv.style.width='64px';cv.style.height='64px';ctx.scale(dpr,dpr);ctx.beginPath();ctx.arc(32,32,26,0,Math.PI*2);ctx.fillStyle='#f0f1f3';ctx.fill();ctx.beginPath();ctx.moveTo(32,32);ctx.arc(32,32,26,-Math.PI/2,-Math.PI/2+Math.PI*2*.87);ctx.closePath();ctx.fillStyle='#722ed1';ctx.fill();ctx.beginPath();ctx.arc(32,32,18,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();}
+function drawLine(){var cv=document.getElementById('lineCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;var w=cv.parentElement.clientWidth,h=50;cv.width=w*dpr;cv.height=h*dpr;ctx.scale(dpr,dpr);var data=[78,82,75,88,91,85,87],labels=['一','二','三','四','五','六','日'];var padL=6,padR=6,padT=12,padB=16,cw=w-padL-padR,ch=h-padT-padB;ctx.strokeStyle='#f5f6f8';ctx.lineWidth=1;for(var i=0;i<=2;i++){var y=padT+ch*i/2;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(w-padR,y);ctx.stroke();}ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.lineTo(padL+cw,padT+ch);ctx.lineTo(padL,padT+ch);ctx.closePath();var g=ctx.createLinearGradient(0,padT,0,padT+ch);g.addColorStop(0,'rgba(114,46,209,.15)');g.addColorStop(1,'rgba(114,46,209,0)');ctx.fillStyle=g;ctx.fill();ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();});ctx.fillStyle='#86909c';ctx.font='10px sans-serif';ctx.textAlign='center';labels.forEach(function(l,i){ctx.fillText(l,padL+cw*i/(data.length-1),h-3);});}
 
 var carouselData=[{label:'管理系统',title:'项目运营总览',from:'#0d1b2a',to:'#1b3a5c',stats:[{n:'48',l:'在管项目'},{n:'1,286',l:'在岗人员'},{n:'96.5%',l:'出勤率'},{n:'12',l:'待处理告警'}]},{label:'优管系统',title:'现场任务监控',from:'#1a0d2a',to:'#3a1b5c',stats:[{n:'152',l:'今日任务'},{n:'87%',l:'完成率'},{n:'38',l:'巡检点位'},{n:'5',l:'异常反馈'}]},{label:'优保系统',title:'保单数据概览',from:'#2a1a0d',to:'#5c3a1b',stats:[{n:'328',l:'在保人数'},{n:'15',l:'今日新增'},{n:'5',l:'今日理赔'},{n:'1,206',l:'已完结保单'}]},{label:'优效系统',title:'绩效薪酬分析',from:'#2a0d1f',to:'#5c1b42',stats:[{n:'98.2%',l:'核算准确率'},{n:'¥86.5万',l:'本月薪资'},{n:'12%',l:'成本下降'},{n:'456',l:'核算人数'}]}];
 var carouselIdx=0,carouselTimer=null;
