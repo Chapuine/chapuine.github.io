@@ -7,10 +7,10 @@
 <link rel="icon" type="image/png" href="https://aka.doubaocdn.com/s/hSUVdeHgzR">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1d2129;background:#f5f6f8;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1d2129;background:#f5f6f8;-webkit-font-smoothing:antialiased;--scale:1;}
 
 .login-wrap{display:flex;min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#14325c 50%,#0d2847 100%);position:relative;overflow:hidden}
-.login-left{flex:1;position:relative;display:flex;flex-direction:column;padding:44px 40px 44px 220px;overflow:hidden}
+.login-left{flex:1;position:relative;display:flex;flex-direction:column;padding:44px 40px 44px 200px;overflow:hidden}
 .brand-tag{font-size:28px;font-weight:700;letter-spacing:8px;color:#1d2129;
   font-family:"KaiTi","STKaiti","楷体",serif;
   background:rgba(255,255,255,.8);
@@ -69,7 +69,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .bg-ring-3{bottom:15%;left:40%;width:64px;height:64px}.bg-ring-4{bottom:35%;right:45%;width:46px;height:46px}
 
 /* 登录卡片翻页 */
-.login-right{width:620px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px 100px 40px 100px;position:relative;z-index:2}
+.login-right{width:620px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px 120px 40px 40px;position:relative;z-index:2}
 .login-card{width:100%;max-width:420px;position:relative;height:460px}
 .card-flip{position:relative;width:100%;height:100%}
 .card-face{position:absolute;inset:0;background:#fff;border-radius:16px;padding:24px 28px 20px;box-shadow:0 16px 48px rgba(0,0,0,.2);display:flex;flex-direction:column;transition:opacity .35s ease}
@@ -249,7 +249,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .ud-item{padding:10px 14px;border-radius:6px;font-size:13px;color:#4e5969;cursor:pointer;transition:.2s}
 .ud-item:hover{background:#f2f6ff;color:#165dff}
 
-.container{max-width:1280px;margin:0 auto;padding:20px 32px}
+.container{max-width:1680px;margin:0 auto;padding:24px 40px}
 .page-head{margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .page-head h1{font-size:22px;font-weight:600;margin-bottom:6px}
 .page-head p{font-size:13px;color:#86909c}
@@ -259,16 +259,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .page-badge.one{background:#fff7e8;color:#ff7d00}
 .page-badge.two{background:#f2f6ff;color:#165dff}
 
-.grid{display:grid;grid-template-columns:1fr 1fr 0.8fr;grid-auto-rows:280px;gap:14px;grid-auto-flow:dense}
+.grid{display:grid;grid-template-columns:1fr 1fr 0.85fr;grid-auto-rows:auto;gap:18px;grid-auto-flow:dense}
 .card.tall{grid-row:span 2}
 .grid-dynamic{display:flex;flex-direction:column;overflow:hidden;padding:0 !important;cursor:default !important}
 .grid-dynamic:hover{transform:none !important;box-shadow:0 4px 16px rgba(0,0,0,.08) !important}
-.gd-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #f0f1f3;flex-shrink:0}
-.gd-logo{width:40px;height:40px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.gd-head{display:flex;align-items:center;gap:calc(10px * var(--scale));padding:calc(14px * var(--scale)) calc(16px * var(--scale));border-bottom:1px solid #f0f1f3;flex-shrink:0}
+.gd-logo{width:calc(40px * var(--scale));height:calc(40px * var(--scale));border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .gd-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .gd-title-wrap{flex:1;min-width:0}
-.gd-title{font-size:15px;font-weight:700;line-height:1.3;display:inline-block;padding:4px 12px;border-radius:10px}
-.gd-follow{position:relative;display:flex;align-items:center;gap:4px;font-size:12px;color:#86909c;cursor:pointer;padding:4px 12px;border:1px solid #e5e6eb;border-radius:14px;transition:.2s;flex-shrink:0}
+.gd-title{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.3;display:inline-block;padding:calc(4px * var(--scale)) calc(12px * var(--scale));border-radius:10px}
+.gd-follow{position:relative;display:flex;align-items:center;gap:4px;font-size:calc(12px * var(--scale));color:#86909c;cursor:pointer;padding:calc(4px * var(--scale)) calc(12px * var(--scale));border:1px solid #e5e6eb;border-radius:14px;transition:.2s;flex-shrink:0}
 .gd-follow:hover{color:#165dff;border-color:#165dff}
 .follow-icon{font-size:14px;font-weight:700;line-height:1}
 .follow-qrcode{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:12px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;visibility:hidden;transition:.25s ease;z-index:100;width:150px;text-align:center;border:1px solid #f0f1f3}
@@ -279,7 +279,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .gd-nav{display:flex;gap:6px}
 .gd-nav span{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#f5f6f8;cursor:pointer;font-size:14px;color:#86909c;transition:.2s;user-select:none}
 .gd-nav span:hover{background:#e8eaed;color:#1d2129}
-.gd-body{flex:1;overflow:hidden;padding:10px;display:flex;flex-direction:column;position:relative}
+.gd-body{flex:1;overflow:hidden;padding:calc(10px * var(--scale));display:flex;flex-direction:column;position:relative}
 .side-nav{position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.06);cursor:pointer;font-size:16px;color:#86909c;transition:.2s;z-index:5;user-select:none}
 .side-nav:hover{background:rgba(0,0,0,.12);color:#1d2129}
 .side-prev{left:2px}
@@ -312,8 +312,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .jc-btn.jc-ok:hover{background:#0e4bdb}
 .toast-tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#1d2129;color:#fff;padding:16px 32px;border-radius:12px;font-size:15px;z-index:10000;opacity:0;transition:.3s ease;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3);white-space:nowrap;font-weight:500}
 .toast-tip.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.card{background:#fff;border-radius:14px;padding:18px;cursor:pointer;
+.card{background:#fff;border-radius:14px;padding:calc(18px * var(--scale)) calc(18px * var(--scale)) calc(12px * var(--scale));cursor:pointer;
   transition:box-shadow .25s ease,transform .25s ease;border:1px solid #f0f1f3;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.card.grid-dynamic{padding-bottom:calc(18px * var(--scale))}
 .card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
 .card.locked{cursor:default}
 .card.locked:hover{transform:none;box-shadow:none}
@@ -324,44 +325,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .disabled-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#165dff;font-weight:600;cursor:pointer;margin-top:10px;width:fit-content}
 .disabled-link:hover{text-decoration:underline}
 
-.card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.card-body{flex:1;display:flex;flex-direction:column;min-height:0}
-.card-body > *:not(:last-child){margin-bottom:12px}
+.card-head{display:flex;align-items:center;gap:calc(10px * var(--scale));margin-bottom:calc(10px * var(--scale))}
+.card-body{flex:1;display:flex;flex-direction:column;min-height:0;justify-content:space-evenly}
+.card.grid-dynamic .card-body{justify-content:flex-start}
+.card-body > *:not(:last-child){margin-bottom:calc(12px * var(--scale))}
 .card-body > *:last-child{margin-top:0;margin-bottom:0}
-.card-logo{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.card-logo{width:calc(44px * var(--scale));height:calc(44px * var(--scale));border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .card-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .card-title-wrap{flex:1;min-width:0}
-.card-title{font-size:15px;font-weight:700;line-height:1.3;display:inline-block;padding:4px 12px;
+.card-title{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.3;display:inline-block;padding:calc(4px * var(--scale)) calc(12px * var(--scale));
   border-radius:10px;border:1.5px solid;line-height:1.4}
-.card-go{font-size:12px;color:#c9cdd4;transition:.2s;flex-shrink:0;padding:5px 12px;
+.card-go{font-size:calc(12px * var(--scale));color:#c9cdd4;transition:.2s;flex-shrink:0;padding:calc(5px * var(--scale)) calc(12px * var(--scale));
   border-radius:6px;border:1px solid #f0f1f3;white-space:nowrap}
 .card:hover .card-go{color:#fff;background:var(--accent);border-color:var(--accent)}
 .card-go.contact{color:#f5319d;border-color:#ffd6e8;background:#fff5fa}
 .card.locked .card-go.contact:hover{background:#f5319d!important;color:#fff!important;border-color:#f5319d!important}
 
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:calc(4px * var(--scale)) 0;font-size:calc(12px * var(--scale))}
 .ir-label{color:#86909c}
 .ir-value{color:#1d2129;font-weight:500}
-.card-divider{height:1px;background:#f5f6f8;margin:8px 0}
-.cims-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;font-size:12px}
+.card-divider{height:1px;background:#f5f6f8;margin:calc(8px * var(--scale)) 0}
+.cims-top{display:flex;align-items:center;justify-content:space-between;gap:calc(10px * var(--scale));margin-bottom:calc(10px * var(--scale));font-size:calc(12px * var(--scale))}
 .cims-time{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:1;padding:5px 0}
 .version-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:13px;font-size:11px;font-weight:600}
 .cims-time .ir-label{color:#86909c}
 .cims-time .ir-value{color:#1d2129;font-weight:500}
 .version-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.dual-stat{display:flex;gap:8px;margin-bottom:10px}
-.dual-stat .ds-box{flex:1;background:#f7f8fa;border-radius:8px;padding:8px 10px;text-align:center;height:64px;display:flex;flex-direction:column;justify-content:center}
-.dual-stat .ds-num{font-size:16px;font-weight:700;line-height:1.2}
-.dual-stat .ds-lbl{font-size:10px;color:#86909c;margin-top:2px}
-.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:auto}
-.mini-stat{border-radius:10px;padding:8px 6px;text-align:center;color:#fff}
-.mini-stat .ms-num{font-size:16px;font-weight:700;line-height:1.2}
-.mini-stat .ms-lbl{font-size:10px;margin-top:2px;opacity:.9}
-.baoxian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.bx-item{background:#f7f8fa;border-radius:8px;padding:8px 6px;text-align:center}
-.bx-item .bx-num{font-size:15px;font-weight:700;line-height:1.2}
-.bx-item .bx-lbl{font-size:10px;color:#86909c;margin-top:2px}
+.dual-stat{display:flex;gap:calc(8px * var(--scale));margin-bottom:calc(10px * var(--scale))}
+.dual-stat .ds-box{flex:1;background:#f7f8fa;border-radius:8px;padding:calc(8px * var(--scale)) calc(10px * var(--scale));text-align:center;height:calc(80px * var(--scale));display:flex;flex-direction:column;justify-content:center}
+.dual-stat .ds-num{font-size:calc(16px * var(--scale));font-weight:700;line-height:1.2}
+.dual-stat .ds-lbl{font-size:calc(10px * var(--scale));color:#86909c;margin-top:2px}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(6px * var(--scale));margin-top:auto}
+.mini-stat{border-radius:10px;padding:calc(8px * var(--scale)) calc(6px * var(--scale));text-align:center;color:#fff;height:calc(70px * var(--scale));display:flex;flex-direction:column;justify-content:center}
+.mini-stat .ms-num{font-size:calc(16px * var(--scale));font-weight:700;line-height:1.2}
+.mini-stat .ms-lbl{font-size:calc(10px * var(--scale));margin-top:2px;opacity:.9}
+.baoxian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(6px * var(--scale))}
+.bx-item{background:#f7f8fa;border-radius:8px;padding:calc(8px * var(--scale)) calc(6px * var(--scale));text-align:center;height:calc(70px * var(--scale));display:flex;flex-direction:column;justify-content:center}
+.bx-item .bx-num{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.2}
+.bx-item .bx-lbl{font-size:calc(10px * var(--scale));color:#86909c;margin-top:2px}
 
 .chart-pie-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .chart-pie{width:64px;height:64px;flex-shrink:0;position:relative}
@@ -401,13 +403,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   font-size:9px;color:#fff;flex-shrink:0}
 
 /* 优效卡片 */
-.youxiao-intro{font-size:12px;color:#4e5969;line-height:1.7;margin-bottom:10px}
-.youxiao-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#f5319d;font-weight:600;
-  cursor:pointer;margin-top:0;margin-bottom:12px;width:fit-content}
+.youxiao-intro{font-size:calc(12px * var(--scale));color:#4e5969;line-height:1.7;margin-bottom:calc(10px * var(--scale))}
+.youxiao-link{display:inline-flex;align-items:center;gap:4px;font-size:calc(12px * var(--scale));color:#f5319d;font-weight:600;
+  cursor:pointer;margin-top:0;margin-bottom:calc(12px * var(--scale));width:fit-content}
 .youxiao-link:hover{text-decoration:underline}
-.youxiao-features{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-.youxiao-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:#4e5969}
-.youxiao-feat .fi{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+.youxiao-features{display:flex;flex-direction:column;gap:calc(8px * var(--scale));margin-top:calc(12px * var(--scale))}
+.youxiao-feat{display:flex;align-items:center;gap:8px;font-size:calc(12px * var(--scale));color:#4e5969}
+.youxiao-feat .fi{width:calc(18px * var(--scale));height:calc(18px * var(--scale));border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-size:10px;color:#fff;flex-shrink:0;background:linear-gradient(135deg,#f5319d,#f76ab5)}
 .dynamic-section{display:flex;gap:18px;margin-top:24px}
 .dynamic-card{flex:1;background:#fff;border-radius:14px;border:1px solid #f0f1f3;overflow:hidden;display:flex;flex-direction:column;min-width:0}
@@ -419,21 +421,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .dc-body{padding:16px 18px;min-height:150px;position:relative}
 .news-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none;padding-bottom:0}
 .news-item.active{opacity:1;pointer-events:auto}
-.news-date{font-size:11px;color:#86909c;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.news-date{font-size:calc(11px * var(--scale));color:#86909c;margin-bottom:calc(6px * var(--scale));display:flex;align-items:center;gap:5px}
 .news-date::before{content:'';width:4px;height:4px;border-radius:50%;background:#165dff}
-.news-title{font-size:14px;font-weight:600;color:#1d2129;margin-bottom:8px;line-height:1.5}
-.news-desc{font-size:12px;color:#4e5969;line-height:1.8;flex:1;overflow:hidden}
-.news-dots{display:flex;gap:5px;justify-content:center;padding:6px 0 0;position:absolute;bottom:0;left:0;right:0;z-index:2;height:28px;align-items:center}
-.news-dots span{width:6px;height:6px;border-radius:50%;background:#e5e6eb;cursor:pointer;transition:.2s}
-.news-dots span.on{background:#165dff;width:16px;border-radius:3px}
+.news-title{font-size:calc(14px * var(--scale));font-weight:600;color:#1d2129;margin-bottom:calc(8px * var(--scale));line-height:1.5}
+.news-desc{font-size:calc(12px * var(--scale));color:#4e5969;line-height:1.8;flex:1;overflow:hidden}
+.news-dots{display:flex;gap:calc(5px * var(--scale));justify-content:center;padding:calc(6px * var(--scale)) 0 0;position:absolute;bottom:0;left:0;right:0;z-index:2;height:calc(28px * var(--scale));align-items:center}
+.news-dots span{width:calc(6px * var(--scale));height:calc(6px * var(--scale));border-radius:50%;background:#e5e6eb;cursor:pointer;transition:.2s}
+.news-dots span.on{background:#165dff;width:calc(16px * var(--scale));border-radius:3px}
 .video-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none}
 .video-item.active{opacity:1;pointer-events:auto}
-.video-thumb-wrap{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:10px;margin-bottom:10px;width:100%}
+.video-thumb-wrap{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:10px;margin-bottom:calc(10px * var(--scale));width:100%}
 .video-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.3);opacity:0.5;z-index:0}
 .video-thumb{position:relative;z-index:1;height:100%;max-height:100%;aspect-ratio:9/16;width:auto;max-width:100%;margin:0 auto;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.video-thumb::after{content:'▶';position:absolute;font-size:22px;color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
-.video-meta-wm{position:absolute;bottom:0;left:0;right:0;height:26px;line-height:26px;background:rgba(0,0,0,.1);color:#fff;font-size:10px;text-align:center;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px}
-.video-title{font-size:13px;font-weight:600;color:#1d2129;margin-top:auto;margin-bottom:auto;line-height:1.4;text-align:center;flex-shrink:0;padding:0 8px}
+.video-thumb::after{content:'▶';position:absolute;font-size:calc(22px * var(--scale));color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
+.video-meta-wm{position:absolute;bottom:0;left:0;right:0;height:calc(26px * var(--scale));line-height:calc(26px * var(--scale));background:rgba(0,0,0,.1);color:#fff;font-size:calc(10px * var(--scale));text-align:center;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 calc(8px * var(--scale))}
+.video-title{font-size:calc(13px * var(--scale));font-weight:600;color:#1d2129;margin-top:auto;margin-bottom:auto;line-height:1.4;text-align:center;flex-shrink:0;padding:0 calc(8px * var(--scale))}
 @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* 关于产品弹窗 */
@@ -467,9 +469,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .sales-rotate{margin-top:18px;font-size:11px;color:#86909c;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1}
 .sales-rotate .dot{width:5px;height:5px;border-radius:50%;background:#165dff;animation:pulse 2s infinite}
 
-.signin-num{font-size:28px;font-weight:700;line-height:1}
-.signin-row{display:flex;align-items:center;gap:10px}
-.signin-lbl{font-size:12px;color:#86909c}
+.signin-num{font-size:calc(28px * var(--scale));font-weight:700;line-height:1}
+.signin-row{display:flex;align-items:center;gap:calc(10px * var(--scale))}
+.signin-lbl{font-size:calc(12px * var(--scale));color:#86909c}
 .signin-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;line-height:1}
 
 @media(max-width:1400px){
@@ -768,7 +770,7 @@ function clearFieldError(inputId,errorId){document.getElementById(inputId).class
 ['tenantId','pwdUser','pwdPass'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){clearFieldError(id,id+'Error');});}});
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('loginPage').style.display!=='none')doLogin();});
 document.getElementById('agreeTerms').addEventListener('change',function(){if(this.checked)document.getElementById('agreeError').classList.remove('show');});
-function enterProductPage(){document.getElementById('loginPage').style.display='none';document.getElementById('productPage').style.display='block';renderProducts();renderBroadcast();if(newsTimer)clearInterval(newsTimer);if(videoTimer)clearInterval(videoTimer);newsTimer=setInterval(newsNext,4500);videoTimer=setInterval(videoNext,5500);}
+function enterProductPage(){document.getElementById('loginPage').style.display='none';document.getElementById('productPage').style.display='block';adaptResolution();renderProducts();renderBroadcast();if(newsTimer)clearInterval(newsTimer);if(videoTimer)clearInterval(videoTimer);newsTimer=setInterval(newsNext,4500);videoTimer=setInterval(videoNext,5500);}
 var newsData=[{date:'2026-08-20',title:'云智洁携手多家物业企业开启智慧清洁新篇章',desc:'云智洁管理系统在全国多个项目落地，通过AI技术实现清洁任务智能派发与品质管控，大幅提升运营效率与服务质量。'},{date:'2026-08-15',title:'云智洁优保系统升级：设备维保全流程数字化',desc:'新版优保系统支持设备台账、维保工单、保单管理与理赔服务一站式处理，已服务超过500个项目，设备故障率下降35%。'},{date:'2026-08-10',title:'云智洁清洁学院在线培训人数突破10万',desc:'清洁学院提供清洁行业专业课程、在线考试与技能认证，累计培训学员超过10万人次，覆盖全国300余家清洁企业。'},{date:'2026-08-05',title:'云智洁驾驶舱数据大屏助力企业经营决策',desc:'驾驶舱整合各系统数据，提供可视化大屏、经营分析与预警监控，帮助管理者实时掌握运营状况，数据决策效率提升60%。'}];
 var videoData=[{title:'云智洁管理系统操作演示',meta:'2.3万次播放 · 2026-08-18',color:'#165dff'},{title:'清洁机器人现场作业实拍',meta:'1.8万次播放 · 2026-08-12',color:'#00b42a'},{title:'优保设备维保流程详解',meta:'1.2万次播放 · 2026-08-08',color:'#ff7d00'},{title:'智慧清洁项目案例分享',meta:'3.1万次播放 · 2026-08-02',color:'#722ed1'}];
 var broadcastData=[{tag:'政策',text:'2026中国物业服务百强企业研究报告发布，行业集中度持续提升',url:'https://www.yun-clean.com/news/1',time:Date.now()-12*60000},{tag:'趋势',text:'保洁行业数字化转型加速，AI智能调度与物联网设备成为项目标配',url:'https://www.yun-clean.com/news/2',time:Date.now()-35*60000},{tag:'云智洁',text:'云智洁管理系统助力全国超500家物业企业实现降本增效30%以上',url:'https://www.yun-clean.com/news/3',time:Date.now()-80*60000},{tag:'法规',text:'新版物业管理条例解读：业主权益保障再升级，公共收益全面透明化',url:'https://www.yun-clean.com/news/4',time:Date.now()-135*60000},{tag:'会议',text:'2026中国清洁服务标准化建设推进会在京召开，行业标准体系日趋完善',url:'https://www.yun-clean.com/news/5',time:Date.now()-180*60000},{tag:'资本',text:'智慧物业赛道迎来政策红利期，头部企业加速并购整合扩大市场份额',url:'https://www.yun-clean.com/news/6',time:Date.now()-300*60000},{tag:'技术',text:'清洁机器人与人工协同作业新模式落地，单位面积作业效率提升40%',url:'https://www.yun-clean.com/news/7',time:Date.now()-480*60000},{tag:'行业',text:'中物协发布《2026清洁服务质量白皮书》，全国服务标准迎来全面升级',url:'https://www.yun-clean.com/news/8',time:Date.now()-1440*60000}];
@@ -846,7 +848,7 @@ function closeAbout(){document.getElementById('aboutModal').classList.remove('sh
 document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target===this)closeAbout();});
 
 /* 渲染产品 */
-function renderProducts(){var sorted=getSortedProducts();var actual=getActualPurchased();var html='';var idx=0;sorted.forEach(function(p){if(idx===2){html+='<div class="card tall grid-dynamic grid-video"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="云智洁视频号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#7c3aed;border-color:#7c3aed33;background:#7c3aed0a">云智洁视频号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="视频号二维码"><p>扫码关注云智洁视频号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="videoPrev()">‹</span><div id="videoCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="videoNext()">›</span></div></div>';}var isOpen=actual.has(p.key)||p.alwaysLast;var isEnabled=true;if(p.key==='umanage')isEnabled=switchConfig.umanage_enabled;if(p.key==='visualize')isEnabled=switchConfig.visualize_enabled;var tallCls='';if(syncingProducts[p.key]){html+='<div class="card syncing'+tallCls+'">'+cardHead(p)+'<div class="card-body">'+syncContent()+'</div></div>';idx++;return;}if(isOpen&&isEnabled){html+='<div class="card'+tallCls+'" onclick="'+(p.alwaysLast?'openAbout(\''+p.key+'\')':"goProduct('"+p.url+"')")+'">'+cardHead(p)+'<div class="card-body">'+cardContent(p.key)+'</div></div>';}else if(isOpen&&!isEnabled){html+='<div class="card disabled'+tallCls+'">'+cardHeadDisabled(p)+'<div class="card-body">'+disabledContent(p)+'</div></div>';}else{html+='<div class="card locked'+tallCls+'">'+cardHeadLocked(p)+'<div class="card-body">'+lockedContent(p)+'</div></div>';}idx++;});html+='<div class="card grid-dynamic grid-news"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="云智洁公众号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#1a7f37;border-color:#1a7f3733;background:#1a7f370a">云智洁公众号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="公众号二维码"><p>扫码关注云智洁公众号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="newsPrev()">‹</span><div id="newsCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="newsNext()">›</span></div></div>';document.getElementById('productGrid').innerHTML=html;if(document.getElementById('pieCanvas'))drawPie();if(document.getElementById('lineCanvas'))drawLine();if(document.getElementById('carousel'))initCarousel();renderNews();renderVideo();}
+function renderProducts(){var sorted=getSortedProducts();var actual=getActualPurchased();var html='';var idx=0;sorted.forEach(function(p){if(idx===2){html+='<div class="card tall grid-dynamic grid-video"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="云智洁视频号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#7c3aed;border-color:#7c3aed33;background:#7c3aed0a">云智洁视频号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="视频号二维码"><p>扫码关注云智洁视频号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="videoPrev()">‹</span><div id="videoCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="videoNext()">›</span></div></div>';}var isOpen=actual.has(p.key)||p.alwaysLast;var isEnabled=true;if(p.key==='umanage')isEnabled=switchConfig.umanage_enabled;if(p.key==='visualize')isEnabled=switchConfig.visualize_enabled;var tallCls='';if(syncingProducts[p.key]){html+='<div class="card syncing'+tallCls+'">'+cardHead(p)+'<div class="card-body">'+syncContent()+'</div></div>';idx++;return;}if(isOpen&&isEnabled){html+='<div class="card'+tallCls+'" onclick="'+(p.alwaysLast?'openAbout(\''+p.key+'\')':"goProduct('"+p.url+"')")+'">'+cardHead(p)+'<div class="card-body">'+cardContent(p.key)+'</div></div>';}else if(isOpen&&!isEnabled){html+='<div class="card disabled'+tallCls+'">'+cardHeadDisabled(p)+'<div class="card-body">'+disabledContent(p)+'</div></div>';}else{html+='<div class="card locked'+tallCls+'">'+cardHeadLocked(p)+'<div class="card-body">'+lockedContent(p)+'</div></div>';}idx++;});html+='<div class="card grid-dynamic grid-news"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="云智洁公众号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#1a7f37;border-color:#1a7f3733;background:#1a7f370a">云智洁公众号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="公众号二维码"><p>扫码关注云智洁公众号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="newsPrev()">‹</span><div id="newsCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="newsNext()">›</span></div></div>';document.getElementById('productGrid').innerHTML=html;if(document.getElementById('pieCanvas'))drawPie();if(document.getElementById('lineCanvas'))drawLine();if(document.getElementById('carousel'))initCarousel();renderNews();renderVideo();setTimeout(function(){var grid=document.getElementById('productGrid');if(grid){var firstCard=grid.querySelector('.card:not(.tall):not(.grid-dynamic)');if(firstCard){var cardWidth=firstCard.offsetWidth;if(cardWidth>0){grid.style.gridAutoRows=Math.round(cardWidth*0.75)+'px';}}}},50);}
 function syncContent(){return '<div class="sync-loading"><div class="sync-spinner"></div><div class="sync-text">数据正在同步中</div></div>';}
 function cardHeadDisabled(p){return '<div class="card-head" style="--accent:'+p.color+'"><div class="card-logo" style="opacity:.6"><img src="'+p.logo+'" alt="'+p.name+'"></div><div class="card-title-wrap"><div class="card-title" style="color:#86909c;border-color:#e5e6eb;background:#f7f8fa">'+p.name+'</div></div><div class="card-go" style="color:#c9cdd4;border-color:#f0f1f3;cursor:not-allowed">未启用</div></div>';}
 function disabledContent(p){return '<div class="disabled-badge">⚠ 未启用</div><div class="disabled-tip">该产品已授权但尚未在系统设置中开启，请前往「设置」启用后使用。</div><a class="disabled-link" onclick="openSetting()">⚙ 前往设置开启 →</a>';}
@@ -875,8 +877,9 @@ function goSlide(i){carouselIdx=i;document.querySelectorAll('.carousel-slide').f
 function checkPwdMatch(){var n1=document.getElementById('pwdNew1').value;var n2=document.getElementById('pwdNew2').value;var err=document.getElementById('pwdMatchError');var input=document.getElementById('pwdNew2');if(n1&&n2&&n1!==n2){err.classList.add('show');input.classList.add('input-error');setTimeout(function(){input.classList.remove('input-error');},500);}else{err.classList.remove('show');input.classList.remove('input-error');}}
 document.getElementById('pwdNew1').addEventListener('input',checkPwdMatch);
 document.getElementById('pwdNew2').addEventListener('input',checkPwdMatch);
-window.addEventListener('resize',function(){if(document.getElementById('productPage').style.display==='block')drawLine();});
-window.addEventListener('load',function(){try{var d=JSON.parse(localStorage.getItem('yzj_auto')||'null');if(d&&d.e&&Date.now()<d.e){enterProductPage();}}catch(e){}});
+function adaptResolution(){var w=window.innerWidth;var container=document.querySelector('.container');var grid=document.querySelector('.grid');if(!container||!grid)return;var scale=1;if(w>=1900){scale=1.3;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else if(w>=1700){scale=1.25;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else if(w>=1500){scale=1.2;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else{scale=1.1;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}document.body.style.setProperty('--scale',scale);setTimeout(function(){var firstCard=grid.querySelector('.card:not(.tall):not(.grid-dynamic)');if(firstCard){var cardWidth=firstCard.offsetWidth;if(cardWidth>0){grid.style.gridAutoRows=Math.round(cardWidth*0.75)+'px';}}},50);}
+window.addEventListener('resize',function(){adaptResolution();if(document.getElementById('productPage').style.display==='block')drawLine();});
+window.addEventListener('load',function(){adaptResolution();try{var d=JSON.parse(localStorage.getItem('yzj_auto')||'null');if(d&&d.e&&Date.now()<d.e){enterProductPage();}}catch(e){}});
 </script>
 </body>
 </html>
