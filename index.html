@@ -224,7 +224,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .app{display:none;min-height:100vh}
 .nav{height:56px;background:#fff;border-bottom:1px solid #e8eaed;display:flex;align-items:center;
   justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:10}
-.nav-brand{font-size:18px;font-weight:700;color:#165dff}
+.nav-brand{font-size:18px;font-weight:700;color:#165dff;display:flex;align-items:center}
+.nav-logo{height:32px;width:auto;display:block;object-fit:contain}
 .nav-links{display:flex;align-items:center;gap:8px;margin-right:auto;margin-left:32px}
 .nav-link{font-size:13px;color:#4e5969;cursor:pointer;padding:6px 14px;border-radius:6px;transition:.2s}
 .nav-link:hover{background:#f2f3f5;color:#165dff}
@@ -346,8 +347,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .ir-value{color:#1d2129;font-weight:500}
 .card-divider{height:1px;background:#f5f6f8;margin:calc(8px * var(--scale)) 0}
 .cims-top{display:flex;align-items:center;justify-content:space-between;gap:calc(10px * var(--scale));margin-bottom:calc(10px * var(--scale));font-size:calc(12px * var(--scale))}
-.cims-time{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:1;padding:5px 0}
-.version-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:13px;font-size:11px;font-weight:600}
+.cims-time{display:inline-flex;align-items:center;gap:6px;font-size:inherit;line-height:1;padding:5px 0}
+.version-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:13px;font-size:inherit;font-weight:600}
 .cims-time .ir-label{color:#86909c}
 .cims-time .ir-value{color:#1d2129;font-weight:500}
 .version-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
@@ -431,7 +432,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .video-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none}
 .video-item.active{opacity:1;pointer-events:auto}
 .video-thumb-wrap{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:10px;margin-bottom:calc(10px * var(--scale));width:100%}
-/*.video-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.3);opacity:0.5;z-index:0}*/
+.video-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.3);opacity:0.5;z-index:0}
 .video-thumb{position:relative;z-index:1;height:100%;max-height:100%;aspect-ratio:9/16;width:auto;max-width:100%;margin:0 auto;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .video-thumb::after{content:'▶';position:absolute;font-size:calc(22px * var(--scale));color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
 .video-meta-wm{position:absolute;bottom:0;left:0;right:0;height:calc(26px * var(--scale));line-height:calc(26px * var(--scale));background:rgba(0,0,0,.1);color:#fff;font-size:calc(10px * var(--scale));text-align:center;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 calc(8px * var(--scale))}
@@ -468,6 +469,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .sales-info-item a{color:#165dff;text-decoration:none}
 .sales-rotate{margin-top:18px;font-size:11px;color:#86909c;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1}
 .sales-rotate .dot{width:5px;height:5px;border-radius:50%;background:#165dff;animation:pulse 2s infinite}
+.contact-cards-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-card{background:#fff;border-radius:12px;padding:24px 20px;text-align:center;border:1px solid #f0f1f3}
+.contact-card.sales-card{border-top:3px solid #165dff}
+.contact-card.support-card{border-top:3px solid #00b42a}
+.contact-card .cc-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}
+.contact-card.sales-card .cc-avatar{background:linear-gradient(135deg,#165dff,#4080ff)}
+.contact-card.support-card .cc-avatar{background:linear-gradient(135deg,#00b42a,#23c343)}
+.contact-card .cc-name{font-size:18px;font-weight:700;color:#1d2129;margin-bottom:4px}
+.contact-card .cc-role{font-size:12px;color:#86909c;margin-bottom:16px}
+.contact-card .cc-info{display:flex;flex-direction:column;gap:8px}
+.contact-card .cc-info-item{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:#4e5969}
+.contact-card .cc-info-item .icon{font-size:14px}
+.contact-card .cc-info-item a{color:#165dff;text-decoration:none}
 
 .signin-num{font-size:calc(28px * var(--scale));font-weight:700;line-height:1}
 .signin-row{display:flex;align-items:center;gap:calc(10px * var(--scale))}
@@ -678,10 +692,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
 <!-- 销售名片弹窗 -->
 <div class="modal-mask" id="salesModal">
-  <div class="modal" style="max-width:400px">
+  <div class="modal" style="max-width:680px">
     <div class="modal-head"><h3>联系我们</h3><button class="modal-close" onclick="closeSales()">✕</button></div>
     <div class="modal-body" style="padding:20px 24px">
-      <div class="sales-card" id="salesCard"></div>
+      <div class="contact-cards-wrap" id="salesCard"></div>
     </div>
   </div>
 </div>
@@ -714,7 +728,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 <!-- 产品选择 -->
 <div class="app" id="productPage">
   <div class="nav">
-    <div class="nav-brand">云智洁</div>
+    <div class="nav-brand"><img src="https://aka.doubaocdn.com/s/84OvLcbiII" alt="云智洁" class="nav-logo"></div>
     <div class="nav-right">
       <div class="nav-user" onclick="toggleUserDropdown(event)"><div class="nav-avatar">A</div><span>admin</span></div>
       <div class="user-dropdown" id="userDropdown">
@@ -750,13 +764,13 @@ var PRODUCTS=[
 ];
 
 /* 销售人员 */
-var SALES=[
-  {name:'张三',gender:'male',phone:'15790888275',email:'zhangsan@shcg.com.cn'},
-  {name:'李思',gender:'female',phone:'176104000032',email:'lisi@shcg.com.cn'},
-  {name:'王武',gender:'male',phone:'18998789987',email:'wangwu@shcg.com.cn'}
-];
-function getCurrentSales(){return SALES[new Date().getMonth()%3];}
-function getSalesMonthName(){var m=new Date().getMonth();var names=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];return names[m];}
+// 由网站管理员指定的联系人员（模拟从数据库获取，后续可对接管理员后台配置）
+var CONTACT_STAFF={
+  sales:{name:'张三',gender:'male',phone:'15790888275',email:'zhangsan@shcg.com.cn',role:'专属销售顾问'},
+  support:{name:'李工',gender:'male',phone:'13800138000',email:'support@shcg.com.cn',role:'售后技术支持工程师'}
+};
+function getCurrentSales(){return CONTACT_STAFF.sales;}
+function getSupportStaff(){return CONTACT_STAFF.support;}
 
 var purchasedList=['cims','school','baoxian','umanage','visualize'];
 
@@ -764,7 +778,7 @@ function getActualPurchased(){var actual=new Set(purchasedList);PRODUCTS.forEach
 function getSortedProducts(){var actual=getActualPurchased();var bought=PRODUCTS.filter(function(p){return !p.alwaysLast&&actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var unbought=PRODUCTS.filter(function(p){return !p.alwaysLast&&!actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var last=PRODUCTS.filter(function(p){return p.alwaysLast;});return bought.concat(unbought).concat(last);}
 
 /* 登录 */
-function doLogin(){var err=document.getElementById('agreeError');if(!document.getElementById('agreeTerms').checked){err.classList.add('show');return;}err.classList.remove('show');var tenant=document.getElementById('tenantId').value.trim();var user=document.getElementById('pwdUser').value.trim();var pass=document.getElementById('pwdPass').value.trim();var hasError=false;if(!tenant){shakeField('tenantId','tenantIdError');hasError=true;}else{clearFieldError('tenantId','tenantIdError');}if(!user){shakeField('pwdUser','pwdUserError');hasError=true;}else{clearFieldError('pwdUser','pwdUserError');}if(!pass){shakeField('pwdPass','pwdPassError');hasError=true;}else{clearFieldError('pwdPass','pwdPassError');}if(hasError)return;if(tenant==='v3-demo'&&user==='17610400032'&&pass==='400032'){if(document.getElementById('autoLogin').checked){localStorage.setItem('yzj_auto',JSON.stringify({u:user,e:Date.now()+7*86400000}));}enterProductPage();}else{alert('账套号、用户名或密码错误');}}
+function doLogin(){var err=document.getElementById('agreeError');if(!document.getElementById('agreeTerms').checked){err.classList.add('show');return;}err.classList.remove('show');var tenant=document.getElementById('tenantId').value.trim();var user=document.getElementById('pwdUser').value.trim();var pass=document.getElementById('pwdPass').value.trim();var hasError=false;if(!tenant){shakeField('tenantId','tenantIdError');hasError=true;}else{clearFieldError('tenantId','tenantIdError');}if(!user){shakeField('pwdUser','pwdUserError');hasError=true;}else{clearFieldError('pwdUser','pwdUserError');}if(!pass){shakeField('pwdPass','pwdPassError');hasError=true;}else{clearFieldError('pwdPass','pwdPassError');}if(hasError)return;if(tenant==='1001'&&user==='admin'&&pass==='123'){if(document.getElementById('autoLogin').checked){localStorage.setItem('yzj_auto',JSON.stringify({u:user,e:Date.now()+7*86400000}));}enterProductPage();}else{alert('账套号、用户名或密码错误（测试账号：账套号1001 / 用户名admin / 密码123）');}}
 function shakeField(inputId,errorId){var input=document.getElementById(inputId);var err=document.getElementById(errorId);input.classList.remove('input-error');err.classList.remove('show');void input.offsetWidth;input.classList.add('input-error');err.classList.add('show');}
 function clearFieldError(inputId,errorId){document.getElementById(inputId).classList.remove('input-error');document.getElementById(errorId).classList.remove('show');}
 ['tenantId','pwdUser','pwdPass'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){clearFieldError(id,id+'Error');});}});
@@ -781,7 +795,7 @@ function updateNewsCarousel(){var items=document.querySelectorAll('#newsCarousel
 function goNews(i){newsIdx=i;updateNewsCarousel();}
 function newsNext(){newsIdx=(newsIdx+1)%newsData.length;updateNewsCarousel();}
 function newsPrev(){newsIdx=(newsIdx-1+newsData.length)%newsData.length;updateNewsCarousel();}
-function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)return;var html='';videoData.forEach(function(v,i){html+='<div class="video-item'+(i===videoIdx?' active':'')+'"><div class="video-thumb-wrap"><div class="video-thumb-bg" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"></div><div class="video-thumb" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"><div class="video-meta-wm">'+v.meta+'</div></div></div><div class="video-title">'+v.title+'</div></div>';});html+='<div class="news-dots">'+videoData.map(function(_,i){return '<span class="'+(i===videoIdx?'on':'')+'" onclick="goVideo('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
+function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)return;var html='';videoData.forEach(function(v,i){html+='<div class="video-item'+(i===videoIdx?' active':'')+'"><div class="video-thumb-wrap"><div class="video-thumb" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"><div class="video-meta-wm">'+v.meta+'</div></div></div><div class="video-title">'+v.title+'</div></div>';});html+='<div class="news-dots">'+videoData.map(function(_,i){return '<span class="'+(i===videoIdx?'on':'')+'" onclick="goVideo('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
 function updateVideoCarousel(){var items=document.querySelectorAll('#videoCarousel .video-item');var dots=document.querySelectorAll('#videoCarousel .news-dots span');items.forEach(function(el,i){el.classList.toggle('active',i===videoIdx);});dots.forEach(function(el,i){el.classList.toggle('on',i===videoIdx);});}
 function goVideo(i){videoIdx=i;updateVideoCarousel();}
 function renderBroadcast(){var track=document.getElementById('broadcastTrack');if(!track)return;var html='';broadcastData.forEach(function(b){html+='<span class="bc-item" onclick="showJumpConfirm(\''+b.url+'\')"><span class="bc-dot"></span><span class="bc-tag">'+b.tag+'</span>'+b.text+'<span class="bc-time">'+formatRelativeTime(b.time)+'</span></span>';});track.innerHTML=html+html;}
@@ -838,12 +852,12 @@ function submitPwd(){var old=document.getElementById('pwdOld').value.trim();var 
 document.getElementById('pwdModal').addEventListener('click',function(e){if(e.target===this)closePwdModal();});
 
 /* 销售名片 */
-function openSales(){var s=getCurrentSales();var avatar=s.gender==='male'?'👨':'👩';var html='<div class="sales-avatar '+s.gender+'">'+avatar+'</div><div class="sales-name">'+s.name+'</div><div class="sales-role">本月值班销售 · '+getSalesMonthName()+'轮值</div><div class="sales-info"><div class="sales-info-item"><span class="icon">📱</span><span>'+s.phone+'</span></div><div class="sales-info-item"><span class="icon">✉️</span><a href="mailto:'+s.email+'">'+s.email+'</a></div></div><div class="sales-rotate"><span class="dot"></span>每月轮值，下月将由下一位销售对接</div>';document.getElementById('salesCard').innerHTML=html;document.getElementById('salesModal').classList.add('show');}
+function openSales(){var s=getCurrentSales();var sup=getSupportStaff();function cardHtml(staff,type){var avatar=staff.gender==='male'?'👨':'👩';return '<div class="contact-card '+type+'-card"><div class="cc-avatar">'+avatar+'</div><div class="cc-name">'+staff.name+'</div><div class="cc-role">'+staff.role+'</div><div class="cc-info"><div class="cc-info-item"><span class="icon">📱</span><span>'+staff.phone+'</span></div><div class="cc-info-item"><span class="icon">✉️</span><a href="mailto:'+staff.email+'">'+staff.email+'</a></div></div></div>';}var html=cardHtml(s,'sales')+cardHtml(sup,'support');document.getElementById('salesCard').innerHTML=html;document.getElementById('salesModal').classList.add('show');}
 function closeSales(){document.getElementById('salesModal').classList.remove('show');}
 document.getElementById('salesModal').addEventListener('click',function(e){if(e.target===this)closeSales();});
 
 /* 关于产品 */
-function openAbout(key){var p=PRODUCTS.find(function(x){return x.key===key;});var s=getCurrentSales();document.getElementById('aboutTitle').textContent='关于'+p.name;var html='<div class="about-banner" style="background:linear-gradient(135deg,'+p.color+','+p.color+'aa)"><h2>'+p.name+'</h2><p>'+p.intro.substring(0,30)+'...</p></div>';html+='<p class="about-intro-text">'+p.intro+'</p>';html+='<div class="about-features">'+p.features.map(function(f){return '<div class="about-feat"><div class="af-icon" style="color:'+p.color+'">✓</div><div class="af-title">'+f.substring(0,6)+'</div><div class="af-desc">'+f+'</div></div>';}).join('')+'</div>';html+='<div class="about-contact"><div class="qr-box"><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color='+p.color.replace('#','')+'"></div><div class="qr-label">微信公众号</div></div><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color=f5319d"></div><div class="qr-label">微信视频号</div></div></div><div class="sales-info-box"><div class="si-name">本月值班销售：'+s.name+'</div><div class="si-contact"><span>📞 '+s.phone+'</span><span>✉️ '+s.email+'</span></div></div></div>';document.getElementById('aboutContent').innerHTML=html;document.getElementById('aboutModal').classList.add('show');}
+function openAbout(key){var p=PRODUCTS.find(function(x){return x.key===key;});var s=getCurrentSales();var sup=getSupportStaff();function miniCard(staff,type){var avatar=staff.gender==='male'?'👨':'👩';return '<div class="contact-card '+type+'-card" style="padding:16px 12px"><div class="cc-avatar" style="width:48px;height:48px;font-size:22px">'+avatar+'</div><div class="cc-name" style="font-size:15px">'+staff.name+'</div><div class="cc-role" style="font-size:11px;margin-bottom:10px">'+staff.role+'</div><div class="cc-info" style="gap:6px"><div class="cc-info-item" style="font-size:12px"><span class="icon">📱</span><span>'+staff.phone+'</span></div><div class="cc-info-item" style="font-size:12px"><span class="icon">✉️</span><a href="mailto:'+staff.email+'">'+staff.email+'</a></div></div></div>';}document.getElementById('aboutTitle').textContent='关于'+p.name;var html='<div class="about-banner" style="background:linear-gradient(135deg,'+p.color+','+p.color+'aa)"><h2>'+p.name+'</h2><p>'+p.intro.substring(0,30)+'...</p></div>';html+='<p class="about-intro-text">'+p.intro+'</p>';html+='<div class="about-features">'+p.features.map(function(f){return '<div class="about-feat"><div class="af-icon" style="color:'+p.color+'">✓</div><div class="af-title">'+f.substring(0,6)+'</div><div class="af-desc">'+f+'</div></div>';}).join('')+'</div>';html+='<div class="about-contact"><div class="qr-box"><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color='+p.color.replace('#','')+'"></div><div class="qr-label">微信公众号</div></div><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color=f5319d"></div><div class="qr-label">微信视频号</div></div></div><div class="contact-cards-wrap" style="grid-template-columns:1fr 1fr;gap:12px">'+miniCard(s,'sales')+miniCard(sup,'support')+'</div></div>';document.getElementById('aboutContent').innerHTML=html;document.getElementById('aboutModal').classList.add('show');}
 function closeAbout(){document.getElementById('aboutModal').classList.remove('show');}
 document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target===this)closeAbout();});
 
