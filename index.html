@@ -2,898 +2,161 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>云智洁统一登录认证平台</title>
-<link rel="icon" type="image/png" href="https://aka.doubaocdn.com/s/hSUVdeHgzR">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1d2129;background:#f5f6f8;-webkit-font-smoothing:antialiased;--scale:1;}
-
-.login-wrap{display:flex;min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#14325c 50%,#0d2847 100%);position:relative;overflow:hidden}
-.login-left{flex:1;position:relative;display:flex;flex-direction:column;padding:44px 40px 44px 200px;overflow:hidden}
-.brand-tag{font-size:28px;font-weight:700;letter-spacing:8px;color:#1d2129;
-  font-family:"KaiTi","STKaiti","楷体",serif;
-  background:rgba(255,255,255,.8);
-  padding:12px 28px;border-radius:10px;
-  position:relative;z-index:2;display:inline-block;width:fit-content;
-  box-shadow:0 4px 20px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.6)}
-.brand-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.brand-title{font-size:64px;font-weight:800;color:#fff;letter-spacing:8px;line-height:1.2;text-shadow:0 4px 24px rgba(0,0,0,.3)}
-.brand-subtitle{font-size:24px;color:rgba(255,255,255,.75);margin-top:20px;letter-spacing:3px;line-height:1.6}
-.brand-divider{width:64px;height:3px;background:linear-gradient(90deg,#4080ff,#0fc6c2);border-radius:2px;margin-top:28px}
-.brand-stats{display:flex;gap:48px;margin-top:40px;position:relative;z-index:2}
-.brand-stat .bs-num{font-size:34px;font-weight:800;color:#fff;line-height:1.2}
-.brand-stat .bs-lbl{font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;letter-spacing:1px}
-
-.bg-icons{position:absolute;inset:0;pointer-events:none;opacity:.7;z-index:1}
-.bg-icons svg{position:absolute;fill:#fff}
-.bg-icon-1{top:6%;left:8%;width:76px;height:76px;transform:rotate(-15deg);opacity:.5}
-.bg-icon-2{top:12%;right:12%;width:96px;height:96px;transform:rotate(20deg);opacity:.42}
-.bg-icon-3{bottom:15%;left:6%;width:86px;height:86px;transform:rotate(10deg);opacity:.46}
-.bg-icon-4{bottom:10%;right:8%;width:82px;height:82px;transform:rotate(-20deg);opacity:.5}
-.bg-icon-5{top:42%;left:3%;width:66px;height:66px;transform:rotate(25deg);opacity:.38}
-.bg-icon-6{top:38%;right:4%;width:72px;height:72px;transform:rotate(-10deg);opacity:.42}
-.bg-icon-7{top:65%;left:22%;width:56px;height:56px;transform:rotate(15deg);opacity:.34}
-.bg-icon-8{top:22%;left:28%;width:62px;height:62px;transform:rotate(-25deg);opacity:.3}
-.bg-icon-9{bottom:22%;right:25%;width:58px;height:58px;transform:rotate(30deg);opacity:.34}
-.bg-icon-10{top:50%;right:20%;width:54px;height:54px;transform:rotate(-5deg);opacity:.3}
-.bg-icon-11{top:75%;left:45%;width:52px;height:52px;transform:rotate(12deg);opacity:.2}
-.bg-icon-12{top:30%;left:50%;width:46px;height:46px;transform:rotate(-15deg);opacity:.22}
-.bg-icon-13{top:85%;left:18%;width:44px;height:44px;transform:rotate(18deg);opacity:.26}
-.bg-icon-14{top:55%;left:35%;width:42px;height:42px;transform:rotate(-15deg);opacity:.22}
-.bg-icon-15{top:3%;left:25%;width:50px;height:50px;transform:rotate(12deg);opacity:.3}
-.bg-icon-16{top:8%;left:45%;width:46px;height:46px;transform:rotate(-8deg);opacity:.26}
-.bg-icon-17{top:5%;right:25%;width:52px;height:52px;transform:rotate(18deg);opacity:.28}
-.bg-icon-18{top:18%;left:15%;width:40px;height:40px;transform:rotate(-22deg);opacity:.24}
-.bg-icon-19{top:25%;right:18%;width:48px;height:48px;transform:rotate(15deg);opacity:.26}
-.bg-icon-20{top:32%;left:40%;width:44px;height:44px;transform:rotate(-12deg);opacity:.22}
-.bg-icon-21{top:38%;right:35%;width:42px;height:42px;transform:rotate(25deg);opacity:.24}
-.bg-icon-22{top:45%;left:20%;width:46px;height:46px;transform:rotate(-18deg);opacity:.26}
-.bg-icon-23{top:48%;right:12%;width:50px;height:50px;transform:rotate(8deg);opacity:.28}
-.bg-icon-24{top:55%;left:48%;width:38px;height:38px;transform:rotate(-15deg);opacity:.22}
-.bg-icon-25{top:58%;right:28%;width:44px;height:44px;transform:rotate(20deg);opacity:.24}
-.bg-icon-26{top:62%;left:8%;width:48px;height:48px;transform:rotate(-10deg);opacity:.26}
-.bg-icon-27{top:68%;left:38%;width:42px;height:42px;transform:rotate(15deg);opacity:.22}
-.bg-icon-28{top:70%;right:40%;width:46px;height:46px;transform:rotate(-20deg);opacity:.26}
-.bg-icon-29{top:78%;right:20%;width:48px;height:48px;transform:rotate(-8deg);opacity:.24}
-.bg-icon-30{top:82%;left:42%;width:42px;height:42px;transform:rotate(22deg);opacity:.24}
-.bg-icon-31{top:88%;right:8%;width:46px;height:46px;transform:rotate(-12deg);opacity:.26}
-.bg-icon-32{top:90%;right:30%;width:38px;height:38px;transform:rotate(-15deg);opacity:.22}
-.bg-dot{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
-.bg-dot-1{top:15%;left:35%;width:7px;height:7px}.bg-dot-2{top:22%;right:40%;width:5px;height:5px}
-.bg-dot-3{top:40%;left:55%;width:9px;height:9px}.bg-dot-4{top:52%;right:50%;width:6px;height:6px}
-.bg-dot-5{top:65%;left:30%;width:8px;height:8px}.bg-dot-6{top:72%;right:55%;width:5px;height:5px}
-.bg-dot-7{top:80%;left:50%;width:7px;height:7px}.bg-dot-8{top:88%;right:30%;width:6px;height:6px}
-.bg-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(255,255,255,.05)}
-.bg-ring-1{top:10%;left:55%;width:56px;height:56px}.bg-ring-2{top:30%;right:8%;width:84px;height:84px}
-.bg-ring-3{bottom:15%;left:40%;width:64px;height:64px}.bg-ring-4{bottom:35%;right:45%;width:46px;height:46px}
-
-/* 登录卡片翻页 */
-.login-right{width:620px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:40px 120px 40px 40px;position:relative;z-index:2}
-.login-card{width:100%;max-width:420px;position:relative;height:460px}
-.card-flip{position:relative;width:100%;height:100%}
-.card-face{position:absolute;inset:0;background:#fff;border-radius:16px;padding:24px 28px 20px;box-shadow:0 16px 48px rgba(0,0,0,.2);display:flex;flex-direction:column;transition:opacity .35s ease}
-.card-front{opacity:1;z-index:2}
-.card-back{opacity:0;z-index:1;pointer-events:none}
-.card-flip.flipped .card-front{opacity:0;z-index:1;pointer-events:none}
-.card-flip.flipped .card-back{opacity:1;z-index:2;pointer-events:auto}
-
-.card-corner{position:absolute;top:0;right:0;width:65px;height:65px;z-index:10;cursor:pointer;
-  overflow:hidden;border-top-right-radius:16px;transition:transform .25s ease}
-.card-corner:hover{transform:scale(1.08)}
-.corner-qr{position:absolute;top:0;right:0;width:65px;height:65px;z-index:1;
-  background:linear-gradient(135deg,#ffffff 0%,#f2f6ff 100%);
-  clip-path:polygon(100% 0,0 12%,100% 100%);
-  filter:drop-shadow(-1px 1px 2px rgba(22,93,255,.15))}
-.corner-qr::after{content:'';position:absolute;top:0;right:0;width:100%;height:100%;
-  background:linear-gradient(225deg,transparent 47%,rgba(22,93,255,.14) 47.5%,rgba(22,93,255,.06) 51%,transparent 51.5%);
-  pointer-events:none}
-.corner-qr img{position:absolute;top:10px;right:7px;width:38px;height:38px;background:#fff;
-  border-radius:9px;padding:4px;box-shadow:0 2px 8px rgba(22,93,255,.2);display:block;object-fit:contain}
-.corner-fold{display:block;position:absolute;top:0;right:0;width:65px;height:65px;z-index:3;pointer-events:none}
-.corner-fold::before{content:'';position:absolute;top:0;right:0;width:20px;height:20px;
-  background:linear-gradient(135deg,#ffffff 0%,#f2f2f2 100%);
-  clip-path:polygon(100% 0,0 0,100% 100%);
-  filter:drop-shadow(-1px 1px 1px rgba(0,0,0,.1))}
-.corner-fold::after{content:'';position:absolute;top:0;right:0;width:20px;height:20px;
-  background:linear-gradient(135deg,#e4e4e4 0%,#d4d4d4 100%);
-  clip-path:polygon(0 0,100% 100%,0 100%)}
-
-.login-title{font-size:22px;font-weight:700;margin-bottom:4px}
-.login-sub{font-size:13px;color:#86909c;margin-bottom:14px}
-
-.field{margin-bottom:12px}
-.field-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.field label{font-size:13px;color:#4e5969;font-weight:500}
-.field-error{color:#f53f3f;font-size:12px;margin-left:auto;display:none}
-.field-error.show{display:inline;animation:shake .4s ease}
-.switch-link{font-size:12px;color:#165dff;cursor:pointer;display:flex;align-items:center;gap:4px}
-.switch-link:hover{text-decoration:underline}
-.field input{width:100%;height:40px;padding:0 14px;border:1px solid #e5e6eb;border-radius:10px;
-  font-size:14px;outline:none;transition:.2s;background:#fafbfc}
-.field input:focus{border-color:#165dff;background:#fff;box-shadow:0 0 0 3px rgba(22,93,255,.1)}
-.input-error{border-color:#f53f3f !important;background:#fff5f5 !important;animation:shake .4s ease}
-.code-row{display:flex;gap:10px}
-.code-row input{flex:1}
-.btn-code{height:46px;padding:0 18px;border:1px solid #165dff;background:#fff;color:#165dff;
-  border-radius:10px;font-size:13px;cursor:pointer;white-space:nowrap;transition:.2s;flex-shrink:0}
-.btn-code:hover{background:#f2f6ff}
-.btn-code:disabled{color:#c9cdd4;border-color:#e5e6eb;cursor:not-allowed;background:#f7f8fa}
-
-/* 扫码登录背面 */
-.scan-login{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:10px 0}
-.scan-qr{width:200px;height:200px;border:1px solid #e5e6eb;border-radius:14px;padding:12px;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.scan-qr img{width:100%;height:100%;object-fit:contain}
-.scan-tip{font-size:14px;color:#4e5969;margin-top:24px;text-align:center;line-height:1.8}
-.scan-tip b{color:#165dff}
-.scan-back{margin-top:28px;font-size:13px;color:#86909c;cursor:pointer;display:flex;align-items:center;gap:4px}
-.scan-back:hover{color:#165dff}
-
-.login-options{display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px;font-size:13px}
-.checkbox-wrap{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none;color:#4e5969}
-.checkbox-wrap input{display:none}
-.checkbox-box{width:16px;height:16px;border-radius:4px;border:1.5px solid #c9cdd4;display:flex;
-  align-items:center;justify-content:center;transition:.2s;background:#fff;flex-shrink:0}
-.checkbox-wrap input:checked~.checkbox-box{background:#165dff;border-color:#165dff}
-.checkbox-box::after{content:'✓';font-size:11px;color:#fff;opacity:0;transition:.2s}
-.checkbox-wrap input:checked~.checkbox-box::after{opacity:1}
-.forgot-link{color:#165dff;cursor:pointer}
-.forgot-link:hover{text-decoration:underline}
-.btn-login{width:100%;height:40px;background:#165dff;color:#fff;border:none;border-radius:10px;
-  font-size:15px;font-weight:600;cursor:pointer;transition:.2s;letter-spacing:3px}
-.btn-login:hover{background:#4080ff}
-.agreement{margin-top:10px;display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#86909c;line-height:1.7}
-.agreement-link{color:#165dff;cursor:pointer}
-.agreement-link:hover{text-decoration:underline}
-.agreement-error{color:#f53f3f;font-size:12px;margin-top:10px;display:none}
-.agreement-error.show{display:block;animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
-
-/* 弹窗通用 */
-.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;
-  align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:20px}
-.modal-mask.show{display:flex;animation:fadeIn .3s}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:#fff;border-radius:14px;width:100%;max-width:520px;max-height:85vh;display:flex;
-  flex-direction:column;overflow:hidden;animation:modalIn .3s ease}
-@keyframes modalIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-head{padding:18px 24px;border-bottom:1px solid #f0f1f3;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.modal-head h3{font-size:16px;font-weight:600}
-.modal-close{width:28px;height:28px;border-radius:8px;border:none;background:#f7f8fa;font-size:14px;
-  cursor:pointer;color:#86909c;display:flex;align-items:center;justify-content:center;transition:.2s}
-.modal-close:hover{background:#f0f1f3;color:#1d2129}
-.modal-body{padding:24px;overflow-y:auto;font-size:13px;color:#4e5969;line-height:2}
-.modal-body h4{font-size:14px;color:#1d2129;margin:16px 0 8px;font-weight:600}
-.modal-body h4:first-child{margin-top:0}
-.modal-body p{margin-bottom:10px}
-.modal-foot{padding:14px 24px;border-top:1px solid #f0f1f3;display:flex;gap:12px;justify-content:flex-end;flex-shrink:0}
-.btn-modal{padding:8px 22px;border-radius:8px;font-size:14px;cursor:pointer;border:1px solid #e5e6eb;
-  background:#fff;color:#4e5969;transition:.2s}
-.btn-modal:hover{border-color:#c9cdd4}
-.btn-modal.primary{background:#165dff;color:#fff;border-color:#165dff}
-.btn-modal.primary:hover{background:#4080ff}
-
-.form-field{margin-bottom:16px}
-.form-field label{display:block;font-size:13px;color:#4e5969;margin-bottom:6px;font-weight:500}
-.form-field input{width:100%;height:40px;padding:0 12px;border:1px solid #e5e6eb;border-radius:8px;font-size:14px;outline:none;transition:.2s}
-.form-field input:focus{border-color:#165dff;box-shadow:0 0 0 3px rgba(22,93,255,.1)}
-.form-error{color:#f53f3f;font-size:12px;margin-top:6px;display:none}
-.form-error.show{display:block}
-.form-field input.input-error{border-color:#f53f3f!important;box-shadow:inset 0 0 0 1.5px #f53f3f!important;animation:inputShake .45s ease}
-@keyframes inputShake{0%,100%{transform:translateX(0)}15%,55%{transform:translateX(-5px)}35%,75%{transform:translateX(5px)}}
-.field-error-tip{color:#f53f3f;font-size:12px;margin-bottom:6px;display:none;font-weight:600}
-.field-error-tip.show{display:block;animation:inputShake .45s ease}
-.about-contact{border-top:1px solid #f0f1f3;padding-top:20px;margin-top:8px}
-.qr-box{display:flex;justify-content:center;gap:36px;margin-bottom:18px}
-.qr-item{text-align:center}
-.qr-img{width:118px;height:118px;border:1px solid #e5e6eb;border-radius:10px;padding:8px;background:#fff;margin:0 auto 8px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.qr-img img{width:100%;height:100%;object-fit:contain;display:block}
-.qr-label{font-size:12px;color:#4e5969;font-weight:500}
-.sales-info-box{background:#f7f8fa;border-radius:10px;padding:14px 18px;text-align:center;border:1px solid #f0f1f3}
-.sales-info-box .si-name{font-size:14px;font-weight:600;color:#1d2129;margin-bottom:8px}
-.sales-info-box .si-contact{font-size:13px;color:#4e5969;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
-.sales-info-box .si-contact span{display:inline-flex;align-items:center;gap:4px}
-.about-intro-text{font-size:13px;color:#4e5969;line-height:2;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word}
-.switch-toggle.disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
-.switch-item.disabled .si-title{color:#86909c}
-.switch-item.disabled .si-desc{color:#c9cdd4}
-
-/* 设置开关 */
-.switch-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f5f6f8;position:relative}
-.switch-mask{position:absolute;width:76%;left:12%;top:50%;transform:translateY(-50%);
-  background:rgba(247,248,250,.8);display:flex;align-items:center;justify-content:center;
-  font-size:12px;color:#1d2129;z-index:5;border-radius:10px;backdrop-filter:blur(2px);
-  text-align:center;padding:10px 16px;letter-spacing:.5px;border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.card.syncing{opacity:.72;pointer-events:none;cursor:not-allowed}
-.sync-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;gap:16px;min-height:200px}
-.sync-spinner{width:40px;height:40px;border:3px solid #e5e6eb;border-top-color:#165dff;border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.sync-text{font-size:14px;color:#86909c;font-weight:500}
-.sync-text::after{content:'……';display:inline-block;width:1.5em;text-align:left;animation:dots 1.5s steps(4,end) infinite;overflow:hidden;vertical-align:bottom}
-@keyframes dots{0%{width:0}25%{width:.5em}50%{width:1em}75%{width:1.5em}100%{width:1.5em}}
-.switch-item:last-child{border-bottom:none}
-.switch-info .si-title{font-size:14px;font-weight:600;color:#1d2129}
-.switch-info .si-desc{font-size:12px;color:#86909c;margin-top:3px}
-.switch-toggle{width:44px;height:24px;border-radius:12px;background:#e5e6eb;position:relative;cursor:pointer;transition:.3s;flex-shrink:0}
-.switch-toggle.on{background:#165dff}
-.switch-toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.switch-toggle.on::after{left:22px}
-
-/* 产品页 */
-.app{display:none;min-height:100vh}
-.nav{height:56px;background:#fff;border-bottom:1px solid #e8eaed;display:flex;align-items:center;
-  justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:10}
-.nav-brand{font-size:18px;font-weight:700;color:#165dff;display:flex;align-items:center}
-.nav-logo{height:32px;width:auto;display:block;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:8px;margin-right:auto;margin-left:32px}
-.nav-link{font-size:13px;color:#4e5969;cursor:pointer;padding:6px 14px;border-radius:6px;transition:.2s}
-.nav-link:hover{background:#f2f3f5;color:#165dff}
-.nav-link.active{color:#165dff;background:#f2f6ff;font-weight:600}
-.nav-right{display:flex;align-items:center;gap:12px;font-size:14px;color:#4e5969;position:relative}
-.nav-setting-btn{padding:6px 16px;border:1px solid #e5e6eb;background:#fff;border-radius:8px;font-size:13px;
-  color:#4e5969;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:5px}
-.nav-setting-btn:hover{border-color:#165dff;color:#165dff}
-.nav-user{display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 10px;border-radius:8px;transition:.2s}
-.nav-user:hover{background:#f2f3f5}
-.nav-avatar{width:32px;height:32px;border-radius:50%;background:#165dff;color:#fff;display:flex;
-  align-items:center;justify-content:center;font-size:13px;font-weight:600}
-.btn-logout{padding:6px 16px;border:1px solid #e5e6eb;background:#fff;border-radius:8px;font-size:13px;
-  color:#4e5969;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px}
-.btn-logout svg{flex-shrink:0}
-.btn-logout:hover{border-color:#f53f3f;color:#f53f3f}
-
-.user-dropdown{position:absolute;top:48px;right:60px;background:#fff;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);
-  padding:6px;min-width:150px;display:none;z-index:20}
-.user-dropdown.show{display:block;animation:dropIn .2s ease}
-@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.ud-item{padding:10px 14px;border-radius:6px;font-size:13px;color:#4e5969;cursor:pointer;transition:.2s}
-.ud-item:hover{background:#f2f6ff;color:#165dff}
-
-.container{max-width:1680px;margin:0 auto;padding:24px 40px}
-.page-head{margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.page-head h1{font-size:22px;font-weight:600;margin-bottom:6px}
-.page-head p{font-size:13px;color:#86909c}
-.page-title-area{flex-shrink:0}
-.page-badge{padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600}
-.page-badge.all{background:#e8ffea;color:#00b42a}
-.page-badge.one{background:#fff7e8;color:#ff7d00}
-.page-badge.two{background:#f2f6ff;color:#165dff}
-
-.grid{display:grid;grid-template-columns:1fr 1fr 0.85fr;grid-auto-rows:auto;gap:18px;grid-auto-flow:dense}
-.card.tall{grid-row:span 2}
-.grid-dynamic{display:flex;flex-direction:column;overflow:hidden;padding:0 !important;cursor:default !important}
-.grid-dynamic:hover{transform:none !important;box-shadow:0 4px 16px rgba(0,0,0,.08) !important}
-.gd-head{display:flex;align-items:center;gap:calc(10px * var(--scale));padding:calc(14px * var(--scale)) calc(16px * var(--scale));border-bottom:1px solid #f0f1f3;flex-shrink:0}
-.gd-logo{width:calc(40px * var(--scale));height:calc(40px * var(--scale));border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.gd-logo img{width:100%;height:100%;object-fit:cover;display:block}
-.gd-title-wrap{flex:1;min-width:0}
-.gd-title{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.3;display:inline-block;padding:calc(4px * var(--scale)) calc(12px * var(--scale));border-radius:10px}
-.gd-follow{position:relative;display:flex;align-items:center;gap:4px;font-size:calc(12px * var(--scale));color:#86909c;cursor:pointer;padding:calc(4px * var(--scale)) calc(12px * var(--scale));border:1px solid #e5e6eb;border-radius:14px;transition:.2s;flex-shrink:0}
-.gd-follow:hover{color:#165dff;border-color:#165dff}
-.follow-icon{font-size:14px;font-weight:700;line-height:1}
-.follow-qrcode{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:12px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;visibility:hidden;transition:.25s ease;z-index:100;width:150px;text-align:center;border:1px solid #f0f1f3}
-.gd-follow:hover .follow-qrcode{opacity:1;visibility:visible;top:calc(100% + 8px)}
-.follow-qrcode img{width:100%;height:auto;border-radius:8px;display:block}
-.follow-qrcode p{font-size:11px;color:#4e5969;margin-top:8px;line-height:1.4}
-.follow-qrcode::before{content:'';position:absolute;top:-6px;right:24px;width:12px;height:12px;background:#fff;border-left:1px solid #f0f1f3;border-top:1px solid #f0f1f3;transform:rotate(45deg)}
-.gd-nav{display:flex;gap:6px}
-.gd-nav span{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#f5f6f8;cursor:pointer;font-size:14px;color:#86909c;transition:.2s;user-select:none}
-.gd-nav span:hover{background:#e8eaed;color:#1d2129}
-.gd-body{flex:1;overflow:hidden;padding:calc(10px * var(--scale));display:flex;flex-direction:column;position:relative}
-.side-nav{position:absolute;top:50%;transform:translateY(-50%);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.06);cursor:pointer;font-size:16px;color:#86909c;transition:.2s;z-index:5;user-select:none}
-.side-nav:hover{background:rgba(0,0,0,.12);color:#1d2129}
-.side-prev{left:2px}
-.side-next{right:2px}
-.carousel-content{flex:1;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column;position:relative;padding-bottom:28px}
-.broadcast-bar{display:flex;align-items:center;background:#fff;border-radius:10px;padding:0 16px;height:44px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden;border:1px solid #f0f1f3;flex:1;min-width:0}
-.bc-label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#165dff;padding-right:14px;border-right:1px solid #f0f1f3;flex-shrink:0}
-.bc-icon{font-size:15px;line-height:1;display:inline-flex;align-items:center}
-.bc-viewport{flex:1;overflow:hidden;margin-left:14px;position:relative}
-.bc-track{display:inline-flex;align-items:center;gap:48px;white-space:nowrap;animation:broadcastScroll 35s linear infinite}
-.bc-track:hover{animation-play-state:paused}
-.bc-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#4e5969;cursor:pointer;transition:.2s}
-.bc-item:hover{color:#165dff}
-.bc-time{font-size:11px;color:#c9cdd4;margin-left:6px;flex-shrink:0}
-.bc-item .bc-dot{width:5px;height:5px;border-radius:50%;background:#165dff;flex-shrink:0}
-.bc-item .bc-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:#e8f3ff;color:#165dff;font-weight:500;flex-shrink:0}
-@keyframes broadcastScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.jump-confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(2px)}
-.jump-confirm-modal.show{display:flex;animation:fadeIn .2s ease}
-.jump-confirm-box{background:#fff;border-radius:14px;padding:28px 32px 24px;width:380px;max-width:90vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);animation:popIn .25s ease}
-@keyframes popIn{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
-.jc-icon{font-size:42px;margin-bottom:12px}
-.jc-title{font-size:17px;font-weight:700;color:#1d2129;margin-bottom:8px}
-.jc-desc{font-size:13px;color:#86909c;line-height:1.7;margin-bottom:22px;word-break:break-all}
-.jc-actions{display:flex;gap:12px}
-.jc-btn{flex:1;height:38px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
-.jc-btn.jc-cancel{background:#f5f6f8;color:#4e5969}
-.jc-btn.jc-cancel:hover{background:#e8eaed}
-.jc-btn.jc-ok{background:#165dff;color:#fff}
-.jc-btn.jc-ok:hover{background:#0e4bdb}
-.toast-tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#1d2129;color:#fff;padding:16px 32px;border-radius:12px;font-size:15px;z-index:10000;opacity:0;transition:.3s ease;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3);white-space:nowrap;font-weight:500}
-.toast-tip.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.card{background:#fff;border-radius:14px;padding:calc(18px * var(--scale)) calc(18px * var(--scale)) calc(12px * var(--scale));cursor:pointer;
-  transition:box-shadow .25s ease,transform .25s ease;border:1px solid #f0f1f3;display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.card.grid-dynamic{padding-bottom:calc(18px * var(--scale))}
-.card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
-.card.locked{cursor:default}
-.card.locked:hover{transform:none;box-shadow:none}
-.card.disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}
-.card.disabled:hover{transform:none;box-shadow:none}
-.disabled-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;font-size:11px;font-weight:600;background:#fff3e0;color:#ff7d00;margin-bottom:14px}
-.disabled-tip{font-size:12px;color:#86909c;line-height:1.8;margin-top:auto}
-.disabled-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#165dff;font-weight:600;cursor:pointer;margin-top:10px;width:fit-content}
-.disabled-link:hover{text-decoration:underline}
-
-.card-head{display:flex;align-items:center;gap:calc(10px * var(--scale));margin-bottom:calc(10px * var(--scale))}
-.card-body{flex:1;display:flex;flex-direction:column;min-height:0;justify-content:space-evenly}
-.card.grid-dynamic .card-body{justify-content:flex-start}
-.card-body > *:not(:last-child){margin-bottom:calc(12px * var(--scale))}
-.card-body > *:last-child{margin-top:0;margin-bottom:0}
-.card-logo{width:calc(44px * var(--scale));height:calc(44px * var(--scale));border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.card-logo img{width:100%;height:100%;object-fit:cover;display:block}
-.card-title-wrap{flex:1;min-width:0}
-.card-title{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.3;display:inline-block;padding:calc(4px * var(--scale)) calc(12px * var(--scale));
-  border-radius:10px;border:1.5px solid;line-height:1.4}
-.card-go{font-size:calc(12px * var(--scale));color:#c9cdd4;transition:.2s;flex-shrink:0;padding:calc(5px * var(--scale)) calc(12px * var(--scale));
-  border-radius:6px;border:1px solid #f0f1f3;white-space:nowrap}
-.card:hover .card-go{color:#fff;background:var(--accent);border-color:var(--accent)}
-.card-go.contact{color:#f5319d;border-color:#ffd6e8;background:#fff5fa}
-.card.locked .card-go.contact:hover{background:#f5319d!important;color:#fff!important;border-color:#f5319d!important}
-
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:calc(4px * var(--scale)) 0;font-size:calc(12px * var(--scale))}
-.ir-label{color:#86909c}
-.ir-value{color:#1d2129;font-weight:500}
-.card-divider{height:1px;background:#f5f6f8;margin:calc(8px * var(--scale)) 0}
-.cims-top{display:flex;align-items:center;justify-content:space-between;gap:calc(10px * var(--scale));margin-bottom:calc(10px * var(--scale));font-size:calc(12px * var(--scale))}
-.cims-time{display:inline-flex;align-items:center;gap:6px;font-size:inherit;line-height:1;padding:5px 0}
-.version-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:13px;font-size:inherit;font-weight:600}
-.cims-time .ir-label{color:#86909c}
-.cims-time .ir-value{color:#1d2129;font-weight:500}
-.version-badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.dual-stat{display:flex;gap:calc(8px * var(--scale));margin-bottom:calc(10px * var(--scale))}
-.dual-stat .ds-box{flex:1;background:#f7f8fa;border-radius:8px;padding:calc(8px * var(--scale)) calc(10px * var(--scale));text-align:center;height:calc(80px * var(--scale));display:flex;flex-direction:column;justify-content:center}
-.dual-stat .ds-num{font-size:calc(16px * var(--scale));font-weight:700;line-height:1.2}
-.dual-stat .ds-lbl{font-size:calc(10px * var(--scale));color:#86909c;margin-top:2px}
-.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(6px * var(--scale));margin-top:auto}
-.mini-stat{border-radius:10px;padding:calc(8px * var(--scale)) calc(6px * var(--scale));text-align:center;color:#fff;height:calc(70px * var(--scale));display:flex;flex-direction:column;justify-content:center}
-.mini-stat .ms-num{font-size:calc(16px * var(--scale));font-weight:700;line-height:1.2}
-.mini-stat .ms-lbl{font-size:calc(10px * var(--scale));margin-top:2px;opacity:.9}
-.baoxian-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(6px * var(--scale))}
-.bx-item{background:#f7f8fa;border-radius:8px;padding:calc(8px * var(--scale)) calc(6px * var(--scale));text-align:center;height:calc(70px * var(--scale));display:flex;flex-direction:column;justify-content:center}
-.bx-item .bx-num{font-size:calc(15px * var(--scale));font-weight:700;line-height:1.2}
-.bx-item .bx-lbl{font-size:calc(10px * var(--scale));color:#86909c;margin-top:2px}
-
-.chart-pie-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.chart-pie{width:64px;height:64px;flex-shrink:0;position:relative}
-.chart-pie canvas{width:64px;height:64px}
-.chart-pie-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.chart-pie-center .pct{font-size:14px;font-weight:700}
-.chart-pie-center .plbl{font-size:8px;color:#86909c}
-.chart-legend{flex:1;min-width:0}
-.chart-legend .lg-row{display:flex;align-items:center;gap:5px;font-size:10px;color:#4e5969;padding:2px 0}
-.chart-legend .lg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
-.chart-line{width:100%;height:50px;min-width:0}
-.chart-line canvas{width:100%!important;height:50px!important;display:block}
-.chart-title{font-size:11px;color:#4e5969;margin-bottom:6px;font-weight:500}
-
-.carousel{position:relative;flex:1;min-height:200px;border-radius:12px;overflow:hidden;margin-top:auto;min-width:0}
-.carousel-slide{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity .6s ease}
-.carousel-slide.active{opacity:1}
-.slide-label{font-size:10px;color:rgba(255,255,255,.55);margin-bottom:8px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
-.slide-label::before{content:'';width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:pulse 2s infinite}
-.slide-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:14px}
-.slide-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.slide-stat .sn{font-size:20px;font-weight:700;color:#fff}
-.slide-stat .sl{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
-.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
-.carousel-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s}
-.carousel-dots span.on{background:#fff;width:16px;border-radius:3px}
-
-/* 未开通卡片 */
-.locked-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;
-  font-size:11px;font-weight:600;background:#f7f8fa;color:#86909c;margin-bottom:14px}
-.locked-intro{font-size:12px;color:#86909c;line-height:1.9;margin-top:auto}
-.locked-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;
-  cursor:pointer;margin-top:10px;width:fit-content}
-.locked-features{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-.locked-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:#86909c}
-.locked-feat .fi{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:#fff;flex-shrink:0}
-
-/* 优效卡片 */
-.youxiao-intro{font-size:calc(12px * var(--scale));color:#4e5969;line-height:1.7;margin-bottom:calc(10px * var(--scale))}
-.youxiao-link{display:inline-flex;align-items:center;gap:4px;font-size:calc(12px * var(--scale));color:#f5319d;font-weight:600;
-  cursor:pointer;margin-top:0;margin-bottom:calc(12px * var(--scale));width:fit-content}
-.youxiao-link:hover{text-decoration:underline}
-.youxiao-features{display:flex;flex-direction:column;gap:calc(8px * var(--scale));margin-top:calc(12px * var(--scale))}
-.youxiao-feat{display:flex;align-items:center;gap:8px;font-size:calc(12px * var(--scale));color:#4e5969}
-.youxiao-feat .fi{width:calc(18px * var(--scale));height:calc(18px * var(--scale));border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:10px;color:#fff;flex-shrink:0;background:linear-gradient(135deg,#f5319d,#f76ab5)}
-.dynamic-section{display:flex;gap:18px;margin-top:24px}
-.dynamic-card{flex:1;background:#fff;border-radius:14px;border:1px solid #f0f1f3;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.dc-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #f5f6f8;flex-shrink:0}
-.dc-title{font-size:14px;font-weight:600;color:#1d2129}
-.dc-nav{display:flex;gap:6px}
-.dc-nav span{width:26px;height:26px;border-radius:7px;background:#f7f8fa;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:#86909c;transition:.2s;line-height:1}
-.dc-nav span:hover{background:#165dff;color:#fff}
-.dc-body{padding:16px 18px;min-height:150px;position:relative}
-.news-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none;padding-bottom:0}
-.news-item.active{opacity:1;pointer-events:auto}
-.news-date{font-size:calc(11px * var(--scale));color:#86909c;margin-bottom:calc(6px * var(--scale));display:flex;align-items:center;gap:5px}
-.news-date::before{content:'';width:4px;height:4px;border-radius:50%;background:#165dff}
-.news-title{font-size:calc(14px * var(--scale));font-weight:600;color:#1d2129;margin-bottom:calc(8px * var(--scale));line-height:1.5}
-.news-desc{font-size:calc(12px * var(--scale));color:#4e5969;line-height:1.8;flex:1;overflow:hidden}
-.news-dots{display:flex;gap:calc(5px * var(--scale));justify-content:center;padding:calc(6px * var(--scale)) 0 0;position:absolute;bottom:0;left:0;right:0;z-index:2;height:calc(28px * var(--scale));align-items:center}
-.news-dots span{width:calc(6px * var(--scale));height:calc(6px * var(--scale));border-radius:50%;background:#e5e6eb;cursor:pointer;transition:.2s}
-.news-dots span.on{background:#165dff;width:calc(16px * var(--scale));border-radius:3px}
-.video-item{position:absolute;inset:0 0 28px 0;opacity:0;transition:opacity .45s ease;display:flex;flex-direction:column;pointer-events:none}
-.video-item.active{opacity:1;pointer-events:auto}
-.video-thumb-wrap{flex:1;min-height:0;position:relative;overflow:hidden;border-radius:10px;margin-bottom:calc(10px * var(--scale));width:100%}
-.video-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(24px);transform:scale(1.3);opacity:0.5;z-index:0}
-.video-thumb{position:relative;z-index:1;height:100%;max-height:100%;aspect-ratio:9/16;width:auto;max-width:100%;margin:0 auto;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.video-thumb::after{content:'▶';position:absolute;font-size:calc(22px * var(--scale));color:#fff;opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
-.video-meta-wm{position:absolute;bottom:0;left:0;right:0;height:calc(26px * var(--scale));line-height:calc(26px * var(--scale));background:rgba(0,0,0,.1);color:#fff;font-size:calc(10px * var(--scale));text-align:center;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 calc(8px * var(--scale))}
-.video-title{font-size:calc(13px * var(--scale));font-weight:600;color:#1d2129;margin-top:auto;margin-bottom:auto;line-height:1.4;text-align:center;flex-shrink:0;padding:0 calc(8px * var(--scale))}
-@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* 关于产品弹窗 */
-.about-banner{border-radius:12px;padding:22px;color:#fff;margin-bottom:18px}
-.about-banner h2{font-size:19px;font-weight:700;margin-bottom:4px}
-.about-banner p{font-size:13px;opacity:.9;margin:0}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-.about-feat{background:#f7f8fa;border-radius:10px;padding:14px}
-.about-feat .af-icon{font-size:20px;margin-bottom:6px}
-.about-feat .af-title{font-size:13px;font-weight:600;color:#1d2129;margin-bottom:3px}
-.about-feat .af-desc{font-size:11px;color:#86909c;line-height:1.5}
-.about-contact{border-top:1px solid #f0f1f3;padding-top:18px}
-.about-contact h4{margin:0 0 14px;font-size:14px;font-weight:600}
-
-/* 销售名片弹窗 */
-.sales-card{background:linear-gradient(135deg,#f0f4ff,#fff);border-radius:16px;padding:28px;text-align:center;
-  border:1px solid #e8edf8;position:relative;overflow:hidden}
-.sales-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;
-  border-radius:50%;background:linear-gradient(135deg,rgba(22,93,255,.08),rgba(15,198,194,.06))}
-.sales-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;
-  justify-content:center;font-size:32px;color:#fff;position:relative;z-index:1;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.sales-avatar.male{background:linear-gradient(135deg,#165dff,#4080ff)}
-.sales-avatar.female{background:linear-gradient(135deg,#f5319d,#f76ab5)}
-.sales-name{font-size:20px;font-weight:700;color:#1d2129;margin-bottom:4px;position:relative;z-index:1}
-.sales-role{font-size:12px;color:#86909c;margin-bottom:20px;position:relative;z-index:1}
-.sales-info{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
-.sales-info-item{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:#4e5969;
-  background:#fff;padding:10px 16px;border-radius:10px;border:1px solid #f0f1f3}
-.sales-info-item .icon{font-size:16px}
-.sales-info-item a{color:#165dff;text-decoration:none}
-.sales-rotate{margin-top:18px;font-size:11px;color:#86909c;display:flex;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1}
-.sales-rotate .dot{width:5px;height:5px;border-radius:50%;background:#165dff;animation:pulse 2s infinite}
-.contact-cards-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.contact-card{background:#fff;border-radius:12px;padding:24px 20px;text-align:center;border:1px solid #f0f1f3}
-.contact-card.sales-card{border-top:3px solid #165dff}
-.contact-card.support-card{border-top:3px solid #00b42a}
-.contact-card .cc-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}
-.contact-card.sales-card .cc-avatar{background:linear-gradient(135deg,#165dff,#4080ff)}
-.contact-card.support-card .cc-avatar{background:linear-gradient(135deg,#00b42a,#23c343)}
-.contact-card .cc-name{font-size:18px;font-weight:700;color:#1d2129;margin-bottom:4px}
-.contact-card .cc-role{font-size:12px;color:#86909c;margin-bottom:16px}
-.contact-card .cc-info{display:flex;flex-direction:column;gap:8px}
-.contact-card .cc-info-item{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:#4e5969}
-.contact-card .cc-info-item .icon{font-size:14px}
-.contact-card .cc-info-item a{color:#165dff;text-decoration:none}
-
-.signin-num{font-size:calc(28px * var(--scale));font-weight:700;line-height:1}
-.signin-row{display:flex;align-items:center;gap:calc(10px * var(--scale))}
-.signin-lbl{font-size:calc(12px * var(--scale));color:#86909c}
-.signin-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;line-height:1}
-
-@media(max-width:1400px){
-  .container{padding:14px 24px}
-  .grid{gap:12px}
-  .card{padding:16px}
-  .login-left{padding:44px 40px 44px 140px}
-  .login-right{padding:40px 60px}
-  .brand-title{font-size:52px}
-  .brand-subtitle{font-size:20px}
-}
-@media(max-width:1200px){
-  .container{padding:12px 20px}
-  .grid{gap:10px}
-  .card{padding:14px}
-  .gd-head{padding:12px 14px}
-  .gd-logo{width:36px;height:36px}
-  .gd-title{font-size:14px;padding:3px 10px}
-  .login-left{padding:40px 30px 40px 80px}
-  .login-right{width:500px;padding:30px 40px}
-  .login-card{height:440px}
-  .brand-title{font-size:44px;letter-spacing:6px}
-  .brand-subtitle{font-size:18px;margin-top:16px}
-}
-@media(max-width:1100px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .card.tall{grid-row:span 1}
-  .grid-dynamic{grid-column:span 1}
-  .video-thumb{max-width:140px}
-}
-@media(max-width:900px){
-  .login-wrap{flex-direction:column}
-  .login-left{padding:30px;min-height:160px}
-  .brand-title{font-size:36px}
-  .brand-subtitle{font-size:16px}
-  .brand-stats{gap:24px}
-  .brand-stat .bs-num{font-size:24px}
-  .login-right{width:100%;padding:20px}
-  .login-card{height:auto;min-height:480px}
-  .grid{grid-auto-rows:minmax(240px,auto)}
-  .nav-links{display:none}
-}
-@media(max-width:700px){
-  .grid{grid-template-columns:1fr}
-  .nav{padding:0 16px}
-  .nav-user span{display:none}
-  .btn-logout span{display:none}
-  .btn-logout{padding:6px 10px}
-  .container{padding:12px}
-  .about-features{grid-template-columns:1fr}
-  .broadcast-bar{height:auto;min-height:40px;padding:8px 12px}
-  .bc-label{padding-right:10px}
-  .video-thumb{max-width:120px}
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>云智洁3D数字孪生定位系统 · 中海广场（真实扫码数据测试版）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232E7DE8'/%3E%3Cpath d='M8 22V12l8-4 8 4v10' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+<script src="https://fastly.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- 登录 -->
-<div class="login-wrap" id="loginPage">
-  <div class="login-left">
-    <div class="bg-icons">
-      <svg class="bg-icon-1" viewBox="0 0 100 100"><path d="M72 8L82 18 52 48 42 38zM38 42L48 52 22 78C18 82 12 82 8 78C4 74 4 68 8 64L34 38zM28 72L20 64 14 70C12 72 12 76 14 78C16 80 20 80 22 78z"/></svg>
-      <svg class="bg-icon-2" viewBox="0 0 100 100"><path d="M55 15H70V25H55zM55 25H70V30C70 32 68 34 66 34H59C57 34 55 32 55 30zM30 38H70C76 38 80 42 80 48V82C80 88 76 92 70 92H30C24 92 20 88 20 82V48C20 42 24 38 30 38zM35 50H65V58H35z"/></svg>
-      <svg class="bg-icon-3" viewBox="0 0 100 100"><path d="M15 85V25L50 10L85 25V85H62V60H38V85zM30 35H42V47H30zM30 55H42V67H30zM58 35H70V47H58zM58 55H70V67H58z"/></svg>
-      <svg class="bg-icon-4" viewBox="0 0 100 100"><path d="M50 8L85 20V48C85 68 70 82 50 92C30 82 15 68 15 48V20zM42 50L35 43L28 50L42 64L72 34L65 27z"/></svg>
-      <svg class="bg-icon-5" viewBox="0 0 100 100"><path d="M80 15C50 15 25 30 20 55C18 65 22 75 30 80C40 86 55 82 65 72C75 62 82 45 80 15zM30 78C35 60 50 45 70 38C60 55 45 70 30 78z"/></svg>
-      <svg class="bg-icon-6" viewBox="0 0 100 100"><path d="M55 5L65 15L35 45 25 35zM28 42L38 52 22 68C18 72 12 72 8 68C4 64 4 58 8 54L34 28zM15 75C15 82 22 88 30 88H55V78H30C25 78 20 74 20 70H15C15 72 15 74 15 75z"/></svg>
-      <svg class="bg-icon-7" viewBox="0 0 100 100"><path d="M20 30H80L75 85C74 89 70 92 66 92H34C30 92 26 89 25 85zM25 25C25 18 32 12 40 12H60C68 12 75 18 75 25V28H25z"/></svg>
-      <svg class="bg-icon-8" viewBox="0 0 100 100"><path d="M18 55H82V62C82 66 79 68 75 68H25C21 68 18 66 18 62zM22 55C22 35 35 20 50 20C65 20 78 35 78 55H68C68 42 60 32 50 32C40 32 32 42 32 55z"/></svg>
-      <svg class="bg-icon-9" viewBox="0 0 100 100"><path d="M55 10H65V35H55zM30 35H70V42C70 45 67 48 64 48H36C33 48 30 45 30 42zM25 55C25 48 30 42 37 42H63C70 42 75 48 75 55V60H25zM30 65H70V70C70 72 68 74 66 74H34C32 74 30 72 30 70z"/></svg>
-      <svg class="bg-icon-10" viewBox="0 0 100 100"><path d="M60 15C72 15 82 25 82 37C82 46 76 54 68 57L68 75L58 75L58 82L50 82L50 75L42 75L42 65L52 65L52 57C44 54 38 46 38 37C38 25 48 15 60 15zM60 27C54 27 50 31 50 37C50 43 54 47 60 47C66 47 70 43 70 37C70 31 66 27 60 27z"/></svg>
-      <svg class="bg-icon-11" viewBox="0 0 100 100"><path d="M50 20C35 20 22 33 22 48C22 63 35 76 50 76C65 76 78 63 78 48C78 33 65 20 50 20zM50 30C60 30 68 38 68 48C68 58 60 66 50 66C40 66 32 58 32 48C32 38 40 30 50 30z"/></svg>
-      <svg class="bg-icon-12" viewBox="0 0 100 100"><path d="M30 20H70V30H30zM25 35H75V75C75 78 72 80 69 80H31C28 80 25 78 25 75zM35 45H45V55H35zM55 45H65V55H55zM35 60H65V68H35z"/></svg>
-      <svg class="bg-icon-13" viewBox="0 0 100 100"><path d="M50 10L55 35L30 50L55 65L50 90L45 65L70 50L45 35z"/></svg>
-      <svg class="bg-icon-14" viewBox="0 0 100 100"><path d="M20 50C20 33 33 20 50 20C67 20 80 33 80 50C80 67 67 80 50 80C33 80 20 67 20 50zM50 30C39 30 30 39 30 50C30 61 39 70 50 70C61 70 70 61 70 50z"/></svg>
-      <svg class="bg-icon-15" viewBox="0 0 100 100"><path d="M35 20H55V35H35zM30 35H60V45H30zM40 45H55L50 75H45L40 45z"/></svg>
-      <svg class="bg-icon-16" viewBox="0 0 100 100"><path d="M20 30C20 25 24 20 30 20H70C76 20 80 25 80 30V70C80 75 76 80 70 80H30C24 80 20 75 20 70zM30 30V70H70V30zM35 38H65V42H35zM35 50H65V54H35zM35 62H55V66H35z"/></svg>
-      <svg class="bg-icon-17" viewBox="0 0 100 100"><path d="M25 15L75 15L70 55L30 55zM35 55H65L60 85H40L35 55zM45 62H55V78H45z"/></svg>
-      <svg class="bg-icon-18" viewBox="0 0 100 100"><path d="M40 10H60V20H40zM35 20H65V28H35zM30 28H70V85C70 88 67 90 64 90H36C33 90 30 88 30 85zM40 40H60V44H40zM40 52H60V56H40zM40 64H55V68H40z"/></svg>
-      <svg class="bg-icon-19" viewBox="0 0 100 100"><path d="M25 15H75C78 15 80 17 80 20V80C80 83 78 85 75 85H25C22 85 20 83 20 80V20C20 17 22 15 25 15zM30 25H70V30H30zM30 38H70V42H30zM30 50H50V54H30zM30 62H60V66H30zM30 74H45V78H30z"/></svg>
-      <svg class="bg-icon-20" viewBox="0 0 100 100"><path d="M30 10H70C73 10 75 12 75 15V75C75 78 73 80 70 80H30C27 80 25 78 25 75V15C25 12 27 10 30 10zM35 20H65V25H35zM35 32H65V36H35zM35 43H55V47H35zM40 55H60V70H40z"/></svg>
-      <svg class="bg-icon-21" viewBox="0 0 100 100"><path d="M30 10H70V90H30zM35 18H65V25H35zM35 32H65V39H35zM35 46H65V53H35zM35 60H65V67H35zM35 74H65V81H35z"/></svg>
-      <svg class="bg-icon-22" viewBox="0 0 100 100"><path d="M50 10L85 35V85H65V60H35V85H15V35zM30 42H40V52H30zM60 42H70V52H60zM45 42H55V55H45z"/></svg>
-      <svg class="bg-icon-23" viewBox="0 0 100 100"><path d="M45 10H55V60H45zM40 60H60V70C60 73 57 75 54 75H46C43 75 40 73 40 70zM42 75H58V88H42z"/></svg>
-      <svg class="bg-icon-24" viewBox="0 0 100 100"><path d="M20 30H80V60H20zM30 38H70V52H30zM35 60H65V70H35zM45 70H55V85H45z"/></svg>
-      <svg class="bg-icon-25" viewBox="0 0 100 100"><path d="M40 10H60V20H40zM35 20H65V28H35zM30 28H70V75C70 78 67 80 64 80H36C33 80 30 78 30 75zM40 40H60V60H40z"/></svg>
-      <svg class="bg-icon-26" viewBox="0 0 100 100"><path d="M20 20L35 35L30 40L15 25zM65 60L80 75L75 80L60 65zM35 35C40 30 50 30 55 35L65 45C70 50 70 60 65 65L60 70C55 75 45 75 40 70L35 65C30 60 30 50 35 45z"/></svg>
-      <svg class="bg-icon-27" viewBox="0 0 100 100"><path d="M25 25H55V35H25zM55 28H70C73 28 75 30 75 33V42C75 45 73 47 70 47H55zM30 35H50V75C50 78 47 80 44 80H36C33 80 30 78 30 75zM60 55H75V60H60z"/></svg>
-      <svg class="bg-icon-28" viewBox="0 0 100 100"><path d="M50 15C35 15 25 28 25 45C25 58 33 68 45 70V75H30V88H70V75H55V70C67 68 75 58 75 45C75 28 65 15 50 15zM40 35C40 32 42 30 45 30C48 30 50 32 50 35C50 38 48 40 45 40C42 40 40 38 40 35zM55 42C55 39 57 37 60 37C63 37 65 39 65 42C65 45 63 47 60 47C57 47 55 45 55 42z"/></svg>
-      <svg class="bg-icon-29" viewBox="0 0 100 100"><path d="M30 10H70V25H30zM35 25H65V35H35zM40 35H60L55 80H45L40 35zM45 45H55V70H45z"/></svg>
-      <svg class="bg-icon-30" viewBox="0 0 100 100"><path d="M20 40H50V55H20zM50 42H65C68 42 70 44 70 47V53C70 56 68 58 65 58H50zM65 45H80V55H65zM75 55H85V60H75z"/></svg>
-      <svg class="bg-icon-31" viewBox="0 0 100 100"><path d="M15 30H85V80H15zM25 38H40V45H25zM50 38H75V45H50zM25 53H75V60H25zM25 68H45V75H25zM55 68H70V75H55z"/></svg>
-      <svg class="bg-icon-32" viewBox="0 0 100 100"><path d="M50 10L58 18L68 15L68 25L78 32L72 42L80 50L72 58L78 68L68 75L68 85L58 82L50 90L42 82L32 85L32 75L22 68L28 58L20 50L28 42L22 32L32 25L32 15L42 18zM50 30C39 30 30 39 30 50C30 61 39 70 50 70C61 70 70 61 70 50C70 39 61 30 50 30zM50 40C56 40 60 44 60 50C60 56 56 60 50 60C44 60 40 56 40 50C40 44 44 40 50 40z"/></svg>
-      <div class="bg-dot bg-dot-1"></div><div class="bg-dot bg-dot-2"></div><div class="bg-dot bg-dot-3"></div><div class="bg-dot bg-dot-4"></div>
-      <div class="bg-dot bg-dot-5"></div><div class="bg-dot bg-dot-6"></div><div class="bg-dot bg-dot-7"></div><div class="bg-dot bg-dot-8"></div>
-      <div class="bg-ring bg-ring-1"></div><div class="bg-ring bg-ring-2"></div><div class="bg-ring bg-ring-3"></div><div class="bg-ring bg-ring-4"></div>
-    </div>
-    <div class="brand-center">
-      <div class="brand-title">云智洁</div>
-      <div class="brand-subtitle">让智慧管控系统走进清洁行业</div>
-      <div class="brand-divider"></div>
-      <div class="brand-stats">
-        <div class="brand-stat"><div class="bs-num">6+</div><div class="bs-lbl">产品矩阵</div></div>
-        <div class="brand-stat"><div class="bs-num">1000+</div><div class="bs-lbl">服务项目</div></div>
-        <div class="brand-stat"><div class="bs-num">99.9%</div><div class="bs-lbl">系统稳定</div></div>
-      </div>
-    </div>
+<div id="app">
+ <div id="view3d"></div><div id="labels"></div>
+ <header>
+  <div class="brand"><div class="mark"></div><div><h1>云智洁 3D 数字孪生定位系统</h1><small>建筑物 · 楼层 · 人员 三维度联动 · 蓝牙信标定位</small></div></div>
+  <div class="spacer"></div>
+  <div class="seg">
+   <button id="navRt">实时监控</button>
+   <button id="navBld">建筑物</button>
+   <button id="navFloor">楼层</button>
+   <button id="navStaff">人员</button>
+   <button id="navAdmin">管理配置</button>
   </div>
+ </header>
+ <div class="breadcrumb" id="crumb"></div>
+ <div class="statusbar" id="statusbar"></div>
 
-  <div class="login-right">
-    <div class="login-card">
-      <div class="card-flip" id="cardFlip">
-        <!-- 正面：账号登录 -->
-        <div class="card-face card-front">
-          <div class="login-title">欢迎登录</div>
-          <div class="login-sub">统一身份认证平台</div>
-          <div id="loginPassword">
-            <div class="field">
-              <div class="field-label-row"><label>账套号</label><span class="field-error" id="tenantIdError">请输入账套号</span></div>
-              <input type="text" id="tenantId" placeholder="请输入账套号" autocomplete="off">
-            </div>
-            <div class="field">
-              <div class="field-label-row"><label>用户名</label><span class="field-error" id="pwdUserError">请输入用户名</span></div>
-              <input type="text" id="pwdUser" placeholder="请输入用户名" autocomplete="off">
-            </div>
-            <div class="field">
-              <div class="field-label-row"><label>密码</label><span class="field-error" id="pwdPassError">请输入密码</span></div>
-              <input type="password" id="pwdPass" placeholder="请输入密码" autocomplete="off">
-            </div>
-          </div>
-          <div class="login-options">
-            <label class="checkbox-wrap"><input type="checkbox" id="autoLogin"><span class="checkbox-box"></span><span>7天内自动登录</span></label>
-            <a class="forgot-link" onclick="alert('请联系管理员重置密码')">忘记密码？</a>
-          </div>
-          <button class="btn-login" onclick="doLogin()">登 录</button>
-          <div class="agreement">
-            <label class="checkbox-wrap" style="margin:0"><input type="checkbox" id="agreeTerms"><span class="checkbox-box"></span></label>
-            <span>我已阅读并同意 <a class="agreement-link" onclick="openTerms()">《用户协议与隐私政策》</a></span>
-          </div>
-          <div class="agreement-error" id="agreeError">⚠ 请先阅读并同意用户协议</div>
-        </div>
-      </div>
+ <!-- ========== 视图：实时监控（esmap风格3D室内图） ========== -->
+ <section class="view" id="rtView">
+  <div id="rtCanvas"></div><div id="rtLabels"></div>
+  <div class="panel" id="rtCtl" style="left:16px;top:64px;width:262px">
+   <h2>实时监控</h2>
+   <div class="body">
+    <div class="row"><label>楼栋</label><select id="rtBld"></select></div>
+    <div class="row"><label>楼层</label><select id="rtFloor"></select></div>
+    <div class="row"><label>电子围栏</label><label class="switch"><input type="checkbox" id="rtFence" checked><span class="track"></span></label></div>
+    <div class="row"><label>路径指引</label><label class="switch"><input type="checkbox" id="rtNav" checked><span class="track"></span></label></div>
+    <div class="hint" id="rtHint">点击人员标记可选中；选择「目的地」后显示路径与剩余距离。围栏区域进入/离开实时记录。</div>
+   </div>
+  </div>
+  <div class="panel" id="rtNavPanel" style="left:16px;bottom:64px;width:262px">
+   <h2>导航指引</h2>
+   <div class="body">
+    <div class="row"><label>员工</label><select id="rtStaff"></select></div>
+    <div class="row"><label>目的地功能区</label><select id="rtTarget"></select></div>
+    <div class="hint" id="rtNavInfo">未选择目的地</div>
+   </div>
+  </div>
+  <div class="panel" id="rtAlertPanel" style="right:16px;top:64px;width:302px">
+   <h2>围栏告警 · 实时</h2>
+   <div class="body" id="rtAlertBody" style="max-height:42vh;overflow-y:auto"></div>
+  </div>
+ </section>
+
+ <!-- ========== 视图：建筑物3D ========== -->
+ <section class="view" id="bldView">
+  <div class="panel" id="bldCtl" style="left:16px;top:64px;width:256px">
+   <h2>建筑物视图</h2>
+   <div class="body">
+    <div class="hint" id="bldHint">鼠标拖拽旋转 · 滚轮缩放 · 右键平移；点击楼栋查看数据；点右侧楼层条切换 3D 高亮楼层。</div>
+    <div class="row"><label>信标覆盖圈</label><label class="switch"><input type="checkbox" id="bldBeacon" checked><span class="track"></span></label></div>
+    <div class="row"><label>楼间巡检路线</label><label class="switch"><input type="checkbox" id="bldRoute" checked><span class="track"></span></label></div>
+    <div class="row"><label>楼号标签</label><label class="switch"><input type="checkbox" id="bldLabel" checked><span class="track"></span></label></div>
+    <div class="camrow">
+     <button class="btn sm" id="camTop">俯视</button>
+     <button class="btn sm" id="camSide">平视</button>
+     <button class="btn sm" id="camReset">复位</button>
+     <button class="btn sm" id="camAuto">自动旋转</button>
     </div>
+   </div>
   </div>
-</div>
+  <!-- 指南针（右上角，点击四向旋转） -->
+  <div class="compass" id="compass">
+   <div class="compass-disc" id="compassDisc"><i>N</i></div>
+  </div>
+  <!-- 楼层高亮条（esmap 楼层列表风格） -->
+  <div class="bld-floorbar" id="bldFloorBar"></div>
+  <div class="panel" id="bldInfo" style="right:16px;top:64px;width:300px;display:none">
+   <button class="btn sm" id="bldInfoClose" style="position:absolute;top:8px;right:8px">关闭</button>
+   <h2>楼栋详情</h2>
+   <div class="body" id="bldInfoBody"></div>
+  </div>
+ </section>
 
-<!-- 用户协议弹窗 -->
-<div class="modal-mask" id="termsModal">
-  <div class="modal">
-    <div class="modal-head"><h3>用户协议与隐私政策</h3><button class="modal-close" onclick="closeTerms(false)">✕</button></div>
-    <div class="modal-body">
-      <h4>一、服务说明</h4><p>云智洁统一身份认证平台由云智洁公司运营，为用户提供云智洁管理系统、清洁学院、优保、优管、驾驶舱、优效等产品的统一登录与授权服务。</p>
-      <h4>二、账号管理</h4><p>1. 用户应妥善保管账号和密码，因账号密码泄露造成的损失由用户自行承担。</p><p>2. 用户不得将账号转借、转让或出借给他人使用。</p>
-      <h4>三、数据与隐私</h4><p>平台对用户数据采取加密存储、访问控制等安全措施，除法律法规要求或经用户同意外，不会向第三方披露个人信息。</p>
-      <h4>四、使用规范</h4><p>不得利用本平台从事违法违规活动，不得对平台进行反向工程、反编译或破解。</p>
-      <p style="margin-top:16px;color:#86909c">最后更新日期：2026年8月</p>
-    </div>
-    <div class="modal-foot"><button class="btn-modal" onclick="closeTerms(false)">不同意</button><button class="btn-modal primary" onclick="closeTerms(true)">同意并继续</button></div>
+ <!-- ========== 视图：楼层2D ========== -->
+ <section class="view" id="floorView">
+  <div class="panel floor-panel" id="floorCtl">
+   <h2>楼层视图</h2>
+   <div class="body">
+    <div class="row"><label>楼栋</label><select id="flBld"></select></div>
+    <div class="row"><label>楼层</label><select id="flFloor"></select></div>
+    <div class="hint" id="floorHint">悬停功能区查看当日到访员工与平均停留；点击功能区查看员工明细。</div>
+   </div>
   </div>
-</div>
+  <div class="legend">
+   <span><i style="background:#9BC6EE"></i>已配置区域</span>
+   <span><i style="background:#FFE3D2;border:1px solid #E8743B"></i>信标覆盖</span>
+   <span><i style="background:var(--red)"></i>实时人员</span>
+  </div>
+  <div class="fn-tip" id="fnTip"></div>
+  <!-- 楼层区域完成情况面板 -->
+  <div class="panel" id="flStats" style="right:16px;top:64px;width:300px;display:none">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2 style="margin:0">本层完成情况</h2>
+    <button class="btn sm" id="flStatsClose">×</button>
+   </div>
+   <div class="body" id="flStatsBody" style="max-height:calc(100vh - 170px);overflow-y:auto"></div>
+  </div>
+ </section>
 
-<!-- 设置弹窗 -->
-<div class="modal-mask" id="settingModal">
-  <div class="modal" style="max-width:480px">
-    <div class="modal-head"><h3>系统设置</h3><button class="modal-close" onclick="closeSetting()">✕</button></div>
-    <div class="modal-body" style="padding:16px 24px">
-      <h4 style="margin:0 0 12px;font-size:14px;color:#1d2129">产品数据互联配置</h4>
-      <p style="font-size:12px;color:#86909c;margin-bottom:16px;line-height:1.6">开启后，对应产品之间可共享人员、项目、考勤等基础数据，减少重复录入。</p>
-      <div id="switchList"></div>
-    </div>
-    <div class="modal-foot"><button class="btn-modal primary" onclick="saveSetting()">保存设置</button></div>
+ <!-- ========== 视图：人员轨迹 ========== -->
+ <section class="view" id="staffView">
+  <div class="panel" id="staffCtl" style="left:16px;top:64px;width:240px">
+   <h2>人员视图</h2>
+   <div class="body">
+    <div class="row"><label>员工</label><select id="stStaff"></select></div>
+    <div class="row"><label>日期</label><select id="stDate"></select></div>
+    <div class="hint">以整个项目维度回放该员工当日在各楼栋的作业路线与停留。</div>
+   </div>
   </div>
-</div>
+  <div id="tl">
+   <div class="trow2"><button class="btn sm" id="tlPlay">播放</button>
+    <input type="range" id="tlSlider" min="0" max="100" value="0">
+    <span class="tl-time" id="tlTime">00:00</span></div>
+  </div>
+  <!-- 员工作业统计面板 -->
+  <div class="panel" id="staffStats" style="right:16px;top:64px;width:310px;display:none">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2 style="margin:0">当日作业统计</h2>
+    <button class="btn sm" id="staffStatsClose">×</button>
+   </div>
+   <div class="body" id="staffStatsBody" style="max-height:calc(100vh - 170px);overflow-y:auto"></div>
+  </div>
+ </section>
 
-<!-- 修改手机号弹窗 -->
-<div class="modal-mask" id="phoneModal">
-  <div class="modal" style="max-width:420px">
-    <div class="modal-head"><h3>修改手机号</h3><button class="modal-close" onclick="closePhoneModal()">✕</button></div>
-    <div class="modal-body" style="padding:20px 24px">
-      <div class="form-field"><label>当前密码</label><input type="password" id="phoneOldPwd" placeholder="请输入当前密码"></div>
-      <div class="form-field"><label>新手机号</label><input type="text" id="phoneNew" placeholder="请输入新手机号"></div>
-      <div class="form-field"><label>短信验证码</label><div class="field-error-tip" id="phoneCodeError">⚠ 验证码不正确，请重新输入</div><div class="code-row"><input type="text" id="phoneCode" placeholder="请输入验证码"><button class="btn-code" id="btnPhoneCode" onclick="getPhoneCode()">获取验证码</button></div></div>
-      <div class="form-error" id="phoneError"></div>
-    </div>
-    <div class="modal-foot"><button class="btn-modal" onclick="closePhoneModal()">取消</button><button class="btn-modal primary" onclick="submitPhone()">确认修改</button></div>
+ <!-- ========== 视图：管理配置 ========== -->
+ <section class="view" id="adminView">
+  <div class="layout">
+   <div class="side">
+    <h3>数据管理</h3>
+    <button data-page="proj" class="active">项目信息</button>
+    <button data-page="bld">楼栋建模</button>
+    <button data-page="zone">功能区位置</button>
+    <button data-page="beacon">信标绑定</button>
+    <button data-page="fence">电子围栏</button>
+    <button data-page="api">接口契约</button>
+   </div>
+   <div class="main" id="adminMain"></div>
   </div>
-</div>
-
-<!-- 修改密码弹窗 -->
-<div class="modal-mask" id="pwdModal">
-  <div class="modal" style="max-width:420px">
-    <div class="modal-head"><h3>修改密码</h3><button class="modal-close" onclick="closePwdModal()">✕</button></div>
-    <div class="modal-body" style="padding:20px 24px">
-      <div class="form-field"><label>旧密码</label><input type="password" id="pwdOld" placeholder="请输入旧密码"></div>
-      <div class="form-field"><label>新密码</label><input type="password" id="pwdNew1" placeholder="请输入新密码"></div>
-      <div class="form-field"><label>确认新密码</label><div class="field-error-tip" id="pwdMatchError">⚠ 两次输入的密码不一致</div><input type="password" id="pwdNew2" placeholder="请再次输入新密码"></div>
-      <div class="form-field"><label>短信验证码</label><div class="field-error-tip" id="pwdCodeError">⚠ 验证码不正确，请重新输入</div><div class="code-row"><input type="text" id="pwdCode" placeholder="请输入验证码"><button class="btn-code" id="btnPwdCode" onclick="getPwdCode()">获取验证码</button></div></div>
-      <div class="form-error" id="pwdError"></div>
-    </div>
-    <div class="modal-foot"><button class="btn-modal" onclick="closePwdModal()">取消</button><button class="btn-modal primary" onclick="submitPwd()">确认修改</button></div>
-  </div>
-</div>
-
-<!-- 销售名片弹窗 -->
-<div class="modal-mask" id="salesModal">
-  <div class="modal" style="max-width:680px">
-    <div class="modal-head"><h3>联系我们</h3><button class="modal-close" onclick="closeSales()">✕</button></div>
-    <div class="modal-body" style="padding:20px 24px">
-      <div class="contact-cards-wrap" id="salesCard"></div>
-    </div>
-  </div>
-</div>
-
-<!-- 关于产品弹窗 -->
-<div class="modal-mask" id="aboutModal">
-  <div class="modal" style="max-width:560px">
-    <div class="modal-head"><h3 id="aboutTitle">关于产品</h3><button class="modal-close" onclick="closeAbout()">✕</button></div>
-    <div class="modal-body" style="padding:0"><div id="aboutContent" style="padding:24px"></div></div>
-    <div class="modal-foot"><button class="btn-modal primary" onclick="closeAbout()">我知道了</button></div>
-  </div>
-</div>
-
-<!-- 跳转确认弹窗 -->
-<div class="jump-confirm-modal" id="jumpConfirmModal">
-  <div class="jump-confirm-box">
-    <div class="jc-icon">🔗</div>
-    <div class="jc-title">即将跳转外部网站</div>
-    <div class="jc-desc" id="jumpConfirmDesc">您即将离开云智洁平台，访问外部链接，是否确认继续？</div>
-    <div class="jc-actions">
-      <button class="jc-btn jc-cancel" onclick="cancelJump()">取消</button>
-      <button class="jc-btn jc-ok" onclick="confirmJump()">确认跳转</button>
-    </div>
-  </div>
-</div>
-
-<!-- 临时提示 -->
-<div class="toast-tip" id="toastTip"></div>
-
-<!-- 产品选择 -->
-<div class="app" id="productPage">
-  <div class="nav">
-    <div class="nav-brand"><img src="https://aka.doubaocdn.com/s/84OvLcbiII" alt="云智洁" class="nav-logo"></div>
-    <div class="nav-right">
-      <div class="nav-user" onclick="toggleUserDropdown(event)"><div class="nav-avatar">A</div><span>admin</span></div>
-      <div class="user-dropdown" id="userDropdown">
-        <div class="ud-item" onclick="openPhoneModal()">修改手机号</div>
-        <div class="ud-item" onclick="openPwdModal()">修改密码</div>
-      </div>
-      <button class="nav-setting-btn" onclick="openSetting()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 设置</button>
-      <button class="btn-logout" onclick="doLogout()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> 退出登录</button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="page-head">
-      <div class="broadcast-bar">
-        <div class="bc-label"><span class="bc-icon">📢</span>行业动态</div>
-        <div class="bc-viewport"><div class="bc-track" id="broadcastTrack"></div></div>
-      </div>
-    </div>
-    <div class="grid" id="productGrid"></div>
-  </div>
+ </section>
 </div>
 
 <script>
-var LOGOS={cims:'https://aka.doubaocdn.com/s/BZVj23Cfxt',school:'https://aka.doubaocdn.com/s/7hHrmoxDcb',baoxian:'https://aka.doubaocdn.com/s/zymV6tZzbl',umanage:'https://aka.doubaocdn.com/s/fVpnKtneC9',visualize:'https://aka.doubaocdn.com/s/2r9LuLhxiA',youxiao:'https://aka.doubaocdn.com/s/tinzqQCfUU'};
-(function(){var bg=document.querySelector('.bg-icons');var wrap=document.querySelector('.login-wrap');if(bg&&wrap&&bg.parentElement!==wrap){wrap.insertBefore(bg,wrap.firstChild);}})();
-
-var PRODUCTS=[
-  {key:'cims',name:'云智洁管理系统',weight:1,bind:['umanage','visualize'],color:'#165dff',url:'http://cims.v3.yun-clean.com',logo:LOGOS.cims,intro:'云智洁管理系统是面向清洁服务企业的核心运营管理平台，涵盖项目运营、人员管理、品质管控、考勤排班等全流程数字化管理。',features:['项目全生命周期管理','人员档案与考勤排班','品质巡检与问题追踪','数据报表与经营分析']},
-  {key:'school',name:'云智洁清洁学院',weight:2,color:'#ff7d00',url:'http://school.yun-clean.com',logo:LOGOS.school,intro:'云智洁清洁学院是在线培训与技能认证平台，提供清洁行业专业课程、在线考试、技能认证和知识库服务。',features:['在线课程学习','技能认证考试','培训计划管理','行业知识库']},
-  {key:'baoxian',name:'云智洁优保',weight:3,color:'#1a7f37',url:'http://baoxian.yun-clean.com',logo:LOGOS.baoxian,intro:'云智洁优保是设备维保与保单管理平台，提供设备台账、维保工单、保单管理、理赔服务等全流程保障。',features:['设备台账管理','维保工单派发','保单全生命周期','理赔流程追踪']},
-  {key:'umanage',name:'云智洁优管',weight:4,color:'#1e3a8a',url:'http://umanage.yun-clean.com',logo:LOGOS.umanage,intro:'云智洁优管是现场管控与任务派发平台，实现清洁任务智能派发、实时定位监控、品质巡检与反馈处理。',features:['任务智能派发','人员实时定位','品质巡检管理','异常反馈处理']},
-  {key:'visualize',name:'云智洁驾驶舱',weight:5,color:'#7c3aed',url:'http://visualize.yun-clean.com',logo:LOGOS.visualize,intro:'云智洁驾驶舱是数据大屏与智能分析平台，整合各系统数据，提供可视化大屏、经营分析、预警监控和决策支持。',features:['可视化数据大屏','多维度经营分析','实时预警监控','自定义报表']},
-  {key:'youxiao',name:'云智洁优效',weight:999,alwaysLast:true,color:'#4ade80',url:'https://www.yun-clean.com/product/11.html',logo:LOGOS.youxiao,intro:'云智洁优效管理咨询基于数据支持的高效清洁服务设计，为项目设计优质适配的专业清洁解决方案，提升客户满意度及良好服务体验。',features:['专业清洁方案设计','数据驱动服务优化','客户满意度提升','服务体验持续改善']}
-];
-
-/* 销售人员 */
-// 由网站管理员指定的联系人员（模拟从数据库获取，后续可对接管理员后台配置）
-var CONTACT_STAFF={
-  sales:{name:'张三',gender:'male',phone:'15790888275',email:'zhangsan@shcg.com.cn',role:'专属销售顾问'},
-  support:{name:'李工',gender:'male',phone:'13800138000',email:'support@shcg.com.cn',role:'售后技术支持工程师'}
-};
-function getCurrentSales(){return CONTACT_STAFF.sales;}
-function getSupportStaff(){return CONTACT_STAFF.support;}
-
-var purchasedList=['cims','school','baoxian','umanage','visualize'];
-
-function getActualPurchased(){var actual=new Set(purchasedList);PRODUCTS.forEach(function(p){if(actual.has(p.key)&&p.bind){p.bind.forEach(function(b){actual.add(b);});}});return actual;}
-function getSortedProducts(){var actual=getActualPurchased();var bought=PRODUCTS.filter(function(p){return !p.alwaysLast&&actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var unbought=PRODUCTS.filter(function(p){return !p.alwaysLast&&!actual.has(p.key);}).sort(function(a,b){return a.weight-b.weight;});var last=PRODUCTS.filter(function(p){return p.alwaysLast;});return bought.concat(unbought).concat(last);}
-
-/* 登录 */
-function doLogin(){var err=document.getElementById('agreeError');if(!document.getElementById('agreeTerms').checked){err.classList.add('show');return;}err.classList.remove('show');var tenant=document.getElementById('tenantId').value.trim();var user=document.getElementById('pwdUser').value.trim();var pass=document.getElementById('pwdPass').value.trim();var hasError=false;if(!tenant){shakeField('tenantId','tenantIdError');hasError=true;}else{clearFieldError('tenantId','tenantIdError');}if(!user){shakeField('pwdUser','pwdUserError');hasError=true;}else{clearFieldError('pwdUser','pwdUserError');}if(!pass){shakeField('pwdPass','pwdPassError');hasError=true;}else{clearFieldError('pwdPass','pwdPassError');}if(hasError)return;if(tenant==='1001'&&user==='admin'&&pass==='123'){if(document.getElementById('autoLogin').checked){localStorage.setItem('yzj_auto',JSON.stringify({u:user,e:Date.now()+7*86400000}));}enterProductPage();}else{alert('账套号、用户名或密码错误（测试账号：账套号1001 / 用户名admin / 密码123）');}}
-function shakeField(inputId,errorId){var input=document.getElementById(inputId);var err=document.getElementById(errorId);input.classList.remove('input-error');err.classList.remove('show');void input.offsetWidth;input.classList.add('input-error');err.classList.add('show');}
-function clearFieldError(inputId,errorId){document.getElementById(inputId).classList.remove('input-error');document.getElementById(errorId).classList.remove('show');}
-['tenantId','pwdUser','pwdPass'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){clearFieldError(id,id+'Error');});}});
-document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('loginPage').style.display!=='none')doLogin();});
-document.getElementById('agreeTerms').addEventListener('change',function(){if(this.checked)document.getElementById('agreeError').classList.remove('show');});
-function enterProductPage(){document.getElementById('loginPage').style.display='none';document.getElementById('productPage').style.display='block';adaptResolution();renderProducts();renderBroadcast();if(newsTimer)clearInterval(newsTimer);if(videoTimer)clearInterval(videoTimer);newsTimer=setInterval(newsNext,4500);videoTimer=setInterval(videoNext,5500);}
-var newsData=[{date:'2026-08-20',title:'云智洁携手多家物业企业开启智慧清洁新篇章',desc:'云智洁管理系统在全国多个项目落地，通过AI技术实现清洁任务智能派发与品质管控，大幅提升运营效率与服务质量。'},{date:'2026-08-15',title:'云智洁优保系统升级：设备维保全流程数字化',desc:'新版优保系统支持设备台账、维保工单、保单管理与理赔服务一站式处理，已服务超过500个项目，设备故障率下降35%。'},{date:'2026-08-10',title:'云智洁清洁学院在线培训人数突破10万',desc:'清洁学院提供清洁行业专业课程、在线考试与技能认证，累计培训学员超过10万人次，覆盖全国300余家清洁企业。'},{date:'2026-08-05',title:'云智洁驾驶舱数据大屏助力企业经营决策',desc:'驾驶舱整合各系统数据，提供可视化大屏、经营分析与预警监控，帮助管理者实时掌握运营状况，数据决策效率提升60%。'}];
-var videoData=[{title:'云智洁管理系统操作演示',meta:'2.3万次播放 · 2026-08-18',color:'#165dff'},{title:'清洁机器人现场作业实拍',meta:'1.8万次播放 · 2026-08-12',color:'#00b42a'},{title:'优保设备维保流程详解',meta:'1.2万次播放 · 2026-08-08',color:'#ff7d00'},{title:'智慧清洁项目案例分享',meta:'3.1万次播放 · 2026-08-02',color:'#722ed1'}];
-var broadcastData=[{tag:'政策',text:'2026中国物业服务百强企业研究报告发布，行业集中度持续提升',url:'https://www.yun-clean.com/news/1',time:Date.now()-12*60000},{tag:'趋势',text:'保洁行业数字化转型加速，AI智能调度与物联网设备成为项目标配',url:'https://www.yun-clean.com/news/2',time:Date.now()-35*60000},{tag:'云智洁',text:'云智洁管理系统助力全国超500家物业企业实现降本增效30%以上',url:'https://www.yun-clean.com/news/3',time:Date.now()-80*60000},{tag:'法规',text:'新版物业管理条例解读：业主权益保障再升级，公共收益全面透明化',url:'https://www.yun-clean.com/news/4',time:Date.now()-135*60000},{tag:'会议',text:'2026中国清洁服务标准化建设推进会在京召开，行业标准体系日趋完善',url:'https://www.yun-clean.com/news/5',time:Date.now()-180*60000},{tag:'资本',text:'智慧物业赛道迎来政策红利期，头部企业加速并购整合扩大市场份额',url:'https://www.yun-clean.com/news/6',time:Date.now()-300*60000},{tag:'技术',text:'清洁机器人与人工协同作业新模式落地，单位面积作业效率提升40%',url:'https://www.yun-clean.com/news/7',time:Date.now()-480*60000},{tag:'行业',text:'中物协发布《2026清洁服务质量白皮书》，全国服务标准迎来全面升级',url:'https://www.yun-clean.com/news/8',time:Date.now()-1440*60000}];
-function formatRelativeTime(publishTime){var diff=Date.now()-publishTime;var minutes=Math.ceil(diff/60000);if(minutes<60)return minutes+'分钟前';var hours=Math.floor(minutes/60);if(hours<24)return hours+'小时前';var days=Math.floor(hours/24);return days+'天前';}
-var newsIdx=0,videoIdx=0,newsTimer=null,videoTimer=null;
-function renderNews(){var box=document.getElementById('newsCarousel');if(!box)return;var html='';newsData.forEach(function(n,i){html+='<div class="news-item'+(i===newsIdx?' active':'')+'"><div class="news-date">'+n.date+'</div><div class="news-title">'+n.title+'</div><div class="news-desc">'+n.desc+'</div></div>';});html+='<div class="news-dots">'+newsData.map(function(_,i){return '<span class="'+(i===newsIdx?'on':'')+'" onclick="goNews('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
-function updateNewsCarousel(){var items=document.querySelectorAll('#newsCarousel .news-item');var dots=document.querySelectorAll('#newsCarousel .news-dots span');items.forEach(function(el,i){el.classList.toggle('active',i===newsIdx);});dots.forEach(function(el,i){el.classList.toggle('on',i===newsIdx);});}
-function goNews(i){newsIdx=i;updateNewsCarousel();}
-function newsNext(){newsIdx=(newsIdx+1)%newsData.length;updateNewsCarousel();}
-function newsPrev(){newsIdx=(newsIdx-1+newsData.length)%newsData.length;updateNewsCarousel();}
-function renderVideo(){var box=document.getElementById('videoCarousel');if(!box)return;var html='';videoData.forEach(function(v,i){html+='<div class="video-item'+(i===videoIdx?' active':'')+'"><div class="video-thumb-wrap"><div class="video-thumb" style="background:linear-gradient(135deg,'+v.color+','+v.color+'aa)"><div class="video-meta-wm">'+v.meta+'</div></div></div><div class="video-title">'+v.title+'</div></div>';});html+='<div class="news-dots">'+videoData.map(function(_,i){return '<span class="'+(i===videoIdx?'on':'')+'" onclick="goVideo('+i+')"></span>';}).join('')+'</div>';box.innerHTML=html;}
-function updateVideoCarousel(){var items=document.querySelectorAll('#videoCarousel .video-item');var dots=document.querySelectorAll('#videoCarousel .news-dots span');items.forEach(function(el,i){el.classList.toggle('active',i===videoIdx);});dots.forEach(function(el,i){el.classList.toggle('on',i===videoIdx);});}
-function goVideo(i){videoIdx=i;updateVideoCarousel();}
-function renderBroadcast(){var track=document.getElementById('broadcastTrack');if(!track)return;var html='';broadcastData.forEach(function(b){html+='<span class="bc-item" onclick="showJumpConfirm(\''+b.url+'\')"><span class="bc-dot"></span><span class="bc-tag">'+b.tag+'</span>'+b.text+'<span class="bc-time">'+formatRelativeTime(b.time)+'</span></span>';});track.innerHTML=html+html;}
-var pendingJumpUrl='';
-function showJumpConfirm(url){pendingJumpUrl=url;document.getElementById('jumpConfirmDesc').textContent='您即将离开云智洁平台，访问外部链接：'+url+'\n是否确认继续？';document.getElementById('jumpConfirmModal').classList.add('show');}
-function confirmJump(){document.getElementById('jumpConfirmModal').classList.remove('show');var url=pendingJumpUrl;if(!url)return;var newWin=window.open(url,'_blank');if(!newWin||typeof newWin==='undefined'){window.open(url,'_blank','width=960,height=720,resizable=yes,scrollbars=yes,status=yes');}pendingJumpUrl='';}
-function cancelJump(){document.getElementById('jumpConfirmModal').classList.remove('show');showToast('用户未授权，跳转失败');pendingJumpUrl='';}
-function showToast(msg){var toast=document.getElementById('toastTip');toast.textContent=msg;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},3000);}
-function videoNext(){videoIdx=(videoIdx+1)%videoData.length;updateVideoCarousel();}
-function videoPrev(){videoIdx=(videoIdx-1+videoData.length)%videoData.length;updateVideoCarousel();}
-function doLogout(){localStorage.removeItem('yzj_auto');document.getElementById('productPage').style.display='none';document.getElementById('loginPage').style.display='flex';}
-function goProduct(url){if(url)window.open(url,'_blank');}
-
-/* 协议 */
-function openTerms(){document.getElementById('termsModal').classList.add('show');}
-function closeTerms(a){document.getElementById('termsModal').classList.remove('show');document.getElementById('agreeTerms').checked=a;if(a)document.getElementById('agreeError').classList.remove('show');}
-document.getElementById('termsModal').addEventListener('click',function(e){if(e.target===this)closeTerms(false);});
-
-/* 设置 */
-var switchConfig={cims_school:false,cims_baoxian:false,school_baoxian:false,umanage_enabled:false,visualize_enabled:false};
-var syncingProducts={};var settingSnapshot={};
-function renderSwitchItem(key,title,desc,opts){var on=switchConfig[key];var isLocked=opts.lockAfterOn&&on;var disabled=opts.disabled||isLocked;var disCls=disabled?' disabled':'';var clickAttr=disabled?'':'onclick="toggleSwitch(this,\''+key+'\','+(opts.lockAfterOn?'1':'0')+')"';var maskHtml=opts.disabled&&opts.maskText?'<div class="switch-mask">'+opts.maskText+'</div>':'';var descText=opts.disabled&&opts.maskText?opts.maskText:(isLocked?'已开启（开启后不可关闭）':desc);return '<div class="switch-item'+disCls+'"><div class="switch-info"><div class="si-title">'+title+'</div><div class="si-desc">'+descText+'</div></div><div class="switch-toggle '+(on?'on':'')+disCls+'" '+clickAttr+'></div>'+maskHtml+'</div>';}
-function openSetting(){var actual=getActualPurchased();var hasCims=actual.has('cims');var hasSchool=actual.has('school');var hasBaoxian=actual.has('baoxian');var list=document.getElementById('switchList');var html='';html+='<div style="font-size:12px;color:#86909c;padding:4px 0 10px;font-weight:600">数据互联配置</div>';
-if(hasCims&&hasSchool){html+=renderSwitchItem('cims_school','管理系统 ↔ 清洁学院','共享人员档案、考勤数据',{lockAfterOn:false});}else if(!hasCims){html+=renderSwitchItem('cims_school','管理系统 ↔ 清洁学院','',{disabled:true,maskText:'检测到企业未开通云智洁管理系统，此选项关闭'});}
-if(hasCims&&hasBaoxian){html+=renderSwitchItem('cims_baoxian','管理系统 ↔ 优保','共享设备台账、项目数据',{lockAfterOn:true});}else if(!hasCims){html+=renderSwitchItem('cims_baoxian','管理系统 ↔ 优保','',{disabled:true,maskText:'检测到企业未开通云智洁管理系统，此选项关闭'});}else if(!hasBaoxian){html+=renderSwitchItem('cims_baoxian','管理系统 ↔ 优保','',{disabled:true,maskText:'检测到企业未开通云智洁优保，此选项关闭'});}
-if(hasSchool&&hasBaoxian&&!hasCims){html+=renderSwitchItem('school_baoxian','清洁学院 ↔ 优保','共享培训记录与维保人员',{lockAfterOn:false});}else if(hasSchool&&hasBaoxian&&hasCims){html+=renderSwitchItem('school_baoxian','清洁学院 ↔ 优保','',{disabled:true,maskText:'检测到企业已开通云智洁管理系统，此选项关闭'});}else if(!hasBaoxian){html+=renderSwitchItem('school_baoxian','清洁学院 ↔ 优保','',{disabled:true,maskText:'检测到企业未开通云智洁优保，此选项关闭'});}
-html+='<div style="font-size:12px;color:#86909c;padding:16px 0 10px;font-weight:600">产品启用</div>';
-if(hasCims){html+=renderSwitchItem('umanage_enabled','开启优管','开启后可在产品页点击进入优管系统',{lockAfterOn:true});html+=renderSwitchItem('visualize_enabled','开启驾驶舱','开启后可在产品页点击进入驾驶舱',{lockAfterOn:true});}else{html+=renderSwitchItem('umanage_enabled','开启优管','',{disabled:true,maskText:'检测到企业未开通云智洁管理系统，此选项关闭'});html+=renderSwitchItem('visualize_enabled','开启驾驶舱','',{disabled:true,maskText:'检测到企业未开通云智洁管理系统，此选项关闭'});}
-list.innerHTML=html;settingSnapshot={umanage_enabled:switchConfig.umanage_enabled,visualize_enabled:switchConfig.visualize_enabled,cims_baoxian:switchConfig.cims_baoxian,cims_school:switchConfig.cims_school,school_baoxian:switchConfig.school_baoxian};document.getElementById('settingModal').classList.add('show');}
-function toggleSwitch(el,key,lockAfterOn){el.classList.toggle('on');switchConfig[key]=el.classList.contains('on');if(lockAfterOn==='1'&&switchConfig[key]){el.classList.add('disabled');el.removeAttribute('onclick');el.previousElementSibling.querySelector('.si-desc').textContent='已开启（开启后不可关闭）';return;}el.previousElementSibling.querySelector('.si-desc').textContent=el.classList.contains('on')?(key.indexOf('_enabled')>0?'已开启，可在产品页访问':'已开启数据共享'):(key.indexOf('_enabled')>0?'未开启，产品页不可点击':'未开启数据共享');}
-function closeSetting(){document.getElementById('settingModal').classList.remove('show');}
-function saveSetting(){closeSetting();var newlyEnabled=[];if(switchConfig.umanage_enabled&&!settingSnapshot.umanage_enabled)newlyEnabled.push('umanage');if(switchConfig.visualize_enabled&&!settingSnapshot.visualize_enabled)newlyEnabled.push('visualize');renderProducts();if(newlyEnabled.length>0){newlyEnabled.forEach(function(key){syncingProducts[key]=true;});renderProducts();setTimeout(function(){newlyEnabled.forEach(function(key){delete syncingProducts[key];});renderProducts();},10000);}}
-document.getElementById('settingModal').addEventListener('click',function(e){if(e.target===this)closeSetting();});
-
-/* 用户下拉 */
-function toggleUserDropdown(e){e.stopPropagation();document.getElementById('userDropdown').classList.toggle('show');}
-document.addEventListener('click',function(){document.getElementById('userDropdown').classList.remove('show');});
-
-/* 修改手机号 */
-function openPhoneModal(){document.getElementById('userDropdown').classList.remove('show');document.getElementById('phoneModal').classList.add('show');}
-function closePhoneModal(){document.getElementById('phoneModal').classList.remove('show');document.getElementById('phoneError').classList.remove('show');}
-function getPhoneCode(){var phone=document.getElementById('phoneNew').value.trim();if(!phone){showPhoneError('请输入新手机号');return;}var btn=document.getElementById('btnPhoneCode');btn.disabled=true;btn.textContent='码:1234';setTimeout(function(){var count=60;btn.textContent=count+'s';var t=setInterval(function(){count--;btn.textContent=count+'s';if(count<=0){clearInterval(t);btn.disabled=false;btn.textContent='获取验证码';}},1000);},1500);}
-function shakeInput(inputId,errorId){var input=document.getElementById(inputId);var err=document.getElementById(errorId);if(err)err.classList.add('show');input.classList.add('input-error');setTimeout(function(){input.classList.remove('input-error');},500);}
-function showPhoneError(msg){var e=document.getElementById('phoneError');e.textContent=msg;e.classList.add('show');}
-function submitPhone(){var pwd=document.getElementById('phoneOldPwd').value.trim();var phone=document.getElementById('phoneNew').value.trim();var code=document.getElementById('phoneCode').value.trim();if(!pwd){showPhoneError('请输入当前密码');return;}if(pwd!=='123'){showPhoneError('当前密码错误');return;}if(!phone){showPhoneError('请输入新手机号');return;}if(!code){showPhoneError('请输入验证码');return;}if(code!=='1234'){shakeInput('phoneCode','phoneCodeError');return;}closePhoneModal();alert('手机号修改成功！');}
-document.getElementById('phoneModal').addEventListener('click',function(e){if(e.target===this)closePhoneModal();});
-
-/* 修改密码 */
-function openPwdModal(){document.getElementById('userDropdown').classList.remove('show');document.getElementById('pwdModal').classList.add('show');}
-function closePwdModal(){document.getElementById('pwdModal').classList.remove('show');document.getElementById('pwdError').classList.remove('show');}
-function getPwdCode(){var btn=document.getElementById('btnPwdCode');btn.disabled=true;btn.textContent='码:1234';setTimeout(function(){var count=60;btn.textContent=count+'s';var t=setInterval(function(){count--;btn.textContent=count+'s';if(count<=0){clearInterval(t);btn.disabled=false;btn.textContent='获取验证码';}},1000);},1500);}
-function showPwdError(msg){var e=document.getElementById('pwdError');e.textContent=msg;e.classList.add('show');}
-function submitPwd(){var old=document.getElementById('pwdOld').value.trim();var n1=document.getElementById('pwdNew1').value.trim();var n2=document.getElementById('pwdNew2').value.trim();var code=document.getElementById('pwdCode').value.trim();if(!old){showPwdError('请输入旧密码');return;}if(old!=='123'){showPwdError('旧密码错误');return;}if(!n1||!n2){showPwdError('请输入新密码');return;}if(n1!==n2){shakeInput('pwdNew2','pwdMatchError');return;}if(!code){showPwdError('请输入短信验证码');return;}if(code!=='1234'){shakeInput('pwdCode','pwdCodeError');return;}closePwdModal();alert('密码修改成功！');}
-document.getElementById('pwdModal').addEventListener('click',function(e){if(e.target===this)closePwdModal();});
-
-/* 销售名片 */
-function openSales(){var s=getCurrentSales();var sup=getSupportStaff();function cardHtml(staff,type){var avatar=staff.gender==='male'?'👨':'👩';return '<div class="contact-card '+type+'-card"><div class="cc-avatar">'+avatar+'</div><div class="cc-name">'+staff.name+'</div><div class="cc-role">'+staff.role+'</div><div class="cc-info"><div class="cc-info-item"><span class="icon">📱</span><span>'+staff.phone+'</span></div><div class="cc-info-item"><span class="icon">✉️</span><a href="mailto:'+staff.email+'">'+staff.email+'</a></div></div></div>';}var html=cardHtml(s,'sales')+cardHtml(sup,'support');document.getElementById('salesCard').innerHTML=html;document.getElementById('salesModal').classList.add('show');}
-function closeSales(){document.getElementById('salesModal').classList.remove('show');}
-document.getElementById('salesModal').addEventListener('click',function(e){if(e.target===this)closeSales();});
-
-/* 关于产品 */
-function openAbout(key){var p=PRODUCTS.find(function(x){return x.key===key;});var s=getCurrentSales();var sup=getSupportStaff();function miniCard(staff,type){var avatar=staff.gender==='male'?'👨':'👩';return '<div class="contact-card '+type+'-card" style="padding:16px 12px"><div class="cc-avatar" style="width:48px;height:48px;font-size:22px">'+avatar+'</div><div class="cc-name" style="font-size:15px">'+staff.name+'</div><div class="cc-role" style="font-size:11px;margin-bottom:10px">'+staff.role+'</div><div class="cc-info" style="gap:6px"><div class="cc-info-item" style="font-size:12px"><span class="icon">📱</span><span>'+staff.phone+'</span></div><div class="cc-info-item" style="font-size:12px"><span class="icon">✉️</span><a href="mailto:'+staff.email+'">'+staff.email+'</a></div></div></div>';}document.getElementById('aboutTitle').textContent='关于'+p.name;var html='<div class="about-banner" style="background:linear-gradient(135deg,'+p.color+','+p.color+'aa)"><h2>'+p.name+'</h2><p>'+p.intro.substring(0,30)+'...</p></div>';html+='<p class="about-intro-text">'+p.intro+'</p>';html+='<div class="about-features">'+p.features.map(function(f){return '<div class="about-feat"><div class="af-icon" style="color:'+p.color+'">✓</div><div class="af-title">'+f.substring(0,6)+'</div><div class="af-desc">'+f+'</div></div>';}).join('')+'</div>';html+='<div class="about-contact"><div class="qr-box"><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color='+p.color.replace('#','')+'"></div><div class="qr-label">微信公众号</div></div><div class="qr-item"><div class="qr-img"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.yun-clean.com&color=f5319d"></div><div class="qr-label">微信视频号</div></div></div><div class="contact-cards-wrap" style="grid-template-columns:1fr 1fr;gap:12px">'+miniCard(s,'sales')+miniCard(sup,'support')+'</div></div>';document.getElementById('aboutContent').innerHTML=html;document.getElementById('aboutModal').classList.add('show');}
-function closeAbout(){document.getElementById('aboutModal').classList.remove('show');}
-document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target===this)closeAbout();});
-
-/* 渲染产品 */
-function renderProducts(){var sorted=getSortedProducts();var actual=getActualPurchased();var html='';var idx=0;sorted.forEach(function(p){if(idx===2){html+='<div class="card tall grid-dynamic grid-video"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="云智洁视频号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#7c3aed;border-color:#7c3aed33;background:#7c3aed0a">云智洁视频号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/WN1mVxXRTu" alt="视频号二维码"><p>扫码关注云智洁视频号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="videoPrev()">‹</span><div id="videoCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="videoNext()">›</span></div></div>';}var isOpen=actual.has(p.key)||p.alwaysLast;var isEnabled=true;if(p.key==='umanage')isEnabled=switchConfig.umanage_enabled;if(p.key==='visualize')isEnabled=switchConfig.visualize_enabled;var tallCls='';if(syncingProducts[p.key]){html+='<div class="card syncing'+tallCls+'">'+cardHead(p)+'<div class="card-body">'+syncContent()+'</div></div>';idx++;return;}if(isOpen&&isEnabled){html+='<div class="card'+tallCls+'" onclick="'+(p.alwaysLast?'openAbout(\''+p.key+'\')':"goProduct('"+p.url+"')")+'">'+cardHead(p)+'<div class="card-body">'+cardContent(p.key)+'</div></div>';}else if(isOpen&&!isEnabled){html+='<div class="card disabled'+tallCls+'">'+cardHeadDisabled(p)+'<div class="card-body">'+disabledContent(p)+'</div></div>';}else{html+='<div class="card locked'+tallCls+'">'+cardHeadLocked(p)+'<div class="card-body">'+lockedContent(p)+'</div></div>';}idx++;});html+='<div class="card grid-dynamic grid-news"><div class="gd-head"><div class="gd-logo"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="云智洁公众号"></div><div class="gd-title-wrap"><div class="gd-title" style="color:#1a7f37;border-color:#1a7f3733;background:#1a7f370a">云智洁公众号</div></div><div class="gd-follow"><span class="follow-icon">+</span>关注<div class="follow-qrcode"><img src="https://aka.doubaocdn.com/s/zXTV5uVHcg" alt="公众号二维码"><p>扫码关注云智洁公众号</p></div></div></div><div class="gd-body"><span class="side-nav side-prev" onclick="newsPrev()">‹</span><div id="newsCarousel" class="carousel-content"></div><span class="side-nav side-next" onclick="newsNext()">›</span></div></div>';document.getElementById('productGrid').innerHTML=html;if(document.getElementById('pieCanvas'))drawPie();if(document.getElementById('lineCanvas'))drawLine();if(document.getElementById('carousel'))initCarousel();renderNews();renderVideo();setTimeout(function(){var grid=document.getElementById('productGrid');if(grid){var firstCard=grid.querySelector('.card:not(.tall):not(.grid-dynamic)');if(firstCard){var cardWidth=firstCard.offsetWidth;if(cardWidth>0){grid.style.gridAutoRows=Math.round(cardWidth*0.75)+'px';}}}},50);}
-function syncContent(){return '<div class="sync-loading"><div class="sync-spinner"></div><div class="sync-text">数据正在同步中</div></div>';}
-function cardHeadDisabled(p){return '<div class="card-head" style="--accent:'+p.color+'"><div class="card-logo" style="opacity:.6"><img src="'+p.logo+'" alt="'+p.name+'"></div><div class="card-title-wrap"><div class="card-title" style="color:#86909c;border-color:#e5e6eb;background:#f7f8fa">'+p.name+'</div></div><div class="card-go" style="color:#c9cdd4;border-color:#f0f1f3;cursor:not-allowed">未启用</div></div>';}
-function disabledContent(p){return '<div class="disabled-badge">⚠ 未启用</div><div class="disabled-tip">该产品已授权但尚未在系统设置中开启，请前往「设置」启用后使用。</div><a class="disabled-link" onclick="openSetting()">⚙ 前往设置开启 →</a>';}
-function cardHead(p){var go=p.alwaysLast?'联系我们':'进入 →';var goClass=p.alwaysLast?'contact':'';var clickAction=p.alwaysLast?'openSales()':"goProduct('"+p.url+"')";return '<div class="card-head" style="--accent:'+p.color+'"><div class="card-logo"><img src="'+p.logo+'" alt="'+p.name+'"></div><div class="card-title-wrap"><div class="card-title" style="color:'+p.color+';border-color:'+p.color+'33;background:'+p.color+'0a">'+p.name+'</div></div><div class="card-go '+goClass+'" onclick="event.stopPropagation();'+clickAction+'">'+go+'</div></div>';}
-function cardHeadLocked(p){return '<div class="card-head" style="--accent:'+p.color+'"><div class="card-logo" style="opacity:.5"><img src="'+p.logo+'" alt="'+p.name+'"></div><div class="card-title-wrap"><div class="card-title" style="color:#86909c;border-color:#e5e6eb;background:#f7f8fa">'+p.name+'</div></div><div class="card-go contact" onclick="event.stopPropagation();openSales()">联系我们</div></div>';}
-function lockedContent(p){return '<div class="locked-badge">🔒 未开通</div><div class="locked-intro">'+p.intro+'</div><a class="locked-link" style="color:'+p.color+'" onclick="openAbout(\''+p.key+'\')">了解'+p.name.replace('云智洁','')+' →</a><div class="card-divider"></div><div class="locked-features">'+p.features.slice(0,3).map(function(f){return '<div class="locked-feat"><span class="fi" style="background:'+p.color+'">✓</span>'+f+'</div>';}).join('')+'</div>';}
-
-function cardContent(key){
-  if(key==='cims')return '<div class="cims-top"><div class="version-badge" style="background:#e8f0ff;color:#165dff"><span class="dot"></span>授权版本：专业版</div><div class="cims-time"><span class="ir-label">服务时间</span><span class="ir-value">2025-01-01 ~ 2026-12-31</span></div></div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#165dff">50</div><div class="ds-lbl">授权员工数</div></div><div class="ds-box"><div class="ds-num" style="color:#165dff">12</div><div class="ds-lbl">授权用户数</div></div></div><div class="mini-stats"><div class="mini-stat" style="background:linear-gradient(135deg,#165dff,#4080ff)"><div class="ms-num">1,286</div><div class="ms-lbl">当前在职</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#00b42a,#23c343)"><div class="ms-num">1,241</div><div class="ms-lbl">今日出勤</div></div><div class="mini-stat" style="background:linear-gradient(135deg,#ff7d00,#ff9a2e)"><div class="ms-num">45</div><div class="ms-lbl">公休人数</div></div></div>';
-  if(key==='school')return '<div class="cims-top"><span class="ir-label">服务时间</span><span class="ir-value">2025-03-01 ~ 2026-02-28</span></div><div class="signin-row"><div class="signin-num" style="color:#ff7d00">186</div><div class="signin-trend" style="background:#fff5eb;color:#ff7d00">↑ 较昨日 +12</div></div><div class="signin-lbl">今日签到人数</div><div class="dual-stat"><div class="ds-box"><div class="ds-num" style="color:#ff7d00">200</div><div class="ds-lbl">授权人数</div></div><div class="ds-box"><div class="ds-num" style="color:#ff7d00">48</div><div class="ds-lbl">在学课程</div></div></div>';
-  if(key==='baoxian')return '<div class="info-row"><span class="ir-label">保单时间</span><span class="ir-value">2025-06-01 ~ 2026-05-31</span></div><div class="card-divider"></div><div class="baoxian-grid"><div class="bx-item"><div class="bx-num" style="color:#ff7d00">328</div><div class="bx-lbl">在保人数</div></div><div class="bx-item"><div class="bx-num" style="color:#00b42a">+15</div><div class="bx-lbl">今日新增</div></div><div class="bx-item"><div class="bx-num" style="color:#f53f3f">3</div><div class="bx-lbl">今日退保</div></div><div class="bx-item"><div class="bx-num" style="color:#165dff">8</div><div class="bx-lbl">今日报案</div></div><div class="bx-item"><div class="bx-num" style="color:#ff7d00">5</div><div class="bx-lbl">理赔中</div></div><div class="bx-item"><div class="bx-num" style="color:#86909c">1,206</div><div class="bx-lbl">已完结保单</div></div></div>';
-  if(key==='umanage')return '<div class="chart-title">今日品质巡视/巡检完成率</div><div class="chart-pie-wrap"><div class="chart-pie"><canvas id="pieCanvas" width="168" height="168"></canvas><div class="chart-pie-center"><div class="pct" style="color:#722ed1">87%</div><div class="plbl">完成率</div></div></div><div class="chart-legend"><div class="lg-row"><span class="lg-dot" style="background:#722ed1"></span>已完成 132 项</div><div class="lg-row"><span class="lg-dot" style="background:#e5e6eb"></span>未完成 20 项</div><div class="lg-row" style="margin-top:4px;color:#86909c">共 152 项任务</div></div></div><div class="card-divider"></div><div class="chart-title">近7日任务完成率趋势</div><div class="chart-line"><canvas id="lineCanvas"></canvas></div>';
-  if(key==='visualize')return '<div class="carousel" id="carousel"><div class="carousel-dots" id="carouselDots"></div></div>';
-  if(key==='youxiao')return '<div class="youxiao-intro">'+PRODUCTS.find(function(x){return x.key==='youxiao';}).intro+'</div><a class="youxiao-link" onclick="event.stopPropagation();openAbout(\'youxiao\')">了解优效 →</a><div class="card-divider"></div><div class="youxiao-features"><div class="youxiao-feat"><span class="fi">✓</span>专业清洁方案设计</div><div class="youxiao-feat"><span class="fi">✓</span>数据驱动服务优化</div><div class="youxiao-feat"><span class="fi">✓</span>客户满意度提升</div></div>';
-  return '';
-}
-
-/* 图表 */
-function drawPie(){var cv=document.getElementById('pieCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;cv.width=64*dpr;cv.height=64*dpr;cv.style.width='64px';cv.style.height='64px';ctx.scale(dpr,dpr);ctx.beginPath();ctx.arc(32,32,26,0,Math.PI*2);ctx.fillStyle='#f0f1f3';ctx.fill();ctx.beginPath();ctx.moveTo(32,32);ctx.arc(32,32,26,-Math.PI/2,-Math.PI/2+Math.PI*2*.87);ctx.closePath();ctx.fillStyle='#722ed1';ctx.fill();ctx.beginPath();ctx.arc(32,32,18,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();}
-function drawLine(){var cv=document.getElementById('lineCanvas');if(!cv)return;var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;var w=cv.parentElement.clientWidth,h=50;cv.width=w*dpr;cv.height=h*dpr;ctx.scale(dpr,dpr);var data=[78,82,75,88,91,85,87],labels=['一','二','三','四','五','六','日'];var padL=6,padR=6,padT=12,padB=16,cw=w-padL-padR,ch=h-padT-padB;ctx.strokeStyle='#f5f6f8';ctx.lineWidth=1;for(var i=0;i<=2;i++){var y=padT+ch*i/2;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(w-padR,y);ctx.stroke();}ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.lineTo(padL+cw,padT+ch);ctx.lineTo(padL,padT+ch);ctx.closePath();var g=ctx.createLinearGradient(0,padT,0,padT+ch);g.addColorStop(0,'rgba(114,46,209,.15)');g.addColorStop(1,'rgba(114,46,209,0)');ctx.fillStyle=g;ctx.fill();ctx.beginPath();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();data.forEach(function(v,i){var x=padL+cw*i/(data.length-1),y=padT+ch*(1-(v-60)/40);ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#722ed1';ctx.lineWidth=2;ctx.stroke();});ctx.fillStyle='#86909c';ctx.font='10px sans-serif';ctx.textAlign='center';labels.forEach(function(l,i){ctx.fillText(l,padL+cw*i/(data.length-1),h-3);});}
-
-var carouselData=[{label:'管理系统',title:'项目运营总览',from:'#0d1b2a',to:'#1b3a5c',stats:[{n:'48',l:'在管项目'},{n:'1,286',l:'在岗人员'},{n:'96.5%',l:'出勤率'},{n:'12',l:'待处理告警'}]},{label:'优管系统',title:'现场任务监控',from:'#1a0d2a',to:'#3a1b5c',stats:[{n:'152',l:'今日任务'},{n:'87%',l:'完成率'},{n:'38',l:'巡检点位'},{n:'5',l:'异常反馈'}]},{label:'优保系统',title:'保单数据概览',from:'#2a1a0d',to:'#5c3a1b',stats:[{n:'328',l:'在保人数'},{n:'15',l:'今日新增'},{n:'5',l:'今日理赔'},{n:'1,206',l:'已完结保单'}]},{label:'优效系统',title:'绩效薪酬分析',from:'#2a0d1f',to:'#5c1b42',stats:[{n:'98.2%',l:'核算准确率'},{n:'¥86.5万',l:'本月薪资'},{n:'12%',l:'成本下降'},{n:'456',l:'核算人数'}]}];
-var carouselIdx=0,carouselTimer=null;
-function initCarousel(){if(carouselTimer){clearInterval(carouselTimer);carouselTimer=null;}var box=document.getElementById('carousel');if(!box)return;box.querySelectorAll('.carousel-slide').forEach(function(s){s.remove();});var dots=document.getElementById('carouselDots');dots.innerHTML='';carouselIdx=0;carouselData.forEach(function(d,i){var s=document.createElement('div');s.className='carousel-slide'+(i===0?' active':'');s.style.background='linear-gradient(135deg,'+d.from+','+d.to+')';s.innerHTML='<div class="slide-label">'+d.label+'</div><div class="slide-title">'+d.title+'</div><div class="slide-stats">'+d.stats.map(function(t){return '<div class="slide-stat"><div class="sn">'+t.n+'</div><div class="sl">'+t.l+'</div></div>';}).join('')+'</div>';box.insertBefore(s,dots);var dot=document.createElement('span');if(i===0)dot.className='on';dot.onclick=function(){goSlide(i);};dots.appendChild(dot);});carouselTimer=setInterval(function(){goSlide((carouselIdx+1)%carouselData.length);},3000);}
-function goSlide(i){carouselIdx=i;document.querySelectorAll('.carousel-slide').forEach(function(s,idx){s.classList.toggle('active',idx===i);});document.querySelectorAll('#carouselDots span').forEach(function(d,idx){d.classList.toggle('on',idx===i);});}
-function checkPwdMatch(){var n1=document.getElementById('pwdNew1').value;var n2=document.getElementById('pwdNew2').value;var err=document.getElementById('pwdMatchError');var input=document.getElementById('pwdNew2');if(n1&&n2&&n1!==n2){err.classList.add('show');input.classList.add('input-error');setTimeout(function(){input.classList.remove('input-error');},500);}else{err.classList.remove('show');input.classList.remove('input-error');}}
-document.getElementById('pwdNew1').addEventListener('input',checkPwdMatch);
-document.getElementById('pwdNew2').addEventListener('input',checkPwdMatch);
-function adaptResolution(){var w=window.innerWidth;var container=document.querySelector('.container');var grid=document.querySelector('.grid');if(!container||!grid)return;var scale=1;if(w>=1900){scale=1.3;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else if(w>=1700){scale=1.25;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else if(w>=1500){scale=1.2;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}else{scale=1.1;container.style.maxWidth=Math.round(1280*scale)+'px';grid.style.gap=Math.round(14*scale)+'px';}document.body.style.setProperty('--scale',scale);setTimeout(function(){var firstCard=grid.querySelector('.card:not(.tall):not(.grid-dynamic)');if(firstCard){var cardWidth=firstCard.offsetWidth;if(cardWidth>0){grid.style.gridAutoRows=Math.round(cardWidth*0.75)+'px';}}},50);}
-window.addEventListener('resize',function(){adaptResolution();if(document.getElementById('productPage').style.display==='block')drawLine();});
-window.addEventListener('load',function(){adaptResolution();try{var d=JSON.parse(localStorage.getItem('yzj_auto')||'null');if(d&&d.e&&Date.now()<d.e){enterProductPage();}}catch(e){}});
+/* ===== 数据层与逻辑层拆分加载 ===== */
+window.DB = window.DB || {};
+var DB = window.DB;
 </script>
+<script src="data-core.js"></script><script src="data-zone-1.js"></script><script src="data-zone-2.js"></script><script src="data-zone-3.js"></script><script src="data-zone-4.js"></script><script src="data-tracks-1.js"></script><script src="data-tracks-2.js"></script><script src="data-tracks-3.js"></script><script src="data-tracks-4.js"></script><script src="app-1.js"></script><script src="app-2.js"></script><script src="app-3.js"></script><script src="app-4.js"></script><script src="app-5.js"></script><script src="app-6.js"></script><script src="app-7.js"></script>
 </body>
 </html>
